@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: swift:4
+    steps:
+      - checkout
+      - run: swift test
+workflows:
+  version: 2
+  build:
+    jobs:
+      - test
