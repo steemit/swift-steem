@@ -1,6 +1,18 @@
 version: 2
 jobs:
-  test:
+  unit-tests:
+    macos:
+      xcode: "9.3"
+    steps:
+      - checkout
+      - run: swift test --filter SteemTests
+  integration-tests:
+    macos:
+      xcode: "9.3"
+    steps:
+      - checkout
+      - run: swift test --filter SteemIntegrationTests
+  linux-tests:
     docker:
       - image: swift:4
     steps:
@@ -10,4 +22,6 @@ workflows:
   version: 2
   build:
     jobs:
-      - test
+      - unit-tests
+      - integration-tests
+      - linux-tests
