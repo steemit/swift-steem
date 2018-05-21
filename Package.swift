@@ -14,5 +14,8 @@ let package = Package(
         .testTarget(
             name: "SteemTests",
             dependencies: ["Steem"]),
+        .testTarget(
+            name: "SteemIntegrationTests",
+            dependencies: ["Steem"]),
     ]
 )
