@@ -4,8 +4,11 @@
  */
 
 import Foundation
-import Security
 import secp256k1
+
+#if !os(Linux)
+import Security
+#endif
 
 internal class Secp256k1Context {
     
@@ -33,6 +36,8 @@ internal class Secp256k1Context {
     
     init(flags: Secp256k1Context.Flags = .none) {
         self.ctx = secp256k1_context_create(UInt32(flags.rawValue))
+        // TODO: randomize context on Linux as well
+        #if !os(Linux)
         var seed = Data(count: 32)
         _ = seed.withUnsafeMutableBytes {
             SecRandomCopyBytes(kSecRandomDefault, 32, $0)
@@ -40,6 +45,7 @@ internal class Secp256k1Context {
         _ = seed.withUnsafeBytes {
             secp256k1_context_randomize(self.ctx, $0)
         }
+        #endif
     }
     
     deinit {
