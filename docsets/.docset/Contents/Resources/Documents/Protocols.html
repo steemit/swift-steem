@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Protocols  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Section/Protocols" class="dashAnchor"></a>
+    <a title="Protocols  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html"> Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/steemit/swift-steem"><img src="img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html"> Reference</a>
+        <img id="carat" src="img/carat.png" />
+        Protocols  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/Client.html">Client</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Client/Error.html">– Error</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/Request.html">Request</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Protocols</h1>
+            <p>The following protocols are available globally.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem7RequestP"></a>
+                    <a name="//apple_ref/swift/Protocol/Request" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem7RequestP">Request</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>JSON-RPC 2.0 Request Protocol.</p>
+
+<p>Implementers are responsible for casting the result to the assoicated <code>Response</code> type.</p>
+
+<p>Example:</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">MyResponse</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">hello</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">let</span> <span class="nv">foo</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span> <span class="kt">MyError</span> <span class="p">:</span> <span class="kt">Error</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">invalidResponse</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">MyRequest</span> <span class="p">:</span> <span class="kt">Steem</span><span class="o">.</span><span class="kt">Request</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="kt">Response</span> <span class="o">=</span> <span class="kt">MyResponse</span>
+    <span class="k">let</span> <span class="nv">method</span> <span class="o">=</span> <span class="s">"my_method"</span>
+    <span class="k">let</span> <span class="nv">params</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?</span>
+    <span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="s">"hello"</span><span class="p">:</span> <span class="n">name</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">response</span><span class="p">(</span><span class="n">from</span> <span class="nv">result</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Response</span> <span class="p">{</span>
+        <span class="k">guard</span> <span class="k">let</span> <span class="nv">result</span> <span class="o">=</span> <span class="n">result</span> <span class="k">as?</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">],</span>
+              <span class="k">let</span> <span class="nv">hello</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s">"hello"</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">String</span><span class="p">,</span>
+              <span class="k">let</span> <span class="nv">foo</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s">"foo"</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">Int</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="kt">MyError</span><span class="o">.</span><span class="n">invalidResponse</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kt">MyResponse</span><span class="p">(</span><span class="nv">hello</span><span class="p">:</span> <span class="n">hello</span><span class="p">,</span> <span class="nv">foo</span><span class="p">:</span> <span class="n">foo</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+                        <a href="Protocols/Request.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Request</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://steem.com" target="_blank" rel="external">Steemit Inc.</a>. All rights reserved. (Last updated: 2018-05-21)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
