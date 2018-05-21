@@ -25,12 +25,11 @@ jobs:
       - checkout
       - run:
           name: Install libsecp256k1
-          command:
-            - >
-              git clone https://github.com/bitcoin-core/secp256k1.git && cd secp256k1
-              apt-get update && apt-get install -y autoconf libtool
-              ./autogen.sh && ./configure --enable-module-recovery && make install
-              cd ..
+          command: |
+            git clone https://github.com/bitcoin-core/secp256k1.git && cd secp256k1
+            apt-get update && apt-get install -y autoconf libtool
+            ./autogen.sh && ./configure --enable-module-recovery && make install
+            cd ..
       - run: swift test
 workflows:
   version: 2
