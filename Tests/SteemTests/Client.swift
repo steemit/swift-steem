@@ -32,7 +32,7 @@ struct TestRequest: Request {
 }
 
 struct TestIdGenerator: IdGenerator {
-    mutating func next() -> UInt32 {
+    mutating func next() -> Int {
         return 42
     }
 }

@@ -62,10 +62,10 @@ public extension Request {
 internal struct Payload<Request: Steem.Request> {
     public let request: Request
     public let version = "2.0"
-    public let id: UInt32
+    public let id: Int
     public let body: Any
 
-    public init (request: Request, id: UInt32) {
+    public init (request: Request, id: Int) {
         var body: [String: Any] = [
             "jsonrpc": version,
             "id": id,
@@ -97,14 +97,14 @@ extension URLSession : SessionAdapter {
 
 /// JSON-RPC 2.0 ID number generator
 internal protocol IdGenerator {
-    mutating func next() -> UInt32
+    mutating func next() -> Int
 }
 
 /// JSON-RPC 2.0 Sequential ID number generator
 internal struct SeqIdGenerator: IdGenerator {
-    private var seq: UInt32 = 1
+    private var seq: Int = 1
     public init() {}
-    public mutating func next() -> UInt32 {
+    public mutating func next() -> Int {
         defer {
             seq += 1
         }
@@ -168,7 +168,7 @@ public class Client {
         guard let responseDict = responseBody as? [String: Any] else {
             throw Error.invalidResponse(message: "Invalid response object", response: httpResponse, data: data)
         }
-        guard let responseId = responseDict["id"] as? UInt32 else {
+        guard let responseId = responseDict["id"] as? Int else {
             throw Error.invalidResponse(message: "Request id missing in response", response: httpResponse, data: data)
         }
         if (payload.id != responseId) {
