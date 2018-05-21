@@ -5,12 +5,18 @@ jobs:
       xcode: "9.3.0"
     steps:
       - checkout
+      - run:
+          name: Install libsecp256k1
+          command: brew tap cuber/homebrew-libsecp256k1 && brew install libsecp256k1
       - run: swift test --filter SteemTests
   integration-tests:
     macos:
       xcode: "9.3.0"
     steps:
       - checkout
+      - run:
+          name: Install libsecp256k1
+          command: brew tap cuber/homebrew-libsecp256k1 && brew install libsecp256k1
       - run: swift test --filter SteemIntegrationTests
   linux-tests:
     docker:
