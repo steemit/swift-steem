@@ -7,7 +7,7 @@ let package = Package(
     products: [
         .library(name: "Steem", targets: ["Steem"]),
     ],
-    dependencies: [.package(url: "git@github.com:steemit/swift-secp256k1.git", from: "1.1.0")],
+    dependencies: [.package(url: "https://github.com/steemit/swift-secp256k1.git", from: "1.1.0")],
     targets: [
         .target(
             name: "Steem",
