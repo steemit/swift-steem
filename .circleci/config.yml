@@ -2,13 +2,13 @@ version: 2
 jobs:
   unit-tests:
     macos:
-      xcode: "9.3"
+      xcode: "9.3.0"
     steps:
       - checkout
       - run: swift test --filter SteemTests
   integration-tests:
     macos:
-      xcode: "9.3"
+      xcode: "9.3.0"
     steps:
       - checkout
       - run: swift test --filter SteemIntegrationTests
