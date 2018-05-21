@@ -11,10 +11,19 @@ extension ClientTest {
     ]
 }
 
+extension Secp256k1Test {
+    static let __allTests = [
+        ("testPublicFromPrivate", testPublicFromPrivate),
+        ("testSignAndRecover", testSignAndRecover),
+        ("testVerifiesSecret", testVerifiesSecret),
+    ]
+}
+
 #if !os(macOS)
 public func __allTests() -> [XCTestCaseEntry] {
     return [
         testCase(ClientTest.__allTests),
+        testCase(Secp256k1Test.__allTests),
     ]
 }
 #endif
