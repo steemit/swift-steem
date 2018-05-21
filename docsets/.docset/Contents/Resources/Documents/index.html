@@ -52,9 +52,38 @@
         <section>
           <section class="section">
             
-            <h3 id='authors' class='heading'>Authors</h3>
+            <h1 id='swift-steem' class='heading'>swift-steem</h1>
 
-<p>Steemit Inc.</p>
+<p>Official Steem library for Swift.</p>
+
+<p>Resources:</p>
+
+<ul>
+<li><a href="https://steemit.github.io/swift-steem/">API documentation</a></li>
+<li><a href="https://github.com/steemit/swift-steem/issues">Issue tracker</a></li>
+<li><a href="https://developers.steem.io">Steem developer portal</a></li>
+</ul>
+<h2 id='installation' class='heading'>Installation</h2>
+
+<p>Using the <a href="https://swift.org/package-manager/">Swift package manager</a>:</p>
+
+<p>In your Package.swift add:</p>
+<pre class="highlight plaintext"><code>dependencies: [
+    .package(url: "https://github.com/steemit/swift-steem.git")
+]
+</code></pre>
+
+<p>and run <code>swift package update</code>. Now you can <code>import Steem</code> in your Swift project.</p>
+<h2 id='running-tests' class='heading'>Running tests</h2>
+
+<p>To run all tests simply run <code>swift test</code>, this will run both the unit- and integration-tests. To run them separately use the <code>--filter</code> flag, e.g. <code>swift test --filter SteemIntegrationTests</code></p>
+<h2 id='developing' class='heading'>Developing</h2>
+
+<p>Development of the library is best done with Xcode, to generate a <code>.xcodeproj</code> you need to run <code>swift package generate-xcodeproj</code>.</p>
+
+<p>To enable test coverage display go <q>Scheme > Manage Schemes&hellip;</q> menu item and edit the <q>Steem-Package</q> scheme, select the Test configuration and under the Options tab enable <q>Gather coverage for some targets</q> and add the <code>Steem</code> target.</p>
+
+<p>After adding adding more unit tests the <code>swift test --generate-linuxmain</code> command has to be run and the XCTestManifest changes committed for the tests to be run on Linux.</p>
 
           </section>
         </section>
