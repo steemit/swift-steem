@@ -5,7 +5,7 @@ SRC_FILES := $(shell find Sources -name '*.swift')
 Steem.xcodeproj:
 	swift package generate-xcodeproj
 
-docs: Steem.xcodeproj $(SRC_FILES)
+docs: Steem.xcodeproj $(SRC_FILES) README.md
 	@command -v jazzy >/dev/null || (echo "doc generator missing, run: [sudo] gem install jazzy"; exit 1)
 	jazzy --min-acl public \
 		-g https://github.com/steemit/swift-steem \
@@ -23,5 +23,6 @@ update-docs: .gh-pages docs
 
 .PHONY: clean
 clean:
+	rm -rf Steem.xcodeproj
 	rm -rf .gh-pages/ docs/
 	rm -rf .build/ build/
