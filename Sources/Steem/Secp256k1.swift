@@ -16,8 +16,7 @@ internal struct Random {
     static func bytes(count: Int) -> Data {
         var rv = Data(count: count)
         #if os(Linux)
-            let file = fopen("/dev/random", O_RDONLY)
-            guard file else {
+            guard let file = fopen("/dev/random", "r") else {
                 fatalError("Unable to open /dev/random for reading.")
             }
             defer { fclose(file) }
