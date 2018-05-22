@@ -24,14 +24,30 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Get latest libsecp256k1 version
+          command: |
+            VERSION=`git ls-remote https://github.com/bitcoin-core/secp256k1.git | grep "HEAD$" | cut -f1`
+            echo $VERSION | tee .libsecp256k1_head
+      - restore_cache:
+          keys:
+            - libsecp256k1-{{ checksum ".libsecp256k1_head" }}
+      - run:
           name: Install libsecp256k1
           command: |
+            test -f /usr/local/include/secp256k1.h && exit
             git clone https://github.com/bitcoin-core/secp256k1.git && cd secp256k1
             apt-get update && apt-get install -y autoconf libtool
             ./autogen.sh && ./configure --enable-module-recovery
-            make install && ldconfig
-            cd ..
-      - run: swift test
+            make install
+      - save_cache:
+          key: libsecp256k1-{{ checksum ".libsecp256k1_head" }}
+          when: always
+          paths:
+            - /usr/local/lib
+            - /usr/local/include
+      - run:
+          name: Run tests
+          command: ldconfig && swift test
 workflows:
   version: 2
   build:
