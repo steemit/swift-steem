@@ -7,8 +7,38 @@ import Foundation
 import secp256k1
 
 #if !os(Linux)
-import Security
+    import Security
+#else
+    import Glibc
 #endif
+
+internal struct Random {
+    static func bytes(count: Int) -> Data {
+        var rv = Data(count: count)
+        #if os(Linux)
+            let file = fopen("/dev/random", O_RDONLY)
+            guard file else {
+                fatalError("Unable to open /dev/random for reading.")
+            }
+            defer { fclose(file) }
+            let bytesRead = rv.withUnsafeMutableBytes {
+                fread($0, 1, count, file)
+            }
+            guard bytesRead == count else {
+                fatalError("Unable to read from /dev/random.")
+            }
+        #else
+            let result = rv.withUnsafeMutableBytes {
+                SecRandomCopyBytes(kSecRandomDefault, count, $0)
+            }
+            guard result == errSecSuccess else {
+                fatalError("Unable to generate random data.")
+            }
+        #endif
+        return rv
+    }
+}
+
 
 internal class Secp256k1Context {
     
@@ -36,16 +66,10 @@ internal class Secp256k1Context {
     
     init(flags: Secp256k1Context.Flags = .none) {
         self.ctx = secp256k1_context_create(UInt32(flags.rawValue))
-        // TODO: randomize context on Linux as well
-        #if !os(Linux)
-        var seed = Data(count: 32)
-        _ = seed.withUnsafeMutableBytes {
-            SecRandomCopyBytes(kSecRandomDefault, 32, $0)
-        }
+        let seed = Random.bytes(count: 32)
         _ = seed.withUnsafeBytes {
             secp256k1_context_randomize(self.ctx, $0)
         }
-        #endif
     }
     
     deinit {
