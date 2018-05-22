@@ -1,36 +1,69 @@
 version: 2
+get_secp256k1_version: &get_secp256k1_version
+  run:
+    name: Get latest libsecp256k1 version
+    command: |
+      VERSION=`git ls-remote https://github.com/bitcoin-core/secp256k1.git | grep "HEAD$" | cut -f1`
+      echo $VERSION | tee .libsecp256k1_head
+restore_secp256k1_mac: &restore_secp256k1_mac
+  restore_cache:
+    keys:
+      - macos-libsecp256k1-{{ checksum ".libsecp256k1_head" }}
+install_secp256k1_mac: &install_secp256k1_mac
+  run:
+    name: Install libsecp256k1
+    command: |
+      test -f /usr/local/include/secp256k1.h && exit
+      brew install autoconf automake libtool
+      git clone https://github.com/bitcoin-core/secp256k1.git && cd secp256k1
+      ./autogen.sh && ./configure --enable-module-recovery
+      make install
+save_secp256k1_mac: &save_secp256k1_mac
+  save_cache:
+    key: macos-libsecp256k1-{{ checksum ".libsecp256k1_head" }}
+    when: always
+    paths:
+      - /usr/local/include/secp256k1.h
+      - /usr/local/include/secp256k1_recovery.h
+      - /usr/local/lib/libsecp256k1.0.dylib
+      - /usr/local/lib/libsecp256k1.a
+      - /usr/local/lib/libsecp256k1.dylib
+      - /usr/local/lib/libsecp256k1.la
+      - /usr/local/lib/pkgconfig/libsecp256k1.pc
 jobs:
   unit-tests:
     macos:
       xcode: "9.3.0"
     steps:
       - checkout
+      - <<: *get_secp256k1_version
+      - <<: *restore_secp256k1_mac
+      - <<: *install_secp256k1_mac
+      - <<: *save_secp256k1_mac
       - run:
-          name: Install libsecp256k1
-          command: brew tap cuber/homebrew-libsecp256k1 && brew install libsecp256k1
-      - run: swift test --filter SteemTests
+          name: Run unit tests
+          command: swift test --filter SteemTests
   integration-tests:
     macos:
       xcode: "9.3.0"
     steps:
       - checkout
+      - <<: *get_secp256k1_version
+      - <<: *restore_secp256k1_mac
+      - <<: *install_secp256k1_mac
+      - <<: *save_secp256k1_mac
       - run:
-          name: Install libsecp256k1
-          command: brew tap cuber/homebrew-libsecp256k1 && brew install libsecp256k1
-      - run: swift test --filter SteemIntegrationTests
+          name: Run integration tests
+          command: swift test --filter SteemIntegrationTests
   linux-tests:
     docker:
       - image: swift:4
     steps:
       - checkout
-      - run:
-          name: Get latest libsecp256k1 version
-          command: |
-            VERSION=`git ls-remote https://github.com/bitcoin-core/secp256k1.git | grep "HEAD$" | cut -f1`
-            echo $VERSION | tee .libsecp256k1_head
+      - <<: *get_secp256k1_version
       - restore_cache:
           keys:
-            - libsecp256k1-{{ checksum ".libsecp256k1_head" }}
+            - linux-libsecp256k1-{{ checksum ".libsecp256k1_head" }}
       - run:
           name: Install libsecp256k1
           command: |
@@ -40,7 +73,7 @@ jobs:
             ./autogen.sh && ./configure --enable-module-recovery
             make install
       - save_cache:
-          key: libsecp256k1-{{ checksum ".libsecp256k1_head" }}
+          key: linux-libsecp256k1-{{ checksum ".libsecp256k1_head" }}
           when: always
           paths:
             - /usr/local/lib
