@@ -9,23 +9,22 @@ class TestTask: SessionDataTask {
 }
 
 class TestSession: SessionAdapter {
-    
     var nextResponse: (Data?, URLResponse?, Error?) = (nil, nil, nil)
     var lastRequest: URLRequest?
-    
+
     func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> SessionDataTask {
-        lastRequest = request
-        completionHandler(nextResponse.0, nextResponse.1, nextResponse.2)
+        self.lastRequest = request
+        completionHandler(self.nextResponse.0, self.nextResponse.1, self.nextResponse.2)
         return TestTask()
     }
 }
 
 struct TestRequest: Request {
     typealias Response = Any
-    
+
     var params: Any?
     var method = "test"
-    
+
     func response(from result: Any) throws -> Response {
         return result
     }
@@ -40,7 +39,6 @@ struct TestIdGenerator: IdGenerator {
 let testUrl = URL(string: "https://example.com")!
 let session = TestSession()
 let client = Client(address: testUrl)
-
 
 func jsonResponse(_ dict: Any) -> (Data?, URLResponse?, Error?) {
     let data = try! JSONSerialization.data(withJSONObject: dict, options: [])
@@ -60,50 +58,48 @@ func errorResponse(code: Int, message: String) -> (Data?, URLResponse?, Error?) 
     return (data, response, nil)
 }
 
-
 class ClientTest: XCTestCase {
-    
     override func setUp() {
         client.idgen = TestIdGenerator()
         client.session = session
     }
-    
+
     func testRequest() {
         let test = expectation(description: "Handler called")
         session.nextResponse = jsonResponse(["id": 42, "result": "foo"])
-        client.send(request: TestRequest()) { (response, error) in
+        client.send(request: TestRequest()) { response, error in
             XCTAssertNil(error)
             XCTAssertEqual(response as? String, "foo")
             test.fulfill()
         }
-        waitForExpectations(timeout: 2) { (error) in
+        waitForExpectations(timeout: 2) { error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
     }
-    
+
     func testRequestWithParams() {
         let test = expectation(description: "Handler called")
         session.nextResponse = jsonResponse(["id": 42, "result": "foo"])
         var req = TestRequest()
         req.params = ["hello"]
-        client.send(request: req) { (response, error) in
+        client.send(request: req) { response, error in
             XCTAssertNil(error)
             XCTAssertEqual(response as? String, "foo")
             test.fulfill()
         }
-        waitForExpectations(timeout: 2) { (error) in
+        waitForExpectations(timeout: 2) { error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
     }
-    
+
     func testBadServerResponse() {
         let test = expectation(description: "Handler called")
         session.nextResponse = errorResponse(code: 503, message: "So sorry")
-        client.send(request: TestRequest()) { (response, error) in
+        client.send(request: TestRequest()) { response, error in
             XCTAssertNotNil(error)
             XCTAssertNil(response)
             if let error = error as? Client.Error, case let Client.Error.invalidResponse(message, response, data) = error {
@@ -115,17 +111,17 @@ class ClientTest: XCTestCase {
             }
             test.fulfill()
         }
-        waitForExpectations(timeout: 2) { (error) in
+        waitForExpectations(timeout: 2) { error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
     }
-    
+
     func testBadRpcResponse() {
         let test = expectation(description: "Handler called")
         session.nextResponse = jsonResponse(["id": 0, "banana": false])
-        client.send(request: TestRequest()) { (response, error) in
+        client.send(request: TestRequest()) { response, error in
             XCTAssertNotNil(error)
             XCTAssertNil(response)
             if let error = error as? Client.Error, case let Client.Error.invalidResponse(message, _, _) = error {
@@ -135,17 +131,17 @@ class ClientTest: XCTestCase {
             }
             test.fulfill()
         }
-        waitForExpectations(timeout: 2) { (error) in
+        waitForExpectations(timeout: 2) { error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
     }
-    
+
     func testRpcError() {
         let test = expectation(description: "Handler called")
         session.nextResponse = jsonResponse(["id": 42, "error": ["code": 123, "message": "Had some issues", "data": ["extra": 123]]])
-        client.send(request: TestRequest()) { (response, error) in
+        client.send(request: TestRequest()) { response, error in
             XCTAssertNotNil(error)
             XCTAssertNil(response)
             if let error = error as? Client.Error, case let Client.Error.responseError(code, message, data) = error {
@@ -157,18 +153,17 @@ class ClientTest: XCTestCase {
             }
             test.fulfill()
         }
-        waitForExpectations(timeout: 2) { (error) in
+        waitForExpectations(timeout: 2) { error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
     }
-    
+
     func testSeqIdGenerator() {
         var gen = SeqIdGenerator()
         assert(gen.next() == 1)
         assert(gen.next() == 2)
         assert(gen.next() == 3)
     }
-    
 }

@@ -65,7 +65,7 @@ internal struct Payload<Request: Steem.Request> {
     public let id: Int
     public let body: Any
 
-    public init (request: Request, id: Int) {
+    public init(request: Request, id: Int) {
         var body: [String: Any] = [
             "jsonrpc": version,
             "id": id,
@@ -84,11 +84,13 @@ internal struct Payload<Request: Steem.Request> {
 internal protocol SessionAdapter {
     func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> SessionDataTask
 }
+
 internal protocol SessionDataTask {
     func resume()
 }
-extension URLSessionDataTask : SessionDataTask {}
-extension URLSession : SessionAdapter {
+
+extension URLSessionDataTask: SessionDataTask {}
+extension URLSession: SessionAdapter {
     internal func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> SessionDataTask {
         let task: URLSessionDataTask = self.dataTask(with: request, completionHandler: completionHandler)
         return task as SessionDataTask
@@ -108,7 +110,7 @@ internal struct SeqIdGenerator: IdGenerator {
         defer {
             seq += 1
         }
-        return seq
+        return self.seq
     }
 }
 
@@ -116,7 +118,6 @@ internal struct SeqIdGenerator: IdGenerator {
  Steem-flavoured JSON-RPC 2.0 client.
  */
 public class Client {
-
     /// Client errors.
     public enum Error: Swift.Error {
         /// Server didn't respond with a valid JSON-RPC 2.0 response.
@@ -171,7 +172,7 @@ public class Client {
         guard let responseId = responseDict["id"] as? Int else {
             throw Error.invalidResponse(message: "Request id missing in response", response: httpResponse, data: data)
         }
-        if (payload.id != responseId) {
+        if payload.id != responseId {
             throw Error.invalidResponse(message: "Request id mismatch", response: httpResponse, data: data)
         }
         if let error = responseDict["error"] {
@@ -205,7 +206,7 @@ public class Client {
         } catch {
             return completionHandler(nil, error)
         }
-        self.session.dataTask(with: urlRequest) { (data, response, error) in
+        self.session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
                 return completionHandler(nil, error)
             }

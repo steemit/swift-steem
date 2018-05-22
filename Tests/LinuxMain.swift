@@ -1,7 +1,6 @@
-import XCTest
-
-import SteemTests
 import SteemIntegrationTests
+import SteemTests
+import XCTest
 
 var tests = [XCTestCaseEntry]()
 tests += SteemTests.__allTests()
