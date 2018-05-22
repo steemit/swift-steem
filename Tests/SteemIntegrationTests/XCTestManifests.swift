@@ -7,9 +7,9 @@ extension ClientTest {
 }
 
 #if !os(macOS)
-public func __allTests() -> [XCTestCaseEntry] {
-    return [
-        testCase(ClientTest.__allTests),
-    ]
-}
+    public func __allTests() -> [XCTestCaseEntry] {
+        return [
+            testCase(ClientTest.__allTests),
+        ]
+    }
 #endif

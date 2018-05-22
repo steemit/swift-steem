@@ -13,6 +13,15 @@ docs: Steem.xcodeproj $(SRC_FILES) README.md
 		-u https://steem.com \
 		&& touch docs
 
+.PHONY: format
+format:
+	@command -v swiftformat >/dev/null || (echo "formatter missing, run: brew install swiftformat"; exit 1)
+	swiftformat \
+		--self insert \
+		--comments ignore \
+		--disable redundantReturn \
+		Package.swift Tests/ Sources/
+
 .gh-pages:
 	git clone `git config --get remote.origin.url` -b gh-pages .gh-pages
 

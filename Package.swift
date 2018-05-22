@@ -11,12 +11,15 @@ let package = Package(
     targets: [
         .target(
             name: "Steem",
-            dependencies: []),
+            dependencies: []
+        ),
         .testTarget(
             name: "SteemTests",
-            dependencies: ["Steem"]),
+            dependencies: ["Steem"]
+        ),
         .testTarget(
             name: "SteemIntegrationTests",
-            dependencies: ["Steem"]),
+            dependencies: ["Steem"]
+        ),
     ]
 )
