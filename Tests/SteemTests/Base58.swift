@@ -63,15 +63,17 @@ let base64_base58_pairs = [
 class Base58Test: XCTestCase {
     func testDecode() {
         for (b64, b58, graphene) in base64_base58_pairs {
-            let data = Data(base58CheckEncoded: b58, graphene)
+            let options: Data.Base58CheckOptions = graphene ? [.grapheneChecksum] : []
+            let data = Data(base58CheckEncoded: b58, options: options)
             XCTAssertEqual(data?.base64EncodedString(), b64)
         }
     }
 
     func testEncode() {
         for (b64, b58, graphene) in base64_base58_pairs {
+            let options: Data.Base58CheckOptions = graphene ? [.grapheneChecksum] : []
             let data = Data(base64Encoded: b64)!
-            XCTAssertEqual(data.base58CheckEncodedString(graphene), b58)
+            XCTAssertEqual(data.base58CheckEncodedString(options: options), b58)
         }
     }
 }

@@ -137,17 +137,17 @@ internal class Secp256k1Context {
      Sign a message.
      - parameter message: 32-byte message to sign.
      - parameter secretKey: 32-byte secret key to sign message with.
-     - parameter nonce: 32-byte nonce seed, optional.
+     - parameter ndata: 32-bytes of rfc6979 "Additional data", optional.
      - returns: 64-byte signature and recovery id.
      */
-    func sign(message: Data, secretKey key: Data, nonce: Data? = nil) throws -> (Data, Int32) {
+    func sign(message: Data, secretKey key: Data, ndata: Data? = nil) throws -> (Data, Int32) {
         let sig = UnsafeMutablePointer<secp256k1_ecdsa_recoverable_signature>.allocate(capacity: 1)
         defer { sig.deallocate() }
         let success = message.withUnsafeBytes { (msgPtr: UnsafePointer<UInt8>) -> Bool in
             return key.withUnsafeBytes { (keyPtr: UnsafePointer<UInt8>) -> Bool in
-                if let nonce = nonce {
-                    return nonce.withUnsafeBytes { (noncePtr: UnsafePointer<UInt8>) -> Bool in
-                        return secp256k1_ecdsa_sign_recoverable(self.ctx, sig, msgPtr, keyPtr, nil, noncePtr) == 1
+                if let ndata = ndata {
+                    return ndata.withUnsafeBytes { (ndataPtr: UnsafePointer<UInt8>) -> Bool in
+                        return secp256k1_ecdsa_sign_recoverable(self.ctx, sig, msgPtr, keyPtr, nil, ndataPtr) == 1
                     }
                 } else {
                     return secp256k1_ecdsa_sign_recoverable(self.ctx, sig, msgPtr, keyPtr, nil, nil) == 1
