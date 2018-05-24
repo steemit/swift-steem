@@ -7,9 +7,7 @@ import Crypto
 import Foundation
 
 internal extension Data {
-    /**
-     Return a SHA2-256 hash of the data.
-     */
+    /// Return a SHA2-256 hash of the data.
     func sha256Digest() -> Data {
         let buf = UnsafeMutablePointer<UInt8>.allocate(capacity: 32)
         self.withUnsafeBytes {

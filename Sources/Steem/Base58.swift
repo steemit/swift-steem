@@ -7,6 +7,7 @@ import Crypto
 import Foundation
 
 internal extension Data {
+    /// Base58 encoding and decoding options.
     struct Base58CheckOptions: OptionSet {
         let rawValue: Int
         /// Use graphene-style ripem160 checksum.

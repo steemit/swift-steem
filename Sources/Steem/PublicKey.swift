@@ -9,8 +9,11 @@ import Foundation
 public struct PublicKey: Equatable, LosslessStringConvertible {
     /// Chain address prefix.
     public enum AddressPrefix: Equatable {
+        /// STM, main network.
         case mainNet
+        /// TST, test networks.
         case testNet
+        /// Freeform address prefix, e.g. "STX".
         case custom(String)
     }
 
@@ -63,6 +66,7 @@ public struct PublicKey: Equatable, LosslessStringConvertible {
 extension PublicKey.AddressPrefix: ExpressibleByStringLiteral, LosslessStringConvertible {
     public typealias StringLiteralType = String
 
+    /// Create new addres prefix from string.
     public init(_ value: String) {
         if value == "STM" {
             self = .mainNet
@@ -77,6 +81,7 @@ extension PublicKey.AddressPrefix: ExpressibleByStringLiteral, LosslessStringCon
         self.init(value)
     }
 
+    /// String representation of address prefix, e.g. "STM".
     public var description: String {
         switch self {
         case .mainNet:

@@ -116,9 +116,7 @@ internal class Secp256k1Context {
 
     /**
      Compute the public key for a secret key.
-     - parameter message: 32-byte message to sign.
-     - parameter secretKey: 32-byte secret key to sign message with.
-     - parameter nonce: 32-byte nonce seed, optional.
+     - parameter fromSecret: 32-byte secret key.
      - returns: 33-byte compressed public key.
      */
     func createPublic(fromSecret key: Data) throws -> Data {
