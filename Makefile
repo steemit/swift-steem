@@ -8,6 +8,7 @@ Steem.xcodeproj:
 docs: Steem.xcodeproj $(SRC_FILES) README.md
 	@command -v jazzy >/dev/null || (echo "doc generator missing, run: [sudo] gem install jazzy"; exit 1)
 	jazzy --min-acl public \
+		-x -scheme,Steem-Package,-target,Steem \
 		-g https://github.com/steemit/swift-steem \
 		-a "Steemit Inc." \
 		-u https://steem.com \
