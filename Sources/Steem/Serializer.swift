@@ -105,4 +105,3 @@ extension PublicKey: Serializable {
         data.append(self.key)
     }
 }
-

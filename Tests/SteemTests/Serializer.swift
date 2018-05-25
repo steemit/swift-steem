@@ -22,7 +22,6 @@ fileprivate func AssertSerializes(_ value: Serializable, _ data: TestData, file:
 }
 
 class SerializerTest: XCTestCase {
-
     func testFixedWidthInteger() {
         AssertSerializes(0 as Int8, "00")
         AssertSerializes(-128 as Int8, "80")
@@ -63,24 +62,22 @@ class SerializerTest: XCTestCase {
         } else {
             XCTFail("Unable to decode public key")
         }
-
     }
 
     func testOperation() {
         AssertSerializes(VoteOperation(voter: "foo", author: "foo", permlink: "foo", weight: 1000), "0003666f6f03666f6f03666f6fe803")
     }
-    
+
     func testTransaction() {
         let vote = VoteOperation(voter: "foo", author: "foo", permlink: "foo", weight: 1000)
-        let tx = Transaction(refBlockNum: 0, refBlockPrefix: 0, expiration: Date(timeIntervalSince1970: 946684800), operations: [vote])
+        let tx = Transaction(refBlockNum: 0, refBlockPrefix: 0, expiration: Date(timeIntervalSince1970: 946_684_800), operations: [vote])
         AssertSerializes(tx, "00000000000080436d38010003666f6f03666f6f03666f6fe80300")
     }
-    
+
     func testAsset() {
         AssertSerializes(Asset(10, symbol: .steem), "102700000000000003535445454d0000")
-        AssertSerializes(Asset("10.000 STEEM"),   "01102700000000000003535445454d0000") // leading 01 because optional
-        AssertSerializes(Asset(123456.789, symbol: .steem), "081a99be1c0000000656455354530000")
-        AssertSerializes(Asset("123456.789000 VESTS"),    "01081a99be1c0000000656455354530000") // same here
+        AssertSerializes(Asset("10.000 STEEM"), "01102700000000000003535445454d0000") // leading 01 because optional
+        AssertSerializes(Asset(123_456.789, symbol: .vests), "081a99be1c0000000656455354530000")
+        AssertSerializes(Asset("123456.789000 VESTS"), "01081a99be1c0000000656455354530000") // same here
     }
-
 }
