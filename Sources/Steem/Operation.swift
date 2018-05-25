@@ -16,7 +16,7 @@ public struct VoteOperation: Operation {
     let permlink: String
     /// The vote weight. 100% = 10000. A negative value is a "flag".
     let weight: Int16
-    
+
     /// Create a new vote operation.
     /// - Parameter voter: The account that is voting for the content.
     /// - Parameter author: The account that is recieving the vote.
@@ -31,10 +31,10 @@ public struct VoteOperation: Operation {
 
     public func write(into data: inout Data) {
         Serializer.write(varint: 0, into: &data) // operation id
-        voter.write(into: &data)
-        author.write(into: &data)
-        permlink.write(into: &data)
-        weight.write(into: &data)
+        self.voter.write(into: &data)
+        self.author.write(into: &data)
+        self.permlink.write(into: &data)
+        self.weight.write(into: &data)
     }
 }
 
@@ -54,7 +54,7 @@ public struct CommentOperation: Operation {
     let body: String
     /// Additional content metadata.
     let jsonMetadata: String
-    
+
     /// Parsed content metadata.
     var metadata: Any? {
         guard let data = self.jsonMetadata.data(using: .utf8) else {
@@ -62,18 +62,15 @@ public struct CommentOperation: Operation {
         }
         return try? JSONSerialization.jsonObject(with: data, options: [])
     }
-    
+
     public func write(into data: inout Data) {
         Serializer.write(varint: 1, into: &data) // operation id
-        parentAuthor.write(into: &data)
-        parentPermlink.write(into: &data)
-        author.write(into: &data)
-        permlink.write(into: &data)
-        title.write(into: &data)
-        body.write(into: &data)
-        jsonMetadata.write(into: &data)
+        self.parentAuthor.write(into: &data)
+        self.parentPermlink.write(into: &data)
+        self.author.write(into: &data)
+        self.permlink.write(into: &data)
+        self.title.write(into: &data)
+        self.body.write(into: &data)
+        self.jsonMetadata.write(into: &data)
     }
 }
-
-
-

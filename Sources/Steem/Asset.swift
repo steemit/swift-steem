@@ -4,7 +4,6 @@
 import Foundation
 
 struct Asset {
-    
     enum Symbol {
         /// The STEEM token.
         case steem
@@ -15,15 +14,15 @@ struct Asset {
         /// Custom token.
         case custom(name: String, precision: UInt8)
     }
-    
+
     let amount: Int64
     let symbol: Symbol
-    
+
     init(_ value: Double, symbol: Symbol = .steem) {
         self.amount = Int64(round(value * pow(10, Double(symbol.precision))))
         self.symbol = symbol
     }
-    
+
     init?(_ value: String) {
         let parts = value.split(separator: " ")
         guard parts.count == 2 else {
@@ -47,9 +46,6 @@ struct Asset {
         }
         self.init(val, symbol: symbol)
     }
-    
-    
-    
 }
 
 extension Asset: Serializable {
@@ -60,14 +56,13 @@ extension Asset: Serializable {
         for char in chars {
             data.append(char)
         }
-        for _ in 0..<7-chars.count {
+        for _ in 0 ..< 7 - chars.count {
             data.append(0)
         }
     }
 }
 
 extension Asset.Symbol {
-    
     /// Symbol precision.
     var precision: UInt8 {
         switch self {
@@ -79,7 +74,7 @@ extension Asset.Symbol {
             return precision
         }
     }
-    
+
     /// String representation of symbol prefix, e.g. "STEEM".
     public var name: String {
         switch self {

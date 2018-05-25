@@ -8,7 +8,7 @@ public struct Transaction {
     public let refBlockPrefix: UInt32
     public let expiration: Date
     public let operations: [Operation]
-    
+
     /// SHA2-256 digest for signing.
     public var digest: Data {
         /// TODO: This hash needs to include CHAIN_ID
@@ -29,7 +29,7 @@ extension Transaction: Serializable {
     }
 }
 
-extension Transaction: Equatable  {
+extension Transaction: Equatable {
     public static func == (lhs: Transaction, rhs: Transaction) -> Bool {
         return lhs.digest == rhs.digest
     }
