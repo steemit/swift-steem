@@ -633,3 +633,15 @@ extension OrderedDictionary where Value: Equatable {
             && lhs._keysToValues == rhs._keysToValues
     }
 }
+
+// Encodable conformance
+extension OrderedDictionary: Encodable where Key: Encodable, Value: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.unkeyedContainer()
+        for (key, value) in self {
+            var c = container.nestedUnkeyedContainer()
+            try c.encode(key)
+            try c.encode(value)
+        }
+    }
+}

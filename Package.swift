@@ -9,6 +9,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/steemit/swift-secp256k1.git", from: "1.1.0"),
+        .package(url: "https://github.com/Flight-School/AnyCodable.git", .revision("396ccc3dba5bdee04c1e742e7fab40582861401e")),
     ],
     targets: [
         .target(
@@ -17,7 +18,7 @@ let package = Package(
         ),
         .target(
             name: "Steem",
-            dependencies: ["Crypto"]
+            dependencies: ["Crypto", "AnyCodable"]
         ),
         .testTarget(
             name: "SteemTests",

@@ -1,12 +1,10 @@
-/**
- Steem PublicKey implementation.
- - author: Johan Nordberg <johan@steemit.com>
- */
+/// Steem PublicKey implementation.
+/// - Author: Johan Nordberg <johan@steemit.com>
 
 import Foundation
 
 /// A Steem public key.
-public struct PublicKey: Equatable, LosslessStringConvertible {
+public struct PublicKey: Equatable {
     /// Chain address prefix.
     public enum AddressPrefix: Equatable {
         /// STM, main network.
@@ -23,11 +21,9 @@ public struct PublicKey: Equatable, LosslessStringConvertible {
     /// The 33-byte compressed public key.
     public let key: Data
 
-    /**
-     Create a new PublicKey instance.
-     - parameter key: 33-byte compressed public key.
-     - parameter prefix: Network address prefix.
-     */
+    /// Create a new PublicKey instance.
+    /// - Parameter key: 33-byte compressed public key.
+    /// - Parameter prefix: Network address prefix.
     public init?(key: Data, prefix: AddressPrefix = .mainNet) {
         guard key.count == 33 else {
             return nil
@@ -36,10 +32,8 @@ public struct PublicKey: Equatable, LosslessStringConvertible {
         self.prefix = prefix
     }
 
-    /**
-     Create a new PublicKey instance.
-     - parameter address: The public key in Steem address format.
-     */
+    /// Create a new PublicKey instance from a Steem public key address.
+    /// - Parameter address: The public key in Steem address format.
     public init?(_ address: String) {
         let key = address.suffix(50)
         guard key.count == 50 else {
@@ -54,12 +48,26 @@ public struct PublicKey: Equatable, LosslessStringConvertible {
         }
         self.prefix = AddressPrefix(String(prefix))
         self.key = keyData
-        print(keyData.count)
     }
 
     /// Public key address string.
-    public var description: String {
+    public var address: String {
         return String(self.prefix) + self.key.base58CheckEncodedString(options: .grapheneChecksum)!
+    }
+}
+
+extension PublicKey: LosslessStringConvertible {
+    public var description: String { return self.address }
+}
+
+extension PublicKey: SteemEncodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(String(self))
+    }
+
+    public func binaryEncode(to encoder: SteemEncoder) {
+        encoder.data.append(self.key)
     }
 }
 

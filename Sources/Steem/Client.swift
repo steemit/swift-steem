@@ -1,86 +1,128 @@
-/**
- Steem-flavoured JSON-RPC 2.0 client.
- - author: Johan Nordberg <johan@steemit.com>
- */
+/// Steem-flavoured JSON-RPC 2.0 client.
+/// - Author: Johan Nordberg <johan@steemit.com>
 
+import AnyCodable
 import Foundation
 
-/**
-
- JSON-RPC 2.0 Request Protocol.
-
- Implementers are responsible for casting the result to the assoicated `Response` type.
-
- Example:
-
-     struct MyResponse {
-         let hello: String
-         let foo: Int
-     }
-
-     enum MyError : Error {
-         case invalidResponse
-     }
-
-     struct MyRequest : Steem.Request {
-         typealias Response = MyResponse
-         let method = "my_method"
-         let params: Any?
-         init(name: String) {
-             self.params = ["hello": name]
-         }
-         func response(from result: Any) throws -> Response {
-             guard let result = result as? [String: Any],
-                   let hello = result["hello"] as? String,
-                   let foo = result["foo"] as? Int
-             else {
-                 throw MyError.invalidResponse
-             }
-             return MyResponse(hello: hello, foo: foo)
-         }
-     }
-
- */
+/// JSON-RPC 2.0 request type.
+///
+/// Implementers should provide `Decodable` response types, example:
+///
+///     struct MyResponse: Decodable {
+///         let hello: String
+///         let foo: Int
+///     }
+///     struct MyRequest: Steem.Request {
+///         typealias Response = MyResponse
+///         let method = "my_method"
+///         let params: RequestParams<String>
+///         init(name: String) {
+///             self.params = RequestParams(["hello": name])
+///         }
+///     }
+///
 public protocol Request {
-    /// Response type of request.
-    associatedtype Response
+    /// Response type.
+    associatedtype Response: Decodable
+    /// Request parameter type.
+    associatedtype Params: Encodable
     /// JSON-RPC 2.0 method to call.
     var method: String { get }
     /// JSON-RPC 2.0 parameters
-    var params: Any? { get }
-    /// Cast response to assoiciated response type.
-    func response(from result: Any) throws -> Response
+    var params: Params? { get }
 }
 
-public extension Request {
-    public var params: Any? {
+// Default implementation sends a request without params.
+extension Request {
+    public var params: RequestParams<AnyEncodable>? {
         return nil
     }
 }
 
-/// JSON-RPC 2.0 Request payload wrapper
-internal struct Payload<Request: Steem.Request> {
-    public let request: Request
-    public let version = "2.0"
-    public let id: Int
-    public let body: Any
+/// Request parameter helper type. Can wrap any `Encodable` as set of params, either keyed by name or indexed.
+public struct RequestParams<T: Encodable> {
+    private var named: [String: T]?
+    private var indexed: [T]?
 
-    public init(request: Request, id: Int) {
-        var body: [String: Any] = [
-            "jsonrpc": version,
-            "id": id,
-            "method": request.method,
-        ]
-        if let params = request.params {
-            body["params"] = params
-        }
-        self.request = request
-        self.id = id
-        self.body = body
+    /// Create a new set of named params.
+    public init(_ params: [String: T]) {
+        self.named = params
+    }
+
+    /// Create a new set of ordered params.
+    public init(_ params: [T]) {
+        self.indexed = params
     }
 }
 
-/// URLSession adapter, for testability
+extension RequestParams: Encodable {
+    private struct Key: CodingKey {
+        var stringValue: String
+        init?(stringValue: String) {
+            self.stringValue = stringValue
+        }
+
+        var intValue: Int?
+        init?(intValue: Int) {
+            self.intValue = intValue
+            self.stringValue = "\(intValue)"
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        if let params = indexed {
+            var container = encoder.unkeyedContainer()
+            try container.encode(contentsOf: params)
+        } else if let params = self.named {
+            var container = encoder.container(keyedBy: Key.self)
+            for (key, value) in params {
+                try container.encode(value, forKey: Key(stringValue: key)!)
+            }
+        }
+    }
+}
+
+/// JSON-RPC 2.0 request payload wrapper.
+internal struct RequestPayload<Request: Steem.Request> {
+    let request: Request
+    let id: Int
+}
+
+extension RequestPayload: Encodable {
+    fileprivate enum Keys: CodingKey {
+        case id
+        case jsonrpc
+        case method
+        case params
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Keys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode("2.0", forKey: .jsonrpc)
+        try container.encode(self.request.method, forKey: .method)
+        try container.encodeIfPresent(self.request.params, forKey: .params)
+    }
+}
+
+/// JSON-RPC 2.0 response error type.
+internal struct ResponseError: Decodable {
+    let code: Int
+    let message: String
+    let data: [String: AnyDecodable]?
+    var resolvedData: [String: Any]? {
+        return self.data?.mapValues { $0.value as Any }
+    }
+}
+
+/// JSON-RPC 2.0 response payload wrapper.
+internal struct ResponsePayload<T: Request>: Decodable {
+    let id: Int?
+    let result: T.Response?
+    let error: ResponseError?
+}
+
+/// URLSession adapter, for testability.
 internal protocol SessionAdapter {
     func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> SessionDataTask
 }
@@ -114,16 +156,34 @@ internal struct SeqIdGenerator: IdGenerator {
     }
 }
 
-/**
- Steem-flavoured JSON-RPC 2.0 client.
- */
+/// Steem-flavoured JSON-RPC 2.0 client.
 public class Client {
     /// Client errors.
     public enum Error: Swift.Error {
         /// Server didn't respond with a valid JSON-RPC 2.0 response.
-        case invalidResponse(message: String, response: HTTPURLResponse?, data: Data?)
+        case invalidResponse(message: String, error: Swift.Error?)
         /// JSON-RPC 2.0 Error.
-        case responseError(code: Int, message: String, data: Any?)
+        case responseError(code: Int, message: String, data: [String: Any]?)
+    }
+
+    /// Steem-style date formatter (ISO 8601 minus Z at the end).
+    static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        return formatter
+    }()
+
+    static let dateEncoder = JSONEncoder.DateEncodingStrategy.custom { (date, encoder) throws in
+        var container = encoder.singleValueContainer()
+        try container.encode(dateFormatter.string(from: date))
+    }
+
+    static let dataEncoder = JSONEncoder.DataEncodingStrategy.custom { (data, encoder) throws in
+        var container = encoder.singleValueContainer()
+        try container.encode(data.hexEncodedString())
     }
 
     /// The RPC Server address.
@@ -132,74 +192,65 @@ public class Client {
     internal var idgen: IdGenerator = SeqIdGenerator()
     internal var session: SessionAdapter
 
-    /**
-     - parameter address: The rpc server to connect to.
-     - parameter session: The session to use when sending requests to the server.
-     */
+    /// Create a new client instance.
+    /// - Parameter address: The rpc server to connect to.
+    /// - Parameter session: The session to use when sending requests to the server.
     public init(address: URL, session: URLSession = URLSession.shared) {
         self.address = address
         self.session = session as SessionAdapter
     }
 
     /// Return a URLRequest for a JSON-RPC 2.0 request payload.
-    internal func urlRequest<Request: Steem.Request>(for payload: Payload<Request>) throws -> URLRequest {
+    internal func urlRequest<T: Request>(for payload: RequestPayload<T>) throws -> URLRequest {
         var urlRequest = URLRequest(url: self.address)
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.setValue("swift-steem/1.0", forHTTPHeaderField: "User-Agent")
         urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = try JSONSerialization.data(withJSONObject: payload.body)
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        encoder.dateEncodingStrategy = Client.dateEncoder
+        encoder.dataEncodingStrategy = Client.dataEncoder
+        urlRequest.httpBody = try encoder.encode(payload)
+        print(" -- ", String(bytes: urlRequest.httpBody!, encoding: .utf8)!)
         return urlRequest
     }
 
     /// Resolve a URLSession dataTask to a `Response`.
-    internal func resolveResponse<Request: Steem.Request>(for payload: Payload<Request>, data: Data?, response: URLResponse?) throws -> Request.Response {
+    internal func resolveResponse<T: Request>(for payload: RequestPayload<T>, data: Data?, response: URLResponse?) throws -> T.Response? {
         guard let response = response else {
-            throw Error.invalidResponse(message: "No response from server", response: nil, data: data)
+            throw Error.invalidResponse(message: "No response from server", error: nil)
         }
         guard let httpResponse = response as? HTTPURLResponse else {
-            throw Error.invalidResponse(message: "Not a HTTP response", response: nil, data: data)
+            throw Error.invalidResponse(message: "Not a HTTP response", error: nil)
         }
         if httpResponse.statusCode != 200 {
-            throw Error.invalidResponse(message: "Server responded with HTTP \(httpResponse.statusCode)", response: httpResponse, data: data)
+            throw Error.invalidResponse(message: "Server responded with HTTP \(httpResponse.statusCode)", error: nil)
         }
         guard let data = data else {
-            throw Error.invalidResponse(message: "Response body empty", response: httpResponse, data: nil)
+            throw Error.invalidResponse(message: "Response body empty", error: nil)
         }
-        let responseBody = try JSONSerialization.jsonObject(with: data, options: [])
-        guard let responseDict = responseBody as? [String: Any] else {
-            throw Error.invalidResponse(message: "Invalid response object", response: httpResponse, data: data)
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        let responsePayload: ResponsePayload<T>
+        do {
+            responsePayload = try decoder.decode(ResponsePayload<T>.self, from: data)
+        } catch {
+            throw Error.invalidResponse(message: "Unable to decode response", error: error)
         }
-        guard let responseId = responseDict["id"] as? Int else {
-            throw Error.invalidResponse(message: "Request id missing in response", response: httpResponse, data: data)
+        if let error = responsePayload.error {
+            throw Error.responseError(code: error.code, message: error.message, data: error.resolvedData)
         }
-        if payload.id != responseId {
-            throw Error.invalidResponse(message: "Request id mismatch", response: httpResponse, data: data)
+        if responsePayload.id != payload.id {
+            throw Error.invalidResponse(message: "Request id mismatch", error: nil)
         }
-        if let error = responseDict["error"] {
-            guard let errorDict = error as? [String: Any] else {
-                throw Error.invalidResponse(message: "Invalid error object in response", response: httpResponse, data: data)
-            }
-            guard let code = errorDict["code"] as? Int else {
-                throw Error.invalidResponse(message: "Error code missing", response: httpResponse, data: data)
-            }
-            guard let message = errorDict["message"] as? String else {
-                throw Error.invalidResponse(message: "Error message missing", response: httpResponse, data: data)
-            }
-            throw Error.responseError(code: code, message: message, data: errorDict["data"])
-        }
-        guard let result = responseDict["result"] else {
-            throw Error.invalidResponse(message: "Result missing in response", response: httpResponse, data: data)
-        }
-        return try payload.request.response(from: result)
+        return responsePayload.result
     }
 
-    /**
-     Send a JSON-RPC 2.0 request.
-     - parameter request: The request to be sent.
-     - parameter completionHandler: Callback function, called with either a response or an error.
-     */
-    public func send<Request: Steem.Request>(request: Request, completionHandler: @escaping (Request.Response?, Swift.Error?) -> Void) -> Void {
-        let payload = Payload(request: request, id: self.idgen.next())
+    /// Send a JSON-RPC 2.0 request.
+    /// - Parameter request: The request to be sent.
+    /// - Parameter completionHandler: Callback function, called with either a response or an error.
+    public func send<T: Request>(request: T, completionHandler: @escaping (T.Response?, Swift.Error?) -> Void) -> Void {
+        let payload = RequestPayload(request: request, id: self.idgen.next())
         let urlRequest: URLRequest
         do {
             urlRequest = try self.urlRequest(for: payload)
@@ -210,7 +261,7 @@ public class Client {
             if let error = error {
                 return completionHandler(nil, error)
             }
-            let rv: Request.Response
+            let rv: T.Response?
             do {
                 rv = try self.resolveResponse(for: payload, data: data, response: response)
             } catch {
