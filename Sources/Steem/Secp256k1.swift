@@ -1,42 +1,8 @@
-/**
- Swift libsecp256k1 bindings
- - author: Johan Nordberg <johan@steemit.com>
- */
+/// Swift libsecp256k1 bindings
+/// - Author: Johan Nordberg <johan@steemit.com>
 
 import Foundation
 import secp256k1
-
-#if !os(Linux)
-    import Security
-#else
-    import Glibc
-#endif
-
-internal struct Random {
-    static func bytes(count: Int) -> Data {
-        var rv = Data(count: count)
-        #if os(Linux)
-            guard let file = fopen("/dev/random", "r") else {
-                fatalError("Unable to open /dev/random for reading.")
-            }
-            defer { fclose(file) }
-            let bytesRead = rv.withUnsafeMutableBytes {
-                fread($0, 1, count, file)
-            }
-            guard bytesRead == count else {
-                fatalError("Unable to read from /dev/random.")
-            }
-        #else
-            let result = rv.withUnsafeMutableBytes {
-                SecRandomCopyBytes(kSecRandomDefault, count, $0)
-            }
-            guard result == errSecSuccess else {
-                fatalError("Unable to generate random data.")
-            }
-        #endif
-        return rv
-    }
-}
 
 internal class Secp256k1Context {
     struct Flags: OptionSet {
@@ -57,10 +23,13 @@ internal class Secp256k1Context {
         case invalidSecretKey
     }
 
+    /// Shared context.
     static let shared = Secp256k1Context(flags: [.sign, .verify])
 
     private let ctx: OpaquePointer
 
+    /// Create a new context.
+    /// - Paramter flags: Flags used to initialize the context.
     init(flags: Secp256k1Context.Flags = .none) {
         self.ctx = secp256k1_context_create(UInt32(flags.rawValue))
         let seed = Random.bytes(count: 32)
@@ -73,23 +42,19 @@ internal class Secp256k1Context {
         secp256k1_context_destroy(self.ctx)
     }
 
-    /**
-     Verify a private key.
-     - parameter secretKey: 32-byte secret key to verify.
-     - returns: true if valid; false otherwise.
-     */
+    /// Verify a private key.
+    /// - Parameter secretKey: 32-byte secret key to verify.
+    /// - Returns: true if valid; false otherwise.
     func verify(secretKey key: Data) -> Bool {
         return key.withUnsafeBytes {
             secp256k1_ec_seckey_verify(self.ctx, $0) == 1
         }
     }
 
-    /**
-     Serialize a public key.
-     - parameter publicKey: Opaque data structure that holds a parsed and valid public key.
-     - parameter compressed: Whether to compress the key when serializing.
-     - returns: 33-byte or 65-byte public key.
-     */
+    /// Serialize a public key.
+    /// - Parameter publicKey: Opaque data structure that holds a parsed and valid public key.
+    /// - Parameter compressed: Whether to compress the key when serializing.
+    /// - Returns: 33-byte or 65-byte public key.
     func serialize(publicKey pubkey: UnsafePointer<secp256k1_pubkey>, compressed: Bool = true) -> Data {
         var size: Int = compressed ? 33 : 65
         let flags = compressed ? SECP256K1_EC_COMPRESSED : SECP256K1_EC_UNCOMPRESSED
@@ -100,11 +65,9 @@ internal class Secp256k1Context {
         return rv
     }
 
-    /**
-     Serialize a signature.
-     - parameter recoverableSignature: Opaque data structured that holds a parsed ECDSA signature, supporting pubkey recovery.
-     - returns: 64-byte signature and recovery id.
-     */
+    /// Serialize a signature.
+    /// - Parameter recoverableSignature: Opaque data structured that holds a parsed ECDSA signature, supporting pubkey recovery.
+    /// - Returns: 64-byte signature and recovery id.
     func serialize(recoverableSignature sig: UnsafePointer<secp256k1_ecdsa_recoverable_signature>) -> (Data, Int32) {
         var signature = Data(count: 64)
         var recid: Int32 = -1
@@ -114,11 +77,9 @@ internal class Secp256k1Context {
         return (signature, recid)
     }
 
-    /**
-     Compute the public key for a secret key.
-     - parameter fromSecret: 32-byte secret key.
-     - returns: 33-byte compressed public key.
-     */
+    /// Compute the public key for a secret key.
+    /// - Parameter fromSecret: 32-byte secret key.
+    /// - Returns: 33-byte compressed public key.
     func createPublic(fromSecret key: Data) throws -> Data {
         let pubkey = UnsafeMutablePointer<secp256k1_pubkey>.allocate(capacity: 1)
         defer { pubkey.deallocate() }
@@ -131,13 +92,11 @@ internal class Secp256k1Context {
         return self.serialize(publicKey: pubkey)
     }
 
-    /**
-     Sign a message.
-     - parameter message: 32-byte message to sign.
-     - parameter secretKey: 32-byte secret key to sign message with.
-     - parameter ndata: 32-bytes of rfc6979 "Additional data", optional.
-     - returns: 64-byte signature and recovery id.
-     */
+    /// Sign a message.
+    /// - Parameter message: 32-byte message to sign.
+    /// - Parameter secretKey: 32-byte secret key to sign message with.
+    /// - Parameter ndata: 32-bytes of rfc6979 "Additional data", optional.
+    /// - Returns: 64-byte signature and recovery id.
     func sign(message: Data, secretKey key: Data, ndata: Data? = nil) throws -> (Data, Int32) {
         let sig = UnsafeMutablePointer<secp256k1_ecdsa_recoverable_signature>.allocate(capacity: 1)
         defer { sig.deallocate() }
@@ -158,13 +117,11 @@ internal class Secp256k1Context {
         return self.serialize(recoverableSignature: sig)
     }
 
-    /**
-     Recover a public key from a message.
-     - parameter message: 32-byte message that was signed.
-     - parameter signature: 64-byte signature.
-     - parameter recoveryId: The recovery id (0, 1, 2 or 3)
-     - returns: 33-byte compressed public key.
-     */
+    /// Recover a public key from a message.
+    /// - Parameter message: 32-byte message that was signed.
+    /// - Parameter signature: 64-byte signature.
+    /// - Parameter recoveryId: The recovery id (0, 1, 2 or 3)
+    /// - Returns: 33-byte compressed public key.
     func recover(message: Data, signature: Data, recoveryId recid: Int32) throws -> Data {
         let sig = UnsafeMutablePointer<secp256k1_ecdsa_recoverable_signature>.allocate(capacity: 1)
         defer { sig.deallocate() }
