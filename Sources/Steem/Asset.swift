@@ -3,8 +3,10 @@
 
 import Foundation
 
-struct Asset {
-    enum Symbol {
+/// The Steem asset type.
+public struct Asset {
+    /// Asset symbol type, containing the symbol name and precision.
+    public enum Symbol {
         /// The STEEM token.
         case steem
         /// Vesting shares.
@@ -15,14 +17,21 @@ struct Asset {
         case custom(name: String, precision: UInt8)
     }
 
-    let amount: Int64
-    let symbol: Symbol
+    /// The asset symbol.
+    public let symbol: Symbol
 
+    internal let amount: Int64
+
+    /// Create a new `Asset`.
+    /// - Parameter value: Amount of tokens.
+    /// - Parameter symbol: Token symbol.
     init(_ value: Double, symbol: Symbol = .steem) {
         self.amount = Int64(round(value * pow(10, Double(symbol.precision))))
         self.symbol = symbol
     }
 
+    /// Create a new `Asset` from a string representation.
+    /// - Parameter value: String to parse into asset, e.g. `1.000 STEEM`.
     init?(_ value: String) {
         let parts = value.split(separator: " ")
         guard parts.count == 2 else {
@@ -48,16 +57,30 @@ struct Asset {
     }
 }
 
-extension Asset: Serializable {
-    func write(into data: inout Data) {
-        self.amount.write(into: &data)
-        self.symbol.precision.write(into: &data)
+extension Asset: SteemEncodable, Decodable {
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let value = try container.decode(String.self)
+        guard let asset = Asset(value) else {
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Not a valid asset string")
+        }
+        self = asset
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode("TODO")
+    }
+
+    public func binaryEncode(to encoder: SteemEncoder) throws {
+        try encoder.encode(self.amount)
+        try encoder.encode(self.symbol.precision)
         let chars = self.symbol.name.utf8
         for char in chars {
-            data.append(char)
+            encoder.data.append(char)
         }
         for _ in 0 ..< 7 - chars.count {
-            data.append(0)
+            encoder.data.append(0)
         }
     }
 }

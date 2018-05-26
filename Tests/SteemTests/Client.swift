@@ -1,3 +1,4 @@
+import AnyCodable
 @testable import Steem
 import XCTest
 
@@ -20,14 +21,9 @@ class TestSession: SessionAdapter {
 }
 
 struct TestRequest: Request {
-    typealias Response = Any
-
-    var params: Any?
+    typealias Response = String
+    var params: RequestParams<AnyEncodable>?
     var method = "test"
-
-    func response(from result: Any) throws -> Response {
-        return result
-    }
 }
 
 struct TestIdGenerator: IdGenerator {
@@ -69,7 +65,7 @@ class ClientTest: XCTestCase {
         session.nextResponse = jsonResponse(["id": 42, "result": "foo"])
         client.send(request: TestRequest()) { response, error in
             XCTAssertNil(error)
-            XCTAssertEqual(response as? String, "foo")
+            XCTAssertEqual(response, "foo")
             test.fulfill()
         }
         waitForExpectations(timeout: 2) { error in
@@ -83,10 +79,10 @@ class ClientTest: XCTestCase {
         let test = expectation(description: "Handler called")
         session.nextResponse = jsonResponse(["id": 42, "result": "foo"])
         var req = TestRequest()
-        req.params = ["hello"]
+        req.params = RequestParams(["hello"])
         client.send(request: req) { response, error in
             XCTAssertNil(error)
-            XCTAssertEqual(response as? String, "foo")
+            XCTAssertEqual(response, "foo")
             test.fulfill()
         }
         waitForExpectations(timeout: 2) { error in
@@ -102,10 +98,8 @@ class ClientTest: XCTestCase {
         client.send(request: TestRequest()) { response, error in
             XCTAssertNotNil(error)
             XCTAssertNil(response)
-            if let error = error as? Client.Error, case let Client.Error.invalidResponse(message, response, data) = error {
+            if let error = error as? Client.Error, case let Client.Error.invalidResponse(message, _) = error {
                 XCTAssertEqual(message, "Server responded with HTTP 503")
-                XCTAssertEqual(response?.statusCode, 503)
-                XCTAssertEqual(String(data: data!, encoding: .utf8), "So sorry")
             } else {
                 XCTFail()
             }
@@ -124,7 +118,7 @@ class ClientTest: XCTestCase {
         client.send(request: TestRequest()) { response, error in
             XCTAssertNotNil(error)
             XCTAssertNil(response)
-            if let error = error as? Client.Error, case let Client.Error.invalidResponse(message, _, _) = error {
+            if let error = error as? Client.Error, case let Client.Error.invalidResponse(message, _) = error {
                 XCTAssertEqual(message, "Request id mismatch")
             } else {
                 XCTFail()
