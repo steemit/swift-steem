@@ -166,26 +166,6 @@ public class Client {
         case responseError(code: Int, message: String, data: [String: Any]?)
     }
 
-    /// Steem-style date formatter (ISO 8601 minus Z at the end).
-    static let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        return formatter
-    }()
-
-    static let dateEncoder = JSONEncoder.DateEncodingStrategy.custom { (date, encoder) throws in
-        var container = encoder.singleValueContainer()
-        try container.encode(dateFormatter.string(from: date))
-    }
-
-    static let dataEncoder = JSONEncoder.DataEncodingStrategy.custom { (data, encoder) throws in
-        var container = encoder.singleValueContainer()
-        try container.encode(data.hexEncodedString())
-    }
-
     /// The RPC Server address.
     public let address: URL
 
@@ -202,16 +182,12 @@ public class Client {
 
     /// Return a URLRequest for a JSON-RPC 2.0 request payload.
     internal func urlRequest<T: Request>(for payload: RequestPayload<T>) throws -> URLRequest {
+        let encoder = Client.JSONEncoder()
         var urlRequest = URLRequest(url: self.address)
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.setValue("swift-steem/1.0", forHTTPHeaderField: "User-Agent")
         urlRequest.httpMethod = "POST"
-        let encoder = JSONEncoder()
-        encoder.keyEncodingStrategy = .convertToSnakeCase
-        encoder.dateEncodingStrategy = Client.dateEncoder
-        encoder.dataEncodingStrategy = Client.dataEncoder
         urlRequest.httpBody = try encoder.encode(payload)
-        print(" -- ", String(bytes: urlRequest.httpBody!, encoding: .utf8)!)
         return urlRequest
     }
 
@@ -229,8 +205,7 @@ public class Client {
         guard let data = data else {
             throw Error.invalidResponse(message: "Response body empty", error: nil)
         }
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        let decoder = Client.JSONDecoder()
         let responsePayload: ResponsePayload<T>
         do {
             responsePayload = try decoder.decode(ResponsePayload<T>.self, from: data)
@@ -269,5 +244,57 @@ public class Client {
             }
             completionHandler(rv, nil)
         }.resume()
+    }
+}
+
+/// JSON Coding helpers.
+extension Client {
+    /// Steem-style date formatter (ISO 8601 minus Z at the end).
+    static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        return formatter
+    }()
+
+    static let dateEncoder = Foundation.JSONEncoder.DateEncodingStrategy.custom { (date, encoder) throws in
+        var container = encoder.singleValueContainer()
+        try container.encode(dateFormatter.string(from: date))
+    }
+
+    static let dataEncoder = Foundation.JSONEncoder.DataEncodingStrategy.custom { (data, encoder) throws in
+        var container = encoder.singleValueContainer()
+        try container.encode(data.hexEncodedString())
+    }
+
+    static let dateDecoder = Foundation.JSONDecoder.DateDecodingStrategy.custom { (decoder) -> Date in
+        let container = try decoder.singleValueContainer()
+        guard let date = dateFormatter.date(from: try container.decode(String.self)) else {
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid date")
+        }
+        return date
+    }
+
+    static let dataDecoder = Foundation.JSONDecoder.DataDecodingStrategy.custom { (decoder) -> Data in
+        let container = try decoder.singleValueContainer()
+        return Data(hexEncoded: try container.decode(String.self))
+    }
+
+    static func JSONDecoder() -> Foundation.JSONDecoder {
+        let decoder = Foundation.JSONDecoder()
+        decoder.dataDecodingStrategy = dataDecoder
+        decoder.dateDecodingStrategy = dateDecoder
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }
+
+    static func JSONEncoder() -> Foundation.JSONEncoder {
+        let encoder = Foundation.JSONEncoder()
+        encoder.dataEncodingStrategy = dataEncoder
+        encoder.dateEncodingStrategy = dateEncoder
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        return encoder
     }
 }
