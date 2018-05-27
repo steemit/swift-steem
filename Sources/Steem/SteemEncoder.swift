@@ -19,7 +19,7 @@ public extension SteemEncodable {
 /// Encodes data into Steem binary format.
 public class SteemEncoder {
     /// All errors which `SteemEncoder` can throw.
-    enum Error: Swift.Error {
+    public enum Error: Swift.Error {
         /// Thrown if encoder encounters a type that is not conforming to `SteemEncodable`.
         case typeNotConformingToSteemEncodable(Encodable.Type)
         /// Thrown if encoder encounters a type that is not confirming to `Encodable`.
@@ -34,7 +34,7 @@ public class SteemEncoder {
     public init() {}
 
     /// Convenience for creating an encoder, encoding a value and returning the data.
-    static func encode(_ value: SteemEncodable) throws -> Data {
+    public static func encode(_ value: SteemEncodable) throws -> Data {
         let encoder = SteemEncoder()
         try value.binaryEncode(to: encoder)
         return encoder.data
@@ -42,20 +42,12 @@ public class SteemEncoder {
 
     /// Encodes any `SteemEncodable`.
     /// - Note: Platform specific integer types `Int` and `UInt` are encoded as varints.
-    func encode(_ value: Encodable) throws {
+    public func encode(_ value: Encodable) throws {
         switch value {
         case let v as Int:
             self.appendVarint(UInt64(v))
         case let v as UInt:
             self.appendVarint(UInt64(v))
-//        case let v as Array<SteemEncodable>:
-//            // Swift 4.1 runtime does not yet support dynamically querying conditional conformance
-//            print("ARRAY")
-//            appendVarint(UInt64(v.count))
-//            for item in v {
-//                try item.binaryEncode(to: self)
-//            }
-//
         case let v as SteemEncodable:
             try v.binaryEncode(to: self)
         default:
