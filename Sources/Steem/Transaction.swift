@@ -4,28 +4,44 @@
 import AnyCodable
 import Foundation
 
-public struct Transaction: SteemEncodable, Decodable {
+fileprivate protocol _Transaction: SteemEncodable, Decodable {
     /// Block number reference.
-    public let refBlockNum: UInt16
+    var refBlockNum: UInt16 { get }
     /// Block number reference id.
-    public let refBlockPrefix: UInt32
+    var refBlockPrefix: UInt32 { get }
     /// Transaction expiration.
-    public let expiration: Date
+    var expiration: Date { get }
     /// Protocol extensions.
-    public let extensions: [String]
+    var extensions: [String] { get }
     /// Transaction operations.
+    var operations: [OperationType] { get }
+    /// SHA2-256 digest for signing.
+    func digest(forChain chain: ChainId) throws -> Data
+}
+
+public struct Transaction: _Transaction {
+    public var refBlockNum: UInt16
+    public var refBlockPrefix: UInt32
+    public var expiration: Date
+    public var extensions: [String]
     public var operations: [OperationType] {
         return self._operations.map { $0.operation }
     }
 
-    internal let _operations: [AnyOperation]
+    internal var _operations: [AnyOperation]
 
-    public init(refBlockNum: UInt16, refBlockPrefix: UInt32, expiration: Date, operations: [OperationType], extensions: [String] = []) {
+    /// Create a new transaction.
+    public init(refBlockNum: UInt16, refBlockPrefix: UInt32, expiration: Date, operations: [OperationType] = [], extensions: [String] = []) {
         self.refBlockNum = refBlockNum
         self.refBlockPrefix = refBlockPrefix
         self.expiration = expiration
         self._operations = operations.map { AnyOperation($0) }
         self.extensions = extensions
+    }
+
+    /// Append an operation to the transaction.
+    public mutating func append(operation: OperationType) {
+        self._operations.append(AnyOperation(operation))
     }
 
     /// Sign transaction.
@@ -43,30 +59,64 @@ public struct Transaction: SteemEncodable, Decodable {
     }
 }
 
+extension Transaction: Equatable {
+    public static func == (lhs: Transaction, rhs: Transaction) -> Bool {
+        return (try? lhs.digest()) == (try? rhs.digest())
+    }
+}
+
 /// A signed transaction.
-public struct SignedTransaction: Codable, Equatable {
-    let transaction: Transaction
+public struct SignedTransaction: _Transaction, Equatable {
+    /// Transaction signatures.
     var signatures: [Signature]
 
+    private var transaction: Transaction
+
+    /// Create a new signed transaction.
+    /// - Parameter transaction: Transaction to wrap.
+    /// - Parameter signatures: Transaction signatures.
     public init(transaction: Transaction, signatures: [Signature] = []) {
         self.transaction = transaction
         self.signatures = signatures
     }
 
+    /// Append a signature to the transaction.
     mutating func appendSignature(_ signature: Signature) {
         self.signatures.append(signature)
     }
 
+    /// Sign transaction and append signature.
+    /// - Parameter key: Private key to sign transaction with.
+    /// - Parameter chain: Chain id to use when signing.
     mutating func appendSignature(usingKey key: PrivateKey, forChain chain: ChainId = .mainNet) throws {
         let signature = try key.sign(message: self.transaction.digest(forChain: chain))
         signatures.append(signature)
     }
-}
 
-extension Transaction: Equatable {
-    public static func == (lhs: Transaction, rhs: Transaction) -> Bool {
-        // TODO: better equatable
-        return (try? lhs.digest(forChain: .mainNet)) == (try? rhs.digest(forChain: .mainNet))
+    // Transaction proxy.
+
+    var refBlockNum: UInt16 {
+        return self.transaction.refBlockNum
+    }
+
+    var refBlockPrefix: UInt32 {
+        return self.transaction.refBlockPrefix
+    }
+
+    var expiration: Date {
+        return self.transaction.expiration
+    }
+
+    var extensions: [String] {
+        return self.transaction.extensions
+    }
+
+    var operations: [OperationType] {
+        return self.transaction.operations
+    }
+
+    func digest(forChain chain: ChainId = .mainNet) throws -> Data {
+        return try self.transaction.digest(forChain: chain)
     }
 }
 
