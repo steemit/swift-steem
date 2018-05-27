@@ -1,18 +1,17 @@
-/**
- Steem PrivateKey implementation.
- - author: Johan Nordberg <johan@steemit.com>
- */
+/// Steem PrivateKey implementation.
+/// - Author: Johan Nordberg <johan@steemit.com>
 
 import Foundation
 
 /// A Steem private key.
-public struct PrivateKey: Equatable, LosslessStringConvertible {
+public struct PrivateKey: Equatable {
     private let secret: Data
 
-    /**
-     Create a new public key instance from a byte buffer.
-     - parameter data: The 65-byte private key where the first byte is the network id (0x80).
-    */
+    /// For testing, wether to use a counter or random value for ndata when signing.
+    internal static var determenisticSignatures: Bool = false
+
+    /// Create a new public key instance from a byte buffer.
+    /// - Parameter data: The 65-byte private key where the first byte is the network id (0x80).
     public init?(_ data: Data) {
         guard data[0] == 0x80 else {
             return nil
@@ -24,10 +23,8 @@ public struct PrivateKey: Equatable, LosslessStringConvertible {
         self.secret = secret
     }
 
-    /**
-     Create a new public key instance from a WIF-encoded string.
-     - parameter wif: The base58check-encoded string.
-     */
+    /// Create a new public key instance from a WIF-encoded string.
+    /// - Parameter wif: The base58check-encoded string.
     public init?(_ wif: String) {
         guard let data = Data(base58CheckEncoded: wif) else {
             return nil
@@ -35,38 +32,44 @@ public struct PrivateKey: Equatable, LosslessStringConvertible {
         self.init(data)
     }
 
-    /**
-     Sign a message.
-     - parameter message: The 32-byte message to sign.
-     */
-    func sign(message: Data) throws -> Signature {
+    /// Sign a message.
+    /// - Parameter message: The 32-byte message to sign.
+    public func sign(message: Data) throws -> Signature {
         var result: (Data, Int32)
+        var ndata = Data(count: 32)
         repeat {
-            result = try Secp256k1Context.shared.sign(message: message, secretKey: self.secret, ndata: Random.bytes(count: 32))
+            if PrivateKey.determenisticSignatures {
+                ndata[0] += 1
+            } else {
+                ndata = Random.bytes(count: 32)
+            }
+            result = try Secp256k1Context.shared.sign(message: message, secretKey: self.secret, ndata: ndata)
         } while (!isCanonicalSignature(result.0))
         return Signature(signature: result.0, recoveryId: UInt8(result.1))
     }
 
-    /**
-     Derive the public key for this private key.
-     - parameter prefix: Address prefix to use when creating key, defaults to main net (STM).
-     */
-    func createPublic(prefix: PublicKey.AddressPrefix = .mainNet) -> PublicKey {
+    /// Derive the public key for this private key.
+    /// - Parameter prefix: Address prefix to use when creating key, defaults to main net (STM).
+    public func createPublic(prefix: PublicKey.AddressPrefix = .mainNet) -> PublicKey {
         let result = try! Secp256k1Context.shared.createPublic(fromSecret: self.secret)
         return PublicKey(key: result, prefix: prefix)!
     }
 
-    /// WIF string representation of private key.
-    public var description: String {
+    /// WIF-encoded string representation of this private key.
+    public var wif: String {
         var data = self.secret
         data.insert(0x80, at: data.startIndex)
         return Data(data).base58CheckEncodedString()!
     }
 }
 
-/**
- Return true if signature is canonical, otherwise false.
- */
+extension PrivateKey: LosslessStringConvertible {
+    public var description: String {
+        return self.wif
+    }
+}
+
+/// Return true if signature is canonical, otherwise false.
 internal func isCanonicalSignature(_ signature: Data) -> Bool {
     return (
         (signature[0] & 0x80 == 0) &&
