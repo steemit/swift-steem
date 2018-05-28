@@ -60,7 +60,15 @@ extension PublicKey: LosslessStringConvertible {
     public var description: String { return self.address }
 }
 
-extension PublicKey: SteemEncodable {
+extension PublicKey: SteemEncodable, Decodable {
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        guard let key = PublicKey(try container.decode(String.self)) else {
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid public key")
+        }
+        self = key
+    }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(String(self))
