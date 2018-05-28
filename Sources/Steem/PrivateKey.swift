@@ -11,9 +11,9 @@ public struct PrivateKey: Equatable {
     internal static var determenisticSignatures: Bool = false
 
     /// Create a new public key instance from a byte buffer.
-    /// - Parameter data: The 65-byte private key where the first byte is the network id (0x80).
+    /// - Parameter data: The 33-byte private key where the first byte is the network id (0x80).
     public init?(_ data: Data) {
-        guard data[0] == 0x80 else {
+        guard data.first == 0x80 && data.count == 33 else {
             return nil
         }
         let secret = data.suffix(from: 1)

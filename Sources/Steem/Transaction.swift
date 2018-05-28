@@ -169,7 +169,6 @@ extension SignedTransaction {
 }
 
 // Workaround for: Swift runtime does not yet support dynamically querying conditional conformance.
-// Should be safe to remove once 4.2 is released.
 #if !swift(>=4.2)
     extension Transaction {
         public func binaryEncode(to encoder: SteemEncoder) throws {
