@@ -4,9 +4,9 @@
 import Foundation
 
 /// The Steem asset type.
-public struct Asset {
+public struct Asset: Equatable {
     /// Asset symbol type, containing the symbol name and precision.
-    public enum Symbol {
+    public enum Symbol: Equatable {
         /// The STEEM token.
         case steem
         /// Vesting shares.
@@ -15,6 +15,32 @@ public struct Asset {
         case sbd
         /// Custom token.
         case custom(name: String, precision: UInt8)
+
+        /// Number of decimal points represented.
+        var precision: UInt8 {
+            switch self {
+            case .steem, .sbd:
+                return 3
+            case .vests:
+                return 6
+            case let .custom(_, precision):
+                return precision
+            }
+        }
+
+        /// String representation of symbol prefix, e.g. "STEEM".
+        public var name: String {
+            switch self {
+            case .steem:
+                return "STEEM"
+            case .sbd:
+                return "SBD"
+            case .vests:
+                return "VESTS"
+            case let .custom(name, _):
+                return name.uppercased()
+            }
+        }
     }
 
     /// The asset symbol.
@@ -32,7 +58,7 @@ public struct Asset {
 
     /// Create a new `Asset` from a string representation.
     /// - Parameter value: String to parse into asset, e.g. `1.000 STEEM`.
-    init?(_ value: String) {
+    public init?(_ value: String) {
         let parts = value.split(separator: " ")
         guard parts.count == 2 else {
             return nil
@@ -47,13 +73,25 @@ public struct Asset {
             symbol = .sbd
         default:
             let ap = parts[0].split(separator: ".")
-            let precision: UInt8 = ap.count == 2 ? UInt8(ap[1].count) : 1
+            let precision: UInt8 = ap.count == 2 ? UInt8(ap[1].count) : 0
             symbol = .custom(name: String(parts[1]), precision: precision)
         }
         guard let val = Double(parts[0]) else {
             return nil
         }
         self.init(val, symbol: symbol)
+    }
+}
+
+extension Asset: LosslessStringConvertible {
+    public var description: String {
+        let value = Double(self.amount) / pow(10, Double(self.symbol.precision))
+        let formatter = NumberFormatter()
+        formatter.minimumIntegerDigits = 1
+        formatter.minimumFractionDigits = Int(self.symbol.precision)
+        formatter.maximumFractionDigits = Int(self.symbol.precision)
+        let formatted = formatter.string(from: NSNumber(value: value))!
+        return "\(formatted) \(self.symbol.name)"
     }
 }
 
@@ -69,7 +107,7 @@ extension Asset: SteemEncodable, Decodable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        try container.encode("TODO")
+        try container.encode(String(self))
     }
 
     public func binaryEncode(to encoder: SteemEncoder) throws {
@@ -81,34 +119,6 @@ extension Asset: SteemEncodable, Decodable {
         }
         for _ in 0 ..< 7 - chars.count {
             encoder.data.append(0)
-        }
-    }
-}
-
-extension Asset.Symbol {
-    /// Symbol precision.
-    var precision: UInt8 {
-        switch self {
-        case .steem, .sbd:
-            return 3
-        case .vests:
-            return 6
-        case let .custom(_, precision):
-            return precision
-        }
-    }
-
-    /// String representation of symbol prefix, e.g. "STEEM".
-    public var name: String {
-        switch self {
-        case .steem:
-            return "STEEM"
-        case .sbd:
-            return "SBD"
-        case .vests:
-            return "VESTS"
-        case let .custom(name, _):
-            return name.uppercased()
         }
     }
 }
