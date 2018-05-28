@@ -30,6 +30,10 @@ save_secp256k1_mac: &save_secp256k1_mac
       - /usr/local/lib/libsecp256k1.dylib
       - /usr/local/lib/libsecp256k1.la
       - /usr/local/lib/pkgconfig/libsecp256k1.pc
+show_swift_version: &show_swift_version
+  run:
+    name: Swift version
+    command: swift -version
 jobs:
   unit-tests:
     macos:
@@ -40,6 +44,7 @@ jobs:
       - <<: *restore_secp256k1_mac
       - <<: *install_secp256k1_mac
       - <<: *save_secp256k1_mac
+      - <<: *show_swift_version
       - run:
           name: Run unit tests
           command: swift test --filter SteemTests
@@ -52,6 +57,7 @@ jobs:
       - <<: *restore_secp256k1_mac
       - <<: *install_secp256k1_mac
       - <<: *save_secp256k1_mac
+      - <<: *show_swift_version
       - run:
           name: Run integration tests
           command: swift test --filter SteemIntegrationTests
@@ -78,6 +84,7 @@ jobs:
           paths:
             - /usr/local/lib
             - /usr/local/include
+      - <<: *show_swift_version
       - run:
           name: Run tests
           command: ldconfig && swift test
