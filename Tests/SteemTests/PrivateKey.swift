@@ -2,12 +2,20 @@
 import XCTest
 
 class PrivateKeyTest: XCTestCase {
-    func testWif() {
+    func testDecodeWif() {
         if let key = PrivateKey("5HsQCyqCw61VPQ9tN4ttasHW3AH6cJ6tJdneAXR8gUJ2MWyxxpA") {
             XCTAssertEqual(String(key), "5HsQCyqCw61VPQ9tN4ttasHW3AH6cJ6tJdneAXR8gUJ2MWyxxpA")
         } else {
             XCTFail("Unable to decode WIF")
         }
+    }
+
+    func testHandlesInvalid() {
+        XCTAssertNil(PrivateKey("notawif"))
+        XCTAssertNil(PrivateKey("5HsQCyqCw61VPQ9tN4ttasHW3AH6cJ6tJdneAXR8gUJ2MWyxxpa"))
+        XCTAssertNil(PrivateKey("5HsQCyqCw61VPQ6tN4ttasHW3AH6cJ6tJdneAXR8gUJ2MWyxxpA"))
+        XCTAssertNil(PrivateKey(Data()))
+        XCTAssertNil(PrivateKey(Data(bytes: [0x80])))
     }
 
     func testEquatable() {

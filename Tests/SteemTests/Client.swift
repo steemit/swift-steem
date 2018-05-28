@@ -2,14 +2,14 @@ import AnyCodable
 @testable import Steem
 import XCTest
 
-class TestTask: SessionDataTask {
+fileprivate class TestTask: SessionDataTask {
     var resumed = false
     func resume() {
         self.resumed = true
     }
 }
 
-class TestSession: SessionAdapter {
+fileprivate class TestSession: SessionAdapter {
     var nextResponse: (Data?, URLResponse?, Error?) = (nil, nil, nil)
     var lastRequest: URLRequest?
 
@@ -20,23 +20,23 @@ class TestSession: SessionAdapter {
     }
 }
 
-struct TestRequest: Request {
+fileprivate struct TestRequest: Request {
     typealias Response = String
     var params: RequestParams<AnyEncodable>?
     var method = "test"
 }
 
-struct TestIdGenerator: IdGenerator {
+fileprivate struct TestIdGenerator: IdGenerator {
     mutating func next() -> Int {
         return 42
     }
 }
 
-let testUrl = URL(string: "https://example.com")!
-let session = TestSession()
-let client = Client(address: testUrl)
+fileprivate let testUrl = URL(string: "https://example.com")!
+fileprivate let session = TestSession()
+fileprivate let client = Client(address: testUrl)
 
-func jsonResponse(_ dict: Any) -> (Data?, URLResponse?, Error?) {
+fileprivate func jsonResponse(_ dict: Any) -> (Data?, URLResponse?, Error?) {
     let data = try! JSONSerialization.data(withJSONObject: dict, options: [])
     let response = HTTPURLResponse(url: testUrl, statusCode: 200, httpVersion: "1.1", headerFields: [
         "content-length": String(data.count),
@@ -45,7 +45,7 @@ func jsonResponse(_ dict: Any) -> (Data?, URLResponse?, Error?) {
     return (data, response, nil)
 }
 
-func errorResponse(code: Int, message: String) -> (Data?, URLResponse?, Error?) {
+fileprivate func errorResponse(code: Int, message: String) -> (Data?, URLResponse?, Error?) {
     let data = message.data(using: .utf8)!
     let response = HTTPURLResponse(url: testUrl, statusCode: code, httpVersion: "1.1", headerFields: [
         "content-length": String(data.count),
