@@ -9,7 +9,7 @@ public protocol OperationType: SteemEncodable, Decodable {}
 /// Namespace for all available Steem operations.
 public struct Operation {
     /// Voting operation, votes for content.
-    public struct Vote: OperationType {
+    public struct Vote: OperationType, Equatable {
         /// The account that is casting the vote.
         public var voter: String
         /// The account name that is receieving the vote.
@@ -33,7 +33,7 @@ public struct Operation {
     }
 
     /// Comment operation, creates comments and posts.
-    public struct Comment: OperationType {
+    public struct Comment: OperationType, Equatable {
         /// The parent content author, left blank for top level posts.
         public var parentAuthor: String = ""
         /// The parent content permalink, left blank for top level posts.
@@ -78,7 +78,7 @@ public struct Operation {
     }
 
     /// Transfers assets from one account to another.
-    public struct Transfer: OperationType {
+    public struct Transfer: OperationType, Equatable {
         /// Account name of the sender.
         public var from: String
         /// Account name of the reciever.
