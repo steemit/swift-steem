@@ -10,6 +10,19 @@ class TransactionTest: XCTestCase {
         PrivateKey.determenisticSignatures = false
     }
 
+    func testDecodable() throws {
+        let tx = try TestDecode(Transaction.self, json: txJson)
+        XCTAssertEqual(tx.refBlockNum, 12345)
+        XCTAssertEqual(tx.refBlockPrefix, 1_122_334_455)
+        XCTAssertEqual(tx.expiration, Date(timeIntervalSince1970: 0))
+        XCTAssertEqual(tx.extensions.count, 0)
+        XCTAssertEqual(tx.operations.count, 2)
+        let vote = tx.operations.first as? Steem.Operation.Vote
+        let transfer = tx.operations.last as? Steem.Operation.Transfer
+        XCTAssertEqual(vote, Steem.Operation.Vote(voter: "foo", author: "bar", permlink: "baz", weight: 1000))
+        XCTAssertEqual(transfer, Steem.Operation.Transfer(from: "foo", to: "bar", amount: Asset(10, symbol: .steem), memo: "baz"))
+    }
+
     func testSigning() throws {
         guard let key = PrivateKey("5JEB2fkmEqHSfGqL96eTtQ2emYodeTBBnXvETwe2vUSMe4pxdLj") else {
             return XCTFail("Unable to parse private key")
@@ -32,3 +45,16 @@ class TransactionTest: XCTestCase {
         ])
     }
 }
+
+fileprivate let txJson = """
+{
+  "ref_block_num": 12345,
+  "ref_block_prefix": 1122334455,
+  "expiration": "1970-01-01T00:00:00",
+  "extensions": [],
+  "operations": [
+    ["vote", {"voter": "foo", "author": "bar", "permlink": "baz", "weight": 1000}],
+    ["transfer", {"from": "foo", "to": "bar", "amount": "10.000 STEEM", "memo": "baz"}]
+  ]
+}
+"""
