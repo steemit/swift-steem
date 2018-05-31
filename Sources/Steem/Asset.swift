@@ -83,6 +83,14 @@ public struct Asset: Equatable {
     }
 }
 
+/// Type representing a quotation of the relative value of asset against another asset.
+public struct Price: Equatable, SteemEncodable, Decodable {
+    /// The base asset.
+    public var base: Asset
+    /// The quote asset.
+    public var quote: Asset
+}
+
 extension Asset: LosslessStringConvertible {
     public var description: String {
         let value = Double(self.amount) / pow(10, Double(self.symbol.precision))

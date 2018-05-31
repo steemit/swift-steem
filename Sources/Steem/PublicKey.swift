@@ -6,7 +6,7 @@ import Foundation
 /// A Steem public key.
 public struct PublicKey: Equatable {
     /// Chain address prefix.
-    public enum AddressPrefix: Equatable {
+    public enum AddressPrefix: Equatable, Hashable {
         /// STM, main network.
         case mainNet
         /// TST, test networks.
@@ -53,6 +53,12 @@ public struct PublicKey: Equatable {
     /// Public key address string.
     public var address: String {
         return String(self.prefix) + self.key.base58CheckEncodedString(options: .grapheneChecksum)!
+    }
+}
+
+extension PublicKey: Hashable {
+    public var hashValue: Int {
+        return self.key.withUnsafeBytes { $0.pointee } + self.prefix.hashValue
     }
 }
 

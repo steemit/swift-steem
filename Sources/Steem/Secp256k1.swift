@@ -29,7 +29,7 @@ internal class Secp256k1Context {
     private let ctx: OpaquePointer
 
     /// Create a new context.
-    /// - Paramter flags: Flags used to initialize the context.
+    /// - Parameter flags: Flags used to initialize the context.
     init(flags: Secp256k1Context.Flags = .none) {
         self.ctx = secp256k1_context_create(UInt32(flags.rawValue))
         let seed = Random.bytes(count: 32)
