@@ -45,7 +45,7 @@ func TestEncode<T: Encodable>(_ value: T) throws -> Any {
 func AssertEncodes<T: SteemEncodable>(_ value: T, _ expected: Data, file: StaticString = #file, line: UInt = #line) {
     do {
         let encoded = try SteemEncoder.encode(value)
-        XCTAssertEqual(encoded, expected, file: file, line: line)
+        XCTAssertEqual(encoded.hexEncodedString(), expected.hexEncodedString(), file: file, line: line)
     } catch {
         XCTFail("Encoding error: \(error)", file: file, line: line)
     }

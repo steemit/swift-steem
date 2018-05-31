@@ -1,7 +1,5 @@
-/**
- Sha2 bindings.
- - author: Johan Nordberg <johan@steemit.com>
- */
+/// Sha2 bindings.
+/// - Author: Johan Nordberg <johan@steemit.com>
 
 import Crypto
 import Foundation
