@@ -11,6 +11,10 @@ class PublicKeyTest: XCTestCase {
             XCTFail("Unable to decode key")
         }
     }
+    
+    func testNullKey() {
+        XCTAssertNotNil(PublicKey("STM1111111111111111111111111111111114T1Anm"))
+    }
 
     func testTestnetKey() {
         if let key = PublicKey("TST4zDbsttSXXAezyNFz8GhN6zKka1Zh4GwA9sBgdjLjoW9BdnYTD") {
