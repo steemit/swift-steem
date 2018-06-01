@@ -35,12 +35,12 @@ public struct PublicKey: Equatable {
     /// Create a new PublicKey instance from a Steem public key address.
     /// - Parameter address: The public key in Steem address format.
     public init?(_ address: String) {
-        let key = address.suffix(50)
-        guard key.count == 50 else {
+        let prefix = address.prefix(3)
+        guard prefix.count == 3 else {
             return nil
         }
-        let prefix = address.prefix(upTo: key.startIndex)
-        guard prefix.count > 0 else {
+        let key = address.suffix(from: prefix.endIndex)
+        guard key.count > 0 else {
             return nil
         }
         guard let keyData = Data(base58CheckEncoded: String(key), options: .grapheneChecksum) else {
