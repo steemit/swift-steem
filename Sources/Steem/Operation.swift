@@ -154,7 +154,7 @@ public struct Operation {
         public var owner: Authority?
         public var active: Authority?
         public var posting: Authority?
-        public var memo_key: PublicKey
+        public var memoKey: PublicKey
         public var jsonMetadata: String
     }
 
