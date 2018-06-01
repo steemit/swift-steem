@@ -28,6 +28,16 @@ public struct BlockId: Codable, Equatable {
     }
 }
 
+/// Block extensions used for signaling.
+public enum BlockExtension: Equatable {
+    /// Unknown block extension.
+    case unknown
+    /// Witness version reporting.
+    case version(String)
+    /// Witness hardfork vote.
+    case hardforkVersionVote(String)
+}
+
 /// Internal protocol for a block header.
 fileprivate protocol _BlockHeader: Codable {
     /// The block id of the block preceding this one.
@@ -39,7 +49,7 @@ fileprivate protocol _BlockHeader: Codable {
     /// Merkle root hash, ripemd160.
     var transactionMerkleRoot: Data { get }
     /// Block extensions.
-    var extensions: [String] { get }
+    var extensions: [BlockExtension] { get }
 }
 
 /// A type representing a Steem block header.
@@ -48,7 +58,7 @@ public struct BlockHeader: _BlockHeader {
     public let timestamp: Date
     public let witness: String
     public let transactionMerkleRoot: Data
-    public let extensions: [String]
+    public let extensions: [BlockExtension]
 }
 
 /// A type representing a signed Steem block header.
@@ -57,7 +67,7 @@ public struct SignedBlockHeader: _BlockHeader, Equatable {
     public let timestamp: Date
     public let witness: String
     public let transactionMerkleRoot: Data
-    public let extensions: [String]
+    public let extensions: [BlockExtension]
     public let witnessSignature: Signature
 }
 
@@ -83,7 +93,7 @@ public struct SignedBlock: _BlockHeader, Equatable {
     public var timestamp: Date { return self.header.timestamp }
     public var witness: String { return self.header.witness }
     public var transactionMerkleRoot: Data { return self.header.transactionMerkleRoot }
-    public var extensions: [String] { return self.header.extensions }
+    public var extensions: [BlockExtension] { return self.header.extensions }
     public var witnessSignature: Signature { return self.header.witnessSignature }
 
     private enum Key: CodingKey {
@@ -102,3 +112,34 @@ public struct SignedBlock: _BlockHeader, Equatable {
         try container.encode(self.transactions, forKey: .transactions)
     }
 }
+
+extension BlockExtension: Codable {
+    public init(from decoder: Decoder) throws {
+        var container = try decoder.unkeyedContainer()
+        let type = try container.decode(Int.self)
+        switch type {
+        case 1:
+            self = .version(try container.decode(String.self))
+        case 2:
+            fatalError("CANT DECODE NUMBER 2 EXTENSION")
+            self = .hardforkVersionVote(try container.decode(String.self))
+        default:
+            self = .unknown
+        }
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.unkeyedContainer()
+        switch self {
+        case .version(let version):
+            try container.encode(1 as Int)
+            try container.encode(version)
+        case .hardforkVersionVote(let version):
+            try container.encode(2 as Int)
+            try container.encode(version)
+        default:
+            break
+        }
+    }
+}
+
