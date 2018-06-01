@@ -4,7 +4,7 @@
 import Foundation
 
 /// Type representing a Steem block ID.
-public struct BlockId: Codable {
+public struct BlockId: Codable, Equatable {
     /// The block hash.
     public var hash: Data
     /// The block number.
@@ -52,7 +52,7 @@ public struct BlockHeader: _BlockHeader {
 }
 
 /// A type representing a signed Steem block header.
-public struct SignedBlockHeader: _BlockHeader {
+public struct SignedBlockHeader: _BlockHeader, Equatable {
     public let previous: BlockId
     public let timestamp: Date
     public let witness: String
@@ -62,7 +62,7 @@ public struct SignedBlockHeader: _BlockHeader {
 }
 
 /// A type representing a Steem block.
-public struct SignedBlock: _BlockHeader {
+public struct SignedBlock: _BlockHeader, Equatable {
     /// The transactions included in this block.
     public let transactions: [Transaction]
     /// The block number.
