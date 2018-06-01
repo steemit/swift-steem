@@ -90,7 +90,7 @@ public struct Operation {
     }
 
     /// Converts STEEM to VESTS, aka. "Powering Up".
-    public struct TransferToVesting: OperationType {
+    public struct TransferToVesting: OperationType, Equatable {
         /// Account name of sender.
         public var from: String
         /// Account name of reciever.
@@ -100,7 +100,7 @@ public struct Operation {
     }
 
     /// Starts a vesting withdrawal, aka. "Powering Down".
-    public struct WithdrawVesting: OperationType {
+    public struct WithdrawVesting: OperationType, Equatable {
         /// Account that is powering down.
         public var account: String
         /// Amount that is powered down, must be VESTS.
@@ -108,7 +108,7 @@ public struct Operation {
     }
 
     /// This operation creates a limit order and matches it against existing open orders.
-    public struct LimitOrderCreate: OperationType {
+    public struct LimitOrderCreate: OperationType, Equatable {
         public var owner: String
         public var orderid: UInt32
         public var amountToSell: Asset
@@ -118,26 +118,26 @@ public struct Operation {
     }
 
     /// Cancels an order and returns the balance to owner.
-    public struct LimitOrderCancel: OperationType {
+    public struct LimitOrderCancel: OperationType, Equatable {
         public var owner: String
         public var orderid: UInt32
     }
 
     /// Publish a price feed.
-    public struct FeedPublish: OperationType {
+    public struct FeedPublish: OperationType, Equatable {
         public var publisher: String
         public var exchangeRate: Price
     }
 
     /// Convert operation.
-    public struct Convert: OperationType {
+    public struct Convert: OperationType, Equatable {
         public var owner: String
         public var requestid: UInt32
         public var amount: Asset
     }
 
     /// Creates a new account.
-    public struct AccountCreate: OperationType {
+    public struct AccountCreate: OperationType, Equatable {
         public var fee: Asset
         public var creator: String
         public var newAccountName: String
@@ -149,7 +149,7 @@ public struct Operation {
     }
 
     /// Updates an account.
-    public struct AccountUpdate: OperationType {
+    public struct AccountUpdate: OperationType, Equatable {
         public var account: String
         public var owner: Authority?
         public var active: Authority?
@@ -159,9 +159,9 @@ public struct Operation {
     }
 
     /// Registers or updates witnesses.
-    public struct WitnessUpdate: OperationType {
+    public struct WitnessUpdate: OperationType, Equatable {
         /// Witness chain properties.
-        public struct Properties: Equatable, SteemEncodable, Decodable {
+        public struct Properties: SteemCodable, Equatable {
 //            public var accountCreationFee: Asset
 //            public var maximumBlockSize: UInt32
 //            public var sbdInterestRate: UInt16
@@ -175,43 +175,43 @@ public struct Operation {
     }
 
     /// Votes for a witness.
-    public struct AccountWitnessVote: OperationType {
+    public struct AccountWitnessVote: OperationType, Equatable {
         public var account: String
         public var witness: String
         public var approve: Bool
     }
 
     /// Sets a witness voting proxy.
-    public struct AccountWitnessProxy: OperationType {
+    public struct AccountWitnessProxy: OperationType, Equatable {
         public var account: String
         public var proxy: String
     }
 
     /// Submits a proof of work, legacy.
-    public struct Pow: OperationType {}
+    public struct Pow: OperationType, Equatable {}
 
     /// Custom operation.
-    public struct Custom: OperationType {
+    public struct Custom: OperationType, Equatable {
         public var requiredAuths: [String]
         public var id: UInt16
         public var data: Data
     }
 
     /// Reports a producer who signs two blocks at the same time.
-    public struct ReportOverProduction: OperationType {
+    public struct ReportOverProduction: OperationType, Equatable {
         public var reporter: String
         public var firstBlock: SignedBlockHeader
         public var secondBlock: SignedBlockHeader
     }
 
     /// Deletes a comment.
-    public struct DeleteComment: OperationType {
+    public struct DeleteComment: OperationType, Equatable {
         public var author: String
         public var permlink: String
     }
 
     /// A custom JSON operation.
-    public struct CustomJson: OperationType {
+    public struct CustomJson: OperationType, Equatable {
         public var requiredAuths: [String]
         public var requiredPostingAuths: [String]
         public var id: String
@@ -220,13 +220,13 @@ public struct Operation {
 
     /// Sets comment options.
     public struct CommentOptions: OperationType, Equatable {
-        public struct BeneficiaryRoute: SteemEncodable, Equatable, Decodable {
+        public struct BeneficiaryRoute: SteemCodable, Equatable {
             public var account: String
             public var weight: UInt16
         }
 
         /// Comment option extensions.
-        public enum Extension: SteemEncodable, Equatable, Decodable {
+        public enum Extension: SteemCodable, Equatable {
             /// Unknown extension.
             case unknown
             /// Comment payout routing.
@@ -243,7 +243,7 @@ public struct Operation {
     }
 
     /// Sets withdraw vesting route for account.
-    public struct SetWithdrawVestingRoute: OperationType {
+    public struct SetWithdrawVestingRoute: OperationType, Equatable {
         public var fromAccount: String
         public var toAccount: String
         public var percent: UInt16
@@ -251,7 +251,7 @@ public struct Operation {
     }
 
     /// Creates a limit order using a exchange price.
-    public struct LimitOrderCreate2: OperationType {
+    public struct LimitOrderCreate2: OperationType, Equatable {
         public var owner: String
         public var orderid: UInt32
         public var amountToSell: Asset
@@ -260,13 +260,13 @@ public struct Operation {
         public var expiration: Date
     }
 
-    public struct ChallengeAuthority: OperationType {
+    public struct ChallengeAuthority: OperationType, Equatable {
         public var challenger: String
         public var challenged: String
         public var requireOwner: Bool
     }
 
-    public struct ProveAuthority: OperationType {
+    public struct ProveAuthority: OperationType, Equatable {
         public var challenged: String
         public var requireOwner: Bool
     }
@@ -278,7 +278,7 @@ public struct Operation {
         public var extensions: [FutureExtensions]
     }
 
-    public struct RecoverAccount: OperationType {
+    public struct RecoverAccount: OperationType, Equatable {
         public var accountToRecover: String
         public var newOwnerAuthority: Authority
         public var recentOwnerAuthority: Authority
@@ -304,7 +304,7 @@ public struct Operation {
         public var jsonMeta: String
     }
 
-    public struct EscrowDispute: OperationType {
+    public struct EscrowDispute: OperationType, Equatable {
         public var from: String
         public var to: String
         public var agent: String
@@ -312,7 +312,7 @@ public struct Operation {
         public var escrowId: UInt32
     }
 
-    public struct EscrowRelease: OperationType {
+    public struct EscrowRelease: OperationType, Equatable {
         public var from: String
         public var to: String
         public var agent: String
@@ -324,9 +324,9 @@ public struct Operation {
     }
 
     /// Submits equihash proof of work, legacy.
-    public struct Pow2: OperationType {}
+    public struct Pow2: OperationType, Equatable {}
 
-    public struct EscrowApprove: OperationType {
+    public struct EscrowApprove: OperationType, Equatable {
         public var from: String
         public var to: String
         public var agent: String
@@ -335,14 +335,14 @@ public struct Operation {
         public var approve: Bool
     }
 
-    public struct TransferToSavings: OperationType {
+    public struct TransferToSavings: OperationType, Equatable {
         public var from: String
         public var to: String
         public var amount: Asset
         public var memo: String
     }
 
-    public struct TransferFromSavings: OperationType {
+    public struct TransferFromSavings: OperationType, Equatable {
         public var from: String
         public var requestId: UInt32
         public var to: String
@@ -350,12 +350,12 @@ public struct Operation {
         public var memo: String
     }
 
-    public struct CancelTransferFromSavings: OperationType {
+    public struct CancelTransferFromSavings: OperationType, Equatable {
         public var from: String
         public var requestId: UInt32
     }
 
-    public struct CustomBinary: OperationType {
+    public struct CustomBinary: OperationType, Equatable {
         public var requiredOwnerAuths: [String]
         public var requiredActiveAuths: [String]
         public var requiredPostingAuths: [String]
@@ -364,37 +364,37 @@ public struct Operation {
         public var data: Data
     }
 
-    public struct DeclineVotingRights: OperationType {
+    public struct DeclineVotingRights: OperationType, Equatable {
         public var account: String
         public var decline: Bool
     }
 
-    public struct ResetAccount: OperationType {
+    public struct ResetAccount: OperationType, Equatable {
         public var resetAccount: String
         public var accountToReset: String
         public var newOwnerAuthority: Authority
     }
 
-    public struct SetResetAccount: OperationType {
+    public struct SetResetAccount: OperationType, Equatable {
         public var account: String
         public var currentResetAccount: String
         public var resetAccount: String
     }
 
-    public struct ClaimRewardBalance: OperationType {
+    public struct ClaimRewardBalance: OperationType, Equatable {
         public var account: String
         public var rewardSteem: Asset
         public var rewardSbd: Asset
         public var rewardVests: Asset
     }
 
-    public struct DelegateVestingShares: OperationType {
+    public struct DelegateVestingShares: OperationType, Equatable {
         public var delegator: String
         public var delegatee: String
         public var vestingShares: Asset
     }
 
-    public struct AccountCreateWithDelegation: OperationType {
+    public struct AccountCreateWithDelegation: OperationType, Equatable {
         public var fee: Asset
         public var delegation: Asset
         public var creator: String
@@ -409,7 +409,7 @@ public struct Operation {
 
     /// Unknown operation, seen if the decoder encounters operation which has no type defined.
     /// - Note: Not encodable, the encoder will throw if encountering this operation.
-    public struct Unknown: OperationType {}
+    public struct Unknown: OperationType, Equatable {}
 }
 
 // MARK: - Encoding
