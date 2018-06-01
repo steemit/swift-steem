@@ -162,9 +162,9 @@ public struct Operation {
     public struct WitnessUpdate: OperationType {
         /// Witness chain properties.
         public struct Properties: Equatable, SteemEncodable, Decodable {
-            public var accountCreationFee: Asset
-            public var maximumBlockSize: UInt32
-            public var sbdInterestRate: UInt16
+//            public var accountCreationFee: Asset
+//            public var maximumBlockSize: UInt32
+//            public var sbdInterestRate: UInt16
         }
 
         public var owner: String
