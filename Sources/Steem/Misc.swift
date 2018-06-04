@@ -3,8 +3,7 @@
 
 import Foundation
 
-/// A type that is decodable to Steem binary format as well as  JSON encodable and decodable.
-//public protocol SteemCodable: SteemEncodable & Decodable {}
+/// A type that is decodable to Steem binary format as well as JSON encodable and decodable.
 public typealias SteemCodable = SteemEncodable & Decodable
 
 /// Placeholder type for future extensions.

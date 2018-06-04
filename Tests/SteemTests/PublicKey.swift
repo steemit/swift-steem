@@ -11,7 +11,7 @@ class PublicKeyTest: XCTestCase {
             XCTFail("Unable to decode key")
         }
     }
-    
+
     func testNullKey() {
         XCTAssertNotNil(PublicKey("STM1111111111111111111111111111111114T1Anm"))
     }
