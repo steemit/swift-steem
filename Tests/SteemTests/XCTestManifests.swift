@@ -55,6 +55,7 @@ extension PublicKeyTest {
         ("testEncodable", testEncodable),
         ("testInvalidKeys", testInvalidKeys),
         ("testKey", testKey),
+        ("testNullKey", testNullKey),
         ("testTestnetKey", testTestnetKey),
     ]
 }
@@ -64,6 +65,13 @@ extension Secp256k1Test {
         ("testPublicFromPrivate", testPublicFromPrivate),
         ("testSignAndRecover", testSignAndRecover),
         ("testVerifiesSecret", testVerifiesSecret),
+    ]
+}
+
+extension SeemURLTest {
+    static let __allTests = [
+        ("testEncodeDecode", testEncodeDecode),
+        ("testParams", testParams),
     ]
 }
 
@@ -92,6 +100,7 @@ extension SteemEncoderTest {
 
 extension TransactionTest {
     static let __allTests = [
+        ("testDecodable", testDecodable),
         ("testSigning", testSigning),
     ]
 }
@@ -107,6 +116,7 @@ extension TransactionTest {
             testCase(PrivateKeyTest.__allTests),
             testCase(PublicKeyTest.__allTests),
             testCase(Secp256k1Test.__allTests),
+            testCase(SeemURLTest.__allTests),
             testCase(Sha2Test.__allTests),
             testCase(SignatureTest.__allTests),
             testCase(SteemEncoderTest.__allTests),
