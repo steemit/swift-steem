@@ -35,7 +35,7 @@ public enum BlockExtension: Equatable {
     /// Witness version reporting.
     case version(String)
     /// Witness hardfork vote.
-    case hardforkVersionVote(String)
+    case hardforkVersionVote(String, Date)
 }
 
 /// Internal protocol for a block header.
@@ -120,26 +120,19 @@ extension BlockExtension: Codable {
         switch type {
         case 1:
             self = .version(try container.decode(String.self))
-        case 2:
-            fatalError("CANT DECODE NUMBER 2 EXTENSION")
-            self = .hardforkVersionVote(try container.decode(String.self))
         default:
             self = .unknown
         }
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.unkeyedContainer()
         switch self {
-        case .version(let version):
+        case let .version(version):
             try container.encode(1 as Int)
-            try container.encode(version)
-        case .hardforkVersionVote(let version):
-            try container.encode(2 as Int)
             try container.encode(version)
         default:
             break
         }
     }
 }
-

@@ -1,23 +1,7 @@
-/**
- Hex encoding extensions.
- - author: Johan Nordberg <johan@steemit.com>
- */
+/// Hex encoding extensions.
+/// - Author: Johan Nordberg <johan@steemit.com>
 
 import Foundation
-
-internal extension UnicodeScalar {
-    var hexNibble: UInt8? {
-        let value = self.value
-        if 48 <= value && value <= 57 {
-            return UInt8(value - 48)
-        } else if 65 <= value && value <= 70 {
-            return UInt8(value - 55)
-        } else if 97 <= value && value <= 102 {
-            return UInt8(value - 87)
-        }
-        return nil
-    }
-}
 
 internal extension Data {
     init(hexEncoded string: String) {
@@ -49,5 +33,19 @@ internal extension Data {
             chars.append(hexDigits[Int(byte % 16)])
         }
         return String(utf16CodeUnits: chars, count: chars.count)
+    }
+}
+
+internal extension UnicodeScalar {
+    var hexNibble: UInt8? {
+        let value = self.value
+        if 48 <= value && value <= 57 {
+            return UInt8(value - 48)
+        } else if 65 <= value && value <= 70 {
+            return UInt8(value - 55)
+        } else if 97 <= value && value <= 102 {
+            return UInt8(value - 87)
+        }
+        return nil
     }
 }
