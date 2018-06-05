@@ -8,6 +8,5 @@
 #define SECP256K1_NUM_IMPL_H
 
 #include "num.h"
-#include "num_gmp_impl.h"
 
 #endif /* SECP256K1_NUM_IMPL_H */
