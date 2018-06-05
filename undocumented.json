@@ -1,6 +1,1524 @@
 {
   "warnings": [
-
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 27,
+      "symbol": "API.DynamicGlobalProperties",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 28,
+      "symbol": "API.DynamicGlobalProperties.headBlockNumber",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 29,
+      "symbol": "API.DynamicGlobalProperties.headBlockId",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 30,
+      "symbol": "API.DynamicGlobalProperties.virtualSupply",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 31,
+      "symbol": "API.DynamicGlobalProperties.currentSupply",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 32,
+      "symbol": "API.DynamicGlobalProperties.time",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 35,
+      "symbol": "API.GetDynamicGlobalProperties",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 38,
+      "symbol": "API.GetDynamicGlobalProperties.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 41,
+      "symbol": "API.TransactionConfirmation",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 42,
+      "symbol": "API.TransactionConfirmation.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 43,
+      "symbol": "API.TransactionConfirmation.blockNum",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 44,
+      "symbol": "API.TransactionConfirmation.trxNum",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 45,
+      "symbol": "API.TransactionConfirmation.expired",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 48,
+      "symbol": "API.BroadcastTransaction",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 52,
+      "symbol": "API.BroadcastTransaction.init(transaction:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 57,
+      "symbol": "API.GetBlock",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/API.swift",
+      "line": 61,
+      "symbol": "API.GetBlock.init(blockNum:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Authority.swift",
+      "line": 13,
+      "symbol": "Authority.Auth.value",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Authority.swift",
+      "line": 14,
+      "symbol": "Authority.Auth.weight",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Authority.swift",
+      "line": 26,
+      "symbol": "Authority.Auth.init(_:weight:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Block.swift",
+      "line": 71,
+      "symbol": "SignedBlockHeader.witnessSignature",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Block.swift",
+      "line": 97,
+      "symbol": "SignedBlock.witnessSignature",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 52,
+      "symbol": "Operation.Comment.init(title:body:author:permlink:parentAuthor:parentPermlink:jsonMetadata:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 112,
+      "symbol": "Operation.LimitOrderCreate.owner",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 113,
+      "symbol": "Operation.LimitOrderCreate.orderid",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 114,
+      "symbol": "Operation.LimitOrderCreate.amountToSell",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 115,
+      "symbol": "Operation.LimitOrderCreate.minToReceive",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 116,
+      "symbol": "Operation.LimitOrderCreate.fillOrKill",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 117,
+      "symbol": "Operation.LimitOrderCreate.expiration",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 122,
+      "symbol": "Operation.LimitOrderCancel.owner",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 123,
+      "symbol": "Operation.LimitOrderCancel.orderid",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 128,
+      "symbol": "Operation.FeedPublish.publisher",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 129,
+      "symbol": "Operation.FeedPublish.exchangeRate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 134,
+      "symbol": "Operation.Convert.owner",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 135,
+      "symbol": "Operation.Convert.requestid",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 136,
+      "symbol": "Operation.Convert.amount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 141,
+      "symbol": "Operation.AccountCreate.fee",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 142,
+      "symbol": "Operation.AccountCreate.creator",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 143,
+      "symbol": "Operation.AccountCreate.newAccountName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 144,
+      "symbol": "Operation.AccountCreate.owner",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 145,
+      "symbol": "Operation.AccountCreate.active",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 146,
+      "symbol": "Operation.AccountCreate.posting",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 147,
+      "symbol": "Operation.AccountCreate.memoKey",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 148,
+      "symbol": "Operation.AccountCreate.jsonMetadata",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 153,
+      "symbol": "Operation.AccountUpdate.account",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 154,
+      "symbol": "Operation.AccountUpdate.owner",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 155,
+      "symbol": "Operation.AccountUpdate.active",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 156,
+      "symbol": "Operation.AccountUpdate.posting",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 157,
+      "symbol": "Operation.AccountUpdate.memoKey",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 158,
+      "symbol": "Operation.AccountUpdate.jsonMetadata",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 170,
+      "symbol": "Operation.WitnessUpdate.owner",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 171,
+      "symbol": "Operation.WitnessUpdate.url",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 172,
+      "symbol": "Operation.WitnessUpdate.blockSigningKey",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 173,
+      "symbol": "Operation.WitnessUpdate.props",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 174,
+      "symbol": "Operation.WitnessUpdate.fee",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 179,
+      "symbol": "Operation.AccountWitnessVote.account",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 180,
+      "symbol": "Operation.AccountWitnessVote.witness",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 181,
+      "symbol": "Operation.AccountWitnessVote.approve",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 186,
+      "symbol": "Operation.AccountWitnessProxy.account",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 187,
+      "symbol": "Operation.AccountWitnessProxy.proxy",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 195,
+      "symbol": "Operation.Custom.requiredAuths",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 196,
+      "symbol": "Operation.Custom.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 197,
+      "symbol": "Operation.Custom.data",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 202,
+      "symbol": "Operation.ReportOverProduction.reporter",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 203,
+      "symbol": "Operation.ReportOverProduction.firstBlock",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 204,
+      "symbol": "Operation.ReportOverProduction.secondBlock",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 209,
+      "symbol": "Operation.DeleteComment.author",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 210,
+      "symbol": "Operation.DeleteComment.permlink",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 215,
+      "symbol": "Operation.CustomJson.requiredAuths",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 216,
+      "symbol": "Operation.CustomJson.requiredPostingAuths",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 217,
+      "symbol": "Operation.CustomJson.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 218,
+      "symbol": "Operation.CustomJson.json",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 223,
+      "symbol": "Operation.CommentOptions.BeneficiaryRoute",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 224,
+      "symbol": "Operation.CommentOptions.BeneficiaryRoute.account",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 225,
+      "symbol": "Operation.CommentOptions.BeneficiaryRoute.weight",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 236,
+      "symbol": "Operation.CommentOptions.author",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 237,
+      "symbol": "Operation.CommentOptions.permlink",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 238,
+      "symbol": "Operation.CommentOptions.maxAcceptedPayout",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 239,
+      "symbol": "Operation.CommentOptions.percentSteemDollars",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 240,
+      "symbol": "Operation.CommentOptions.allowVotes",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 241,
+      "symbol": "Operation.CommentOptions.allowCurationRewards",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 242,
+      "symbol": "Operation.CommentOptions.extensions",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 247,
+      "symbol": "Operation.SetWithdrawVestingRoute.fromAccount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 248,
+      "symbol": "Operation.SetWithdrawVestingRoute.toAccount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 249,
+      "symbol": "Operation.SetWithdrawVestingRoute.percent",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 250,
+      "symbol": "Operation.SetWithdrawVestingRoute.autoVest",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 255,
+      "symbol": "Operation.LimitOrderCreate2.owner",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 256,
+      "symbol": "Operation.LimitOrderCreate2.orderid",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 257,
+      "symbol": "Operation.LimitOrderCreate2.amountToSell",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 258,
+      "symbol": "Operation.LimitOrderCreate2.fillOrKill",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 259,
+      "symbol": "Operation.LimitOrderCreate2.exchangeRate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 260,
+      "symbol": "Operation.LimitOrderCreate2.expiration",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 263,
+      "symbol": "Operation.ChallengeAuthority",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 264,
+      "symbol": "Operation.ChallengeAuthority.challenger",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 265,
+      "symbol": "Operation.ChallengeAuthority.challenged",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 266,
+      "symbol": "Operation.ChallengeAuthority.requireOwner",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 269,
+      "symbol": "Operation.ProveAuthority",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 270,
+      "symbol": "Operation.ProveAuthority.challenged",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 271,
+      "symbol": "Operation.ProveAuthority.requireOwner",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 274,
+      "symbol": "Operation.RequestAccountRecovery",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 275,
+      "symbol": "Operation.RequestAccountRecovery.recoveryAccount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 276,
+      "symbol": "Operation.RequestAccountRecovery.accountToRecover",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 277,
+      "symbol": "Operation.RequestAccountRecovery.newOwnerAuthority",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 278,
+      "symbol": "Operation.RequestAccountRecovery.extensions",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 281,
+      "symbol": "Operation.RecoverAccount",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 282,
+      "symbol": "Operation.RecoverAccount.accountToRecover",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 283,
+      "symbol": "Operation.RecoverAccount.newOwnerAuthority",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 284,
+      "symbol": "Operation.RecoverAccount.recentOwnerAuthority",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 285,
+      "symbol": "Operation.RecoverAccount.extensions",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 288,
+      "symbol": "Operation.ChangeRecoveryAccount",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 289,
+      "symbol": "Operation.ChangeRecoveryAccount.accountToRecover",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 290,
+      "symbol": "Operation.ChangeRecoveryAccount.newRecoveryAccount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 291,
+      "symbol": "Operation.ChangeRecoveryAccount.extensions",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 294,
+      "symbol": "Operation.EscrowTransfer",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 295,
+      "symbol": "Operation.EscrowTransfer.from",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 296,
+      "symbol": "Operation.EscrowTransfer.to",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 297,
+      "symbol": "Operation.EscrowTransfer.agent",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 298,
+      "symbol": "Operation.EscrowTransfer.escrowId",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 299,
+      "symbol": "Operation.EscrowTransfer.sbdAmount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 300,
+      "symbol": "Operation.EscrowTransfer.steemAmount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 301,
+      "symbol": "Operation.EscrowTransfer.fee",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 302,
+      "symbol": "Operation.EscrowTransfer.ratificationDeadline",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 303,
+      "symbol": "Operation.EscrowTransfer.escrowExpiration",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 304,
+      "symbol": "Operation.EscrowTransfer.jsonMeta",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 307,
+      "symbol": "Operation.EscrowDispute",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 308,
+      "symbol": "Operation.EscrowDispute.from",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 309,
+      "symbol": "Operation.EscrowDispute.to",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 310,
+      "symbol": "Operation.EscrowDispute.agent",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 311,
+      "symbol": "Operation.EscrowDispute.who",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 312,
+      "symbol": "Operation.EscrowDispute.escrowId",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 315,
+      "symbol": "Operation.EscrowRelease",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 316,
+      "symbol": "Operation.EscrowRelease.from",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 317,
+      "symbol": "Operation.EscrowRelease.to",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 318,
+      "symbol": "Operation.EscrowRelease.agent",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 319,
+      "symbol": "Operation.EscrowRelease.who",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 320,
+      "symbol": "Operation.EscrowRelease.receiver",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 321,
+      "symbol": "Operation.EscrowRelease.escrowId",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 322,
+      "symbol": "Operation.EscrowRelease.sbdAmount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 323,
+      "symbol": "Operation.EscrowRelease.steemAmount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 329,
+      "symbol": "Operation.EscrowApprove",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 330,
+      "symbol": "Operation.EscrowApprove.from",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 331,
+      "symbol": "Operation.EscrowApprove.to",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 332,
+      "symbol": "Operation.EscrowApprove.agent",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 333,
+      "symbol": "Operation.EscrowApprove.who",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 334,
+      "symbol": "Operation.EscrowApprove.escrowId",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 335,
+      "symbol": "Operation.EscrowApprove.approve",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 338,
+      "symbol": "Operation.TransferToSavings",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 339,
+      "symbol": "Operation.TransferToSavings.from",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 340,
+      "symbol": "Operation.TransferToSavings.to",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 341,
+      "symbol": "Operation.TransferToSavings.amount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 342,
+      "symbol": "Operation.TransferToSavings.memo",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 345,
+      "symbol": "Operation.TransferFromSavings",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 346,
+      "symbol": "Operation.TransferFromSavings.from",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 347,
+      "symbol": "Operation.TransferFromSavings.requestId",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 348,
+      "symbol": "Operation.TransferFromSavings.to",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 349,
+      "symbol": "Operation.TransferFromSavings.amount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 350,
+      "symbol": "Operation.TransferFromSavings.memo",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 353,
+      "symbol": "Operation.CancelTransferFromSavings",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 354,
+      "symbol": "Operation.CancelTransferFromSavings.from",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 355,
+      "symbol": "Operation.CancelTransferFromSavings.requestId",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 358,
+      "symbol": "Operation.CustomBinary",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 359,
+      "symbol": "Operation.CustomBinary.requiredOwnerAuths",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 360,
+      "symbol": "Operation.CustomBinary.requiredActiveAuths",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 361,
+      "symbol": "Operation.CustomBinary.requiredPostingAuths",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 362,
+      "symbol": "Operation.CustomBinary.requiredAuths",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 363,
+      "symbol": "Operation.CustomBinary.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 364,
+      "symbol": "Operation.CustomBinary.data",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 367,
+      "symbol": "Operation.DeclineVotingRights",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 368,
+      "symbol": "Operation.DeclineVotingRights.account",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 369,
+      "symbol": "Operation.DeclineVotingRights.decline",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 372,
+      "symbol": "Operation.ResetAccount",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 373,
+      "symbol": "Operation.ResetAccount.resetAccount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 374,
+      "symbol": "Operation.ResetAccount.accountToReset",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 375,
+      "symbol": "Operation.ResetAccount.newOwnerAuthority",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 378,
+      "symbol": "Operation.SetResetAccount",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 379,
+      "symbol": "Operation.SetResetAccount.account",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 380,
+      "symbol": "Operation.SetResetAccount.currentResetAccount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 381,
+      "symbol": "Operation.SetResetAccount.resetAccount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 384,
+      "symbol": "Operation.ClaimRewardBalance",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 385,
+      "symbol": "Operation.ClaimRewardBalance.account",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 386,
+      "symbol": "Operation.ClaimRewardBalance.rewardSteem",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 387,
+      "symbol": "Operation.ClaimRewardBalance.rewardSbd",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 388,
+      "symbol": "Operation.ClaimRewardBalance.rewardVests",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 391,
+      "symbol": "Operation.DelegateVestingShares",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 392,
+      "symbol": "Operation.DelegateVestingShares.delegator",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 393,
+      "symbol": "Operation.DelegateVestingShares.delegatee",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 394,
+      "symbol": "Operation.DelegateVestingShares.vestingShares",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 397,
+      "symbol": "Operation.AccountCreateWithDelegation",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 398,
+      "symbol": "Operation.AccountCreateWithDelegation.fee",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 399,
+      "symbol": "Operation.AccountCreateWithDelegation.delegation",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 400,
+      "symbol": "Operation.AccountCreateWithDelegation.creator",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 401,
+      "symbol": "Operation.AccountCreateWithDelegation.newAccountName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 402,
+      "symbol": "Operation.AccountCreateWithDelegation.owner",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 403,
+      "symbol": "Operation.AccountCreateWithDelegation.active",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 404,
+      "symbol": "Operation.AccountCreateWithDelegation.posting",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 405,
+      "symbol": "Operation.AccountCreateWithDelegation.memoKey",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 406,
+      "symbol": "Operation.AccountCreateWithDelegation.jsonMetadata",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Operation.swift",
+      "line": 407,
+      "symbol": "Operation.AccountCreateWithDelegation.extensions",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/SteemEncoder.swift",
+      "line": 162,
+      "symbol": "FixedWidthInteger.binaryEncode(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/SteemURL.swift",
+      "line": 12,
+      "symbol": "SteemURL.Error.invalidURL",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/SteemURL.swift",
+      "line": 13,
+      "symbol": "SteemURL.Error.invalidScheme",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/SteemURL.swift",
+      "line": 14,
+      "symbol": "SteemURL.Error.unknownAction",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/SteemURL.swift",
+      "line": 15,
+      "symbol": "SteemURL.Error.malformedAction",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/SteemURL.swift",
+      "line": 16,
+      "symbol": "SteemURL.Error.payloadInvalid",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/SteemURL.swift",
+      "line": 17,
+      "symbol": "SteemURL.Error.invalidCallback",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/SteemURL.swift",
+      "line": 18,
+      "symbol": "SteemURL.Error.invalidSigner",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/SteemURL.swift",
+      "line": 19,
+      "symbol": "SteemURL.Error.signerNotAvailable",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/SteemURL.swift",
+      "line": 31,
+      "symbol": "SteemURL.Params.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/SteemURL.swift",
+      "line": 32,
+      "symbol": "SteemURL.Params.init(signer:callback:noBroadcast:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/SteemURL.swift",
+      "line": 37,
+      "symbol": "SteemURL.PayloadType.transaction",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/SteemURL.swift",
+      "line": 38,
+      "symbol": "SteemURL.PayloadType.operation",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/SteemURL.swift",
+      "line": 39,
+      "symbol": "SteemURL.PayloadType.operations",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/SteemURL.swift",
+      "line": 241,
+      "symbol": "SteemURL.CallbackContext.init(signature:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Transaction.swift",
+      "line": null,
+      "symbol": "Transaction",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Transaction.swift",
+      "line": null,
+      "symbol": "Transaction",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Transaction.swift",
+      "line": null,
+      "symbol": "Transaction",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jnordberg/Development/steemit/swift-steem/Sources/Steem/Transaction.swift",
+      "line": 22,
+      "symbol": "Transaction",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    }
   ],
   "source_directory": "/Users/jnordberg/Development/steemit/swift-steem"
 }

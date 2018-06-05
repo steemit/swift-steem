@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Operation Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/Operation" class="dashAnchor"></a>
+    <a title="Operation Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Steem Docs</a></p>
+        <p class="header-right"><a href="https://github.com/steemit/swift-steem"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Steem Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Operation Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Client.html">Client</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Client/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SteemEncoder.html">SteemEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SteemEncoder/Error.html">– Error</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/BlockExtension.html">BlockExtension</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ChainId.html">ChainId</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Date.html">Date</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/FixedWidthInteger.html">FixedWidthInteger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Optional.html">Optional</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/OrderedDictionary.html">OrderedDictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SteemEncodable.html">SteemEncodable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/API.html">API</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/API/CallParams.html">– CallParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/API/DynamicGlobalProperties.html">– DynamicGlobalProperties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/API/GetDynamicGlobalProperties.html">– GetDynamicGlobalProperties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/API/TransactionConfirmation.html">– TransactionConfirmation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/API/BroadcastTransaction.html">– BroadcastTransaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/API/GetBlock.html">– GetBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Asset.html">Asset</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Asset/Symbol.html">– Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Authority.html">Authority</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Authority/Auth.html">– Auth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BlockHeader.html">BlockHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BlockId.html">BlockId</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:5Steem16FutureExtensionsV">FutureExtensions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation.html">Operation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/Vote.html">– Vote</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/Comment.html">– Comment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/Transfer.html">– Transfer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/TransferToVesting.html">– TransferToVesting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/WithdrawVesting.html">– WithdrawVesting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/LimitOrderCreate.html">– LimitOrderCreate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/LimitOrderCancel.html">– LimitOrderCancel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/FeedPublish.html">– FeedPublish</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/Convert.html">– Convert</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/AccountCreate.html">– AccountCreate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/AccountUpdate.html">– AccountUpdate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/WitnessUpdate.html">– WitnessUpdate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/AccountWitnessVote.html">– AccountWitnessVote</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/AccountWitnessProxy.html">– AccountWitnessProxy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation.html#/s:5Steem9OperationV3PowV">– Pow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/Custom.html">– Custom</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/ReportOverProduction.html">– ReportOverProduction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/DeleteComment.html">– DeleteComment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/CustomJson.html">– CustomJson</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/CommentOptions.html">– CommentOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/SetWithdrawVestingRoute.html">– SetWithdrawVestingRoute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/LimitOrderCreate2.html">– LimitOrderCreate2</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/ChallengeAuthority.html">– ChallengeAuthority</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/ProveAuthority.html">– ProveAuthority</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/RequestAccountRecovery.html">– RequestAccountRecovery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/RecoverAccount.html">– RecoverAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/ChangeRecoveryAccount.html">– ChangeRecoveryAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/EscrowTransfer.html">– EscrowTransfer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/EscrowDispute.html">– EscrowDispute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/EscrowRelease.html">– EscrowRelease</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation.html#/s:5Steem9OperationV4Pow2V">– Pow2</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/EscrowApprove.html">– EscrowApprove</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/TransferToSavings.html">– TransferToSavings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/TransferFromSavings.html">– TransferFromSavings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/CancelTransferFromSavings.html">– CancelTransferFromSavings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/CustomBinary.html">– CustomBinary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/DeclineVotingRights.html">– DeclineVotingRights</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/ResetAccount.html">– ResetAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/SetResetAccount.html">– SetResetAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/ClaimRewardBalance.html">– ClaimRewardBalance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/DelegateVestingShares.html">– DelegateVestingShares</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/AccountCreateWithDelegation.html">– AccountCreateWithDelegation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation.html#/s:5Steem9OperationV7UnknownV">– Unknown</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Price.html">Price</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PrivateKey.html">PrivateKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PublicKey.html">PublicKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PublicKey/AddressPrefix.html">– AddressPrefix</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RequestParams.html">RequestParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Signature.html">Signature</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SignedBlock.html">SignedBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SignedBlockHeader.html">SignedBlockHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SignedTransaction.html">SignedTransaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SteemURL.html">SteemURL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SteemURL/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SteemURL/Params.html">– Params</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SteemURL/PayloadType.html">– PayloadType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SteemURL/ResolveOptions.html">– ResolveOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SteemURL/CallbackContext.html">– CallbackContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Transaction.html">Transaction</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:5Steem0A7Codablea">SteemCodable</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Operation</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Operation</span></code></pre>
+
+                </div>
+              </div>
+            <p>Namespace for all available Steem operations.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV4VoteV"></a>
+                    <a name="//apple_ref/swift/Struct/Vote" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV4VoteV">Vote</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Voting operation, votes for content.</p>
+
+                        <a href="../Structs/Operation/Vote.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Vote</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV7CommentV"></a>
+                    <a name="//apple_ref/swift/Struct/Comment" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV7CommentV">Comment</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Comment operation, creates comments and posts.</p>
+
+                        <a href="../Structs/Operation/Comment.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Comment</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV8TransferV"></a>
+                    <a name="//apple_ref/swift/Struct/Transfer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV8TransferV">Transfer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Transfers assets from one account to another.</p>
+
+                        <a href="../Structs/Operation/Transfer.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Transfer</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV17TransferToVestingV"></a>
+                    <a name="//apple_ref/swift/Struct/TransferToVesting" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV17TransferToVestingV">TransferToVesting</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Converts STEEM to VESTS, aka. <q>Powering Up</q>.</p>
+
+                        <a href="../Structs/Operation/TransferToVesting.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TransferToVesting</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV15WithdrawVestingV"></a>
+                    <a name="//apple_ref/swift/Struct/WithdrawVesting" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV15WithdrawVestingV">WithdrawVesting</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Starts a vesting withdrawal, aka. <q>Powering Down</q>.</p>
+
+                        <a href="../Structs/Operation/WithdrawVesting.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">WithdrawVesting</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV16LimitOrderCreateV"></a>
+                    <a name="//apple_ref/swift/Struct/LimitOrderCreate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV16LimitOrderCreateV">LimitOrderCreate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This operation creates a limit order and matches it against existing open orders.</p>
+
+                        <a href="../Structs/Operation/LimitOrderCreate.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">LimitOrderCreate</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV16LimitOrderCancelV"></a>
+                    <a name="//apple_ref/swift/Struct/LimitOrderCancel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV16LimitOrderCancelV">LimitOrderCancel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Cancels an order and returns the balance to owner.</p>
+
+                        <a href="../Structs/Operation/LimitOrderCancel.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">LimitOrderCancel</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV11FeedPublishV"></a>
+                    <a name="//apple_ref/swift/Struct/FeedPublish" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV11FeedPublishV">FeedPublish</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Publish a price feed.</p>
+
+                        <a href="../Structs/Operation/FeedPublish.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">FeedPublish</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV7ConvertV"></a>
+                    <a name="//apple_ref/swift/Struct/Convert" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV7ConvertV">Convert</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert operation.</p>
+
+                        <a href="../Structs/Operation/Convert.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Convert</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV13AccountCreateV"></a>
+                    <a name="//apple_ref/swift/Struct/AccountCreate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV13AccountCreateV">AccountCreate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new account.</p>
+
+                        <a href="../Structs/Operation/AccountCreate.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AccountCreate</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV13AccountUpdateV"></a>
+                    <a name="//apple_ref/swift/Struct/AccountUpdate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV13AccountUpdateV">AccountUpdate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Updates an account.</p>
+
+                        <a href="../Structs/Operation/AccountUpdate.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AccountUpdate</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV13WitnessUpdateV"></a>
+                    <a name="//apple_ref/swift/Struct/WitnessUpdate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV13WitnessUpdateV">WitnessUpdate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Registers or updates witnesses.</p>
+
+                        <a href="../Structs/Operation/WitnessUpdate.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">WitnessUpdate</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV18AccountWitnessVoteV"></a>
+                    <a name="//apple_ref/swift/Struct/AccountWitnessVote" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV18AccountWitnessVoteV">AccountWitnessVote</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Votes for a witness.</p>
+
+                        <a href="../Structs/Operation/AccountWitnessVote.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AccountWitnessVote</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV19AccountWitnessProxyV"></a>
+                    <a name="//apple_ref/swift/Struct/AccountWitnessProxy" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV19AccountWitnessProxyV">AccountWitnessProxy</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets a witness voting proxy.</p>
+
+                        <a href="../Structs/Operation/AccountWitnessProxy.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AccountWitnessProxy</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV3PowV"></a>
+                    <a name="//apple_ref/swift/Struct/Pow" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV3PowV">Pow</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Submits a proof of work, legacy.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Pow</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV6CustomV"></a>
+                    <a name="//apple_ref/swift/Struct/Custom" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV6CustomV">Custom</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Custom operation.</p>
+
+                        <a href="../Structs/Operation/Custom.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Custom</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV20ReportOverProductionV"></a>
+                    <a name="//apple_ref/swift/Struct/ReportOverProduction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV20ReportOverProductionV">ReportOverProduction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reports a producer who signs two blocks at the same time.</p>
+
+                        <a href="../Structs/Operation/ReportOverProduction.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ReportOverProduction</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV13DeleteCommentV"></a>
+                    <a name="//apple_ref/swift/Struct/DeleteComment" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV13DeleteCommentV">DeleteComment</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Deletes a comment.</p>
+
+                        <a href="../Structs/Operation/DeleteComment.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">DeleteComment</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV10CustomJsonV"></a>
+                    <a name="//apple_ref/swift/Struct/CustomJson" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV10CustomJsonV">CustomJson</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A custom JSON operation.</p>
+
+                        <a href="../Structs/Operation/CustomJson.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CustomJson</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV14CommentOptionsV"></a>
+                    <a name="//apple_ref/swift/Struct/CommentOptions" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV14CommentOptionsV">CommentOptions</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets comment options.</p>
+
+                        <a href="../Structs/Operation/CommentOptions.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CommentOptions</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV23SetWithdrawVestingRouteV"></a>
+                    <a name="//apple_ref/swift/Struct/SetWithdrawVestingRoute" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV23SetWithdrawVestingRouteV">SetWithdrawVestingRoute</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets withdraw vesting route for account.</p>
+
+                        <a href="../Structs/Operation/SetWithdrawVestingRoute.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">SetWithdrawVestingRoute</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV17LimitOrderCreate2V"></a>
+                    <a name="//apple_ref/swift/Struct/LimitOrderCreate2" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV17LimitOrderCreate2V">LimitOrderCreate2</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a limit order using a exchange price.</p>
+
+                        <a href="../Structs/Operation/LimitOrderCreate2.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">LimitOrderCreate2</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV18ChallengeAuthorityV"></a>
+                    <a name="//apple_ref/swift/Struct/ChallengeAuthority" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV18ChallengeAuthorityV">ChallengeAuthority</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/ChallengeAuthority.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ChallengeAuthority</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV14ProveAuthorityV"></a>
+                    <a name="//apple_ref/swift/Struct/ProveAuthority" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV14ProveAuthorityV">ProveAuthority</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/ProveAuthority.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ProveAuthority</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV22RequestAccountRecoveryV"></a>
+                    <a name="//apple_ref/swift/Struct/RequestAccountRecovery" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV22RequestAccountRecoveryV">RequestAccountRecovery</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/RequestAccountRecovery.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">RequestAccountRecovery</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV14RecoverAccountV"></a>
+                    <a name="//apple_ref/swift/Struct/RecoverAccount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV14RecoverAccountV">RecoverAccount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/RecoverAccount.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">RecoverAccount</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV21ChangeRecoveryAccountV"></a>
+                    <a name="//apple_ref/swift/Struct/ChangeRecoveryAccount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV21ChangeRecoveryAccountV">ChangeRecoveryAccount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/ChangeRecoveryAccount.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ChangeRecoveryAccount</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV14EscrowTransferV"></a>
+                    <a name="//apple_ref/swift/Struct/EscrowTransfer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV14EscrowTransferV">EscrowTransfer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/EscrowTransfer.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">EscrowTransfer</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV13EscrowDisputeV"></a>
+                    <a name="//apple_ref/swift/Struct/EscrowDispute" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV13EscrowDisputeV">EscrowDispute</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/EscrowDispute.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">EscrowDispute</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV13EscrowReleaseV"></a>
+                    <a name="//apple_ref/swift/Struct/EscrowRelease" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV13EscrowReleaseV">EscrowRelease</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/EscrowRelease.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">EscrowRelease</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV4Pow2V"></a>
+                    <a name="//apple_ref/swift/Struct/Pow2" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV4Pow2V">Pow2</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Submits equihash proof of work, legacy.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Pow2</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV13EscrowApproveV"></a>
+                    <a name="//apple_ref/swift/Struct/EscrowApprove" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV13EscrowApproveV">EscrowApprove</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/EscrowApprove.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">EscrowApprove</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV17TransferToSavingsV"></a>
+                    <a name="//apple_ref/swift/Struct/TransferToSavings" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV17TransferToSavingsV">TransferToSavings</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/TransferToSavings.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TransferToSavings</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV19TransferFromSavingsV"></a>
+                    <a name="//apple_ref/swift/Struct/TransferFromSavings" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV19TransferFromSavingsV">TransferFromSavings</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/TransferFromSavings.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TransferFromSavings</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV25CancelTransferFromSavingsV"></a>
+                    <a name="//apple_ref/swift/Struct/CancelTransferFromSavings" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV25CancelTransferFromSavingsV">CancelTransferFromSavings</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/CancelTransferFromSavings.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CancelTransferFromSavings</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV12CustomBinaryV"></a>
+                    <a name="//apple_ref/swift/Struct/CustomBinary" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV12CustomBinaryV">CustomBinary</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/CustomBinary.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CustomBinary</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV19DeclineVotingRightsV"></a>
+                    <a name="//apple_ref/swift/Struct/DeclineVotingRights" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV19DeclineVotingRightsV">DeclineVotingRights</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/DeclineVotingRights.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">DeclineVotingRights</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV12ResetAccountV"></a>
+                    <a name="//apple_ref/swift/Struct/ResetAccount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV12ResetAccountV">ResetAccount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/ResetAccount.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ResetAccount</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV15SetResetAccountV"></a>
+                    <a name="//apple_ref/swift/Struct/SetResetAccount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV15SetResetAccountV">SetResetAccount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/SetResetAccount.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">SetResetAccount</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV18ClaimRewardBalanceV"></a>
+                    <a name="//apple_ref/swift/Struct/ClaimRewardBalance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV18ClaimRewardBalanceV">ClaimRewardBalance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/ClaimRewardBalance.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ClaimRewardBalance</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV21DelegateVestingSharesV"></a>
+                    <a name="//apple_ref/swift/Struct/DelegateVestingShares" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV21DelegateVestingSharesV">DelegateVestingShares</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/DelegateVestingShares.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">DelegateVestingShares</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV27AccountCreateWithDelegationV"></a>
+                    <a name="//apple_ref/swift/Struct/AccountCreateWithDelegation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV27AccountCreateWithDelegationV">AccountCreateWithDelegation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Structs/Operation/AccountCreateWithDelegation.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AccountCreateWithDelegation</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem9OperationV7UnknownV"></a>
+                    <a name="//apple_ref/swift/Struct/Unknown" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem9OperationV7UnknownV">Unknown</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Unknown operation, seen if the decoder encounters operation which has no type defined.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Not encodable, the encoder will throw if encountering this operation.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Unknown</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://steem.com" target="_blank" rel="external">Steemit Inc.</a>. All rights reserved. (Last updated: 2018-06-05)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

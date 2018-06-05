@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SteemURL Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/SteemURL" class="dashAnchor"></a>
+    <a title="SteemURL Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Steem Docs</a></p>
+        <p class="header-right"><a href="https://github.com/steemit/swift-steem"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Steem Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        SteemURL Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Client.html">Client</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Client/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SteemEncoder.html">SteemEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SteemEncoder/Error.html">– Error</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/BlockExtension.html">BlockExtension</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ChainId.html">ChainId</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Date.html">Date</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/FixedWidthInteger.html">FixedWidthInteger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Optional.html">Optional</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/OrderedDictionary.html">OrderedDictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SteemEncodable.html">SteemEncodable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/API.html">API</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/API/CallParams.html">– CallParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/API/DynamicGlobalProperties.html">– DynamicGlobalProperties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/API/GetDynamicGlobalProperties.html">– GetDynamicGlobalProperties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/API/TransactionConfirmation.html">– TransactionConfirmation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/API/BroadcastTransaction.html">– BroadcastTransaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/API/GetBlock.html">– GetBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Asset.html">Asset</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Asset/Symbol.html">– Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Authority.html">Authority</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Authority/Auth.html">– Auth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BlockHeader.html">BlockHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BlockId.html">BlockId</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:5Steem16FutureExtensionsV">FutureExtensions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation.html">Operation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/Vote.html">– Vote</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/Comment.html">– Comment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/Transfer.html">– Transfer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/TransferToVesting.html">– TransferToVesting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/WithdrawVesting.html">– WithdrawVesting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/LimitOrderCreate.html">– LimitOrderCreate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/LimitOrderCancel.html">– LimitOrderCancel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/FeedPublish.html">– FeedPublish</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/Convert.html">– Convert</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/AccountCreate.html">– AccountCreate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/AccountUpdate.html">– AccountUpdate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/WitnessUpdate.html">– WitnessUpdate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/AccountWitnessVote.html">– AccountWitnessVote</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/AccountWitnessProxy.html">– AccountWitnessProxy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation.html#/s:5Steem9OperationV3PowV">– Pow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/Custom.html">– Custom</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/ReportOverProduction.html">– ReportOverProduction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/DeleteComment.html">– DeleteComment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/CustomJson.html">– CustomJson</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/CommentOptions.html">– CommentOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/SetWithdrawVestingRoute.html">– SetWithdrawVestingRoute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/LimitOrderCreate2.html">– LimitOrderCreate2</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/ChallengeAuthority.html">– ChallengeAuthority</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/ProveAuthority.html">– ProveAuthority</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/RequestAccountRecovery.html">– RequestAccountRecovery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/RecoverAccount.html">– RecoverAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/ChangeRecoveryAccount.html">– ChangeRecoveryAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/EscrowTransfer.html">– EscrowTransfer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/EscrowDispute.html">– EscrowDispute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/EscrowRelease.html">– EscrowRelease</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation.html#/s:5Steem9OperationV4Pow2V">– Pow2</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/EscrowApprove.html">– EscrowApprove</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/TransferToSavings.html">– TransferToSavings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/TransferFromSavings.html">– TransferFromSavings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/CancelTransferFromSavings.html">– CancelTransferFromSavings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/CustomBinary.html">– CustomBinary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/DeclineVotingRights.html">– DeclineVotingRights</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/ResetAccount.html">– ResetAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/SetResetAccount.html">– SetResetAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/ClaimRewardBalance.html">– ClaimRewardBalance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/DelegateVestingShares.html">– DelegateVestingShares</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation/AccountCreateWithDelegation.html">– AccountCreateWithDelegation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Operation.html#/s:5Steem9OperationV7UnknownV">– Unknown</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Price.html">Price</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PrivateKey.html">PrivateKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PublicKey.html">PublicKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PublicKey/AddressPrefix.html">– AddressPrefix</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RequestParams.html">RequestParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Signature.html">Signature</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SignedBlock.html">SignedBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SignedBlockHeader.html">SignedBlockHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SignedTransaction.html">SignedTransaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SteemURL.html">SteemURL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SteemURL/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SteemURL/Params.html">– Params</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SteemURL/PayloadType.html">– PayloadType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SteemURL/ResolveOptions.html">– ResolveOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SteemURL/CallbackContext.html">– CallbackContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Transaction.html">Transaction</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:5Steem0A7Codablea">SteemCodable</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>SteemURL</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">SteemURL</span></code></pre>
+
+                </div>
+              </div>
+            <p>Type representing a Steem signing URL</p>
+
+<p>See specification at <a href="https://github.com/steemit/steem-uri-spec">https://github.com/steemit/steem-uri-spec</a></p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem0A3URLV5ErrorO"></a>
+                    <a name="//apple_ref/swift/Enum/Error" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem0A3URLV5ErrorO">Error</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>All errors <code><a href="../Structs/SteemURL.html">SteemURL</a></code> can throw.</p>
+
+                        <a href="../Structs/SteemURL/Error.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Error</span> <span class="p">:</span> <span class="kt">Swift</span><span class="o">.</span><span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem0A3URLV6ParamsV"></a>
+                    <a name="//apple_ref/swift/Struct/Params" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem0A3URLV6ParamsV">Params</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Url params, encoded as query strings.</p>
+
+                        <a href="../Structs/SteemURL/Params.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Params</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem0A3URLV11PayloadTypeO"></a>
+                    <a name="//apple_ref/swift/Enum/PayloadType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem0A3URLV11PayloadTypeO">PayloadType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The signing action.</p>
+
+                        <a href="../Structs/SteemURL/PayloadType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PayloadType</span> <span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem0A3URLVA2C11PayloadTypeO4type_AC6ParamsV6paramsyp7payloadtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(type:params:payload:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem0A3URLVA2C11PayloadTypeO4type_AC6ParamsV6paramsyp7payloadtcfc">init(type:params:payload:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new SteemURL from a custom payload.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    An invalid payload will cause the <code>resolve()</code> method to throw.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Structs/SteemURL/PayloadType.html">PayloadType</a></span><span class="p">,</span> <span class="nv">params</span><span class="p">:</span> <span class="kt"><a href="../Structs/SteemURL/Params.html">Params</a></span><span class="p">,</span> <span class="nv">payload</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem0A3URLVACSgSS6string_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(string:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem0A3URLVACSgSS6string_tcfc">init(string:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new SteemURL from a string</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem0A3URLVACSg10Foundation0B0V3url_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(url:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem0A3URLVACSg10Foundation0B0V3url_tcfc">init(url:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new SteemURL from a URL.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem0A3URLVACSg10Foundation13URLComponentsV13urlComponents_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(urlComponents:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem0A3URLVACSg10Foundation13URLComponentsV13urlComponents_tcfc">init(urlComponents:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new SteemURL from a set of url components.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="n">urlComponents</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URLComponents</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem0A3URLVACSgAA11TransactionV11transaction_AC6ParamsV6paramstcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(transaction:params:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem0A3URLVACSgAA11TransactionV11transaction_AC6ParamsV6paramstcfc">init(transaction:params:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new SteemURL with a transaction, <code>steem://sign/tx/...</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">transaction</span><span class="p">:</span> <span class="kt"><a href="../Structs/Transaction.html">Transaction</a></span><span class="p">,</span> <span class="nv">params</span><span class="p">:</span> <span class="kt"><a href="../Structs/SteemURL/Params.html">Params</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/SteemURL/Params.html">Params</a></span><span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem0A3URLVACSgAA13OperationType_p9operation_AC6ParamsV6paramstcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(operation:params:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem0A3URLVACSgAA13OperationType_p9operation_AC6ParamsV6paramstcfc">init(operation:params:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new SteemURL with an operation, <code>steem://sign/op/...</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">operation</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">,</span> <span class="nv">params</span><span class="p">:</span> <span class="kt"><a href="../Structs/SteemURL/Params.html">Params</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/SteemURL/Params.html">Params</a></span><span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem0A3URLVACSgSayAA13OperationType_pG10operations_AC6ParamsV6paramstcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(operations:params:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem0A3URLVACSgSayAA13OperationType_pG10operations_AC6ParamsV6paramstcfc">init(operations:params:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new SteemURL with several operations, <code>steem://sign/ops/...</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">operations</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">],</span> <span class="nv">params</span><span class="p">:</span> <span class="kt"><a href="../Structs/SteemURL/Params.html">Params</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/SteemURL/Params.html">Params</a></span><span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem0A3URLV14ResolveOptionsV"></a>
+                    <a name="//apple_ref/swift/Struct/ResolveOptions" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem0A3URLV14ResolveOptionsV">ResolveOptions</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Options used to resolve a signing url to a signer and transaction.</p>
+
+                        <a href="../Structs/SteemURL/ResolveOptions.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ResolveOptions</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem0A3URLV7resolveSS6signer_AA11TransactionV2txtAC14ResolveOptionsV4with_tKF"></a>
+                    <a name="//apple_ref/swift/Method/resolve(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem0A3URLV7resolveSS6signer_AA11TransactionV2txtAC14ResolveOptionsV4with_tKF">resolve(with:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Resolve this url to a signer and transaction.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">resolve</span><span class="p">(</span><span class="n">with</span> <span class="nv">options</span><span class="p">:</span> <span class="kt"><a href="../Structs/SteemURL/ResolveOptions.html">ResolveOptions</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">signer</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">tx</span><span class="p">:</span> <span class="kt"><a href="../Structs/Transaction.html">Transaction</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem0A3URLV15CallbackContextV"></a>
+                    <a name="//apple_ref/swift/Struct/CallbackContext" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem0A3URLV15CallbackContextV">CallbackContext</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Used to resolve callback urls, should be populated after signed txn has been broadcast.</p>
+
+                        <a href="../Structs/SteemURL/CallbackContext.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CallbackContext</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem0A3URLV15resolveCallback10Foundation0B0VSgAC0D7ContextV4with_tF"></a>
+                    <a name="//apple_ref/swift/Method/resolveCallback(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem0A3URLV15resolveCallback10Foundation0B0VSgAC0D7ContextV4with_tF">resolveCallback(with:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Resolves the callback URL.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">resolveCallback</span><span class="p">(</span><span class="n">with</span> <span class="nv">ctx</span><span class="p">:</span> <span class="kt"><a href="../Structs/SteemURL/CallbackContext.html">CallbackContext</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">URL</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The callback URL with variables populated or nil if no callback param was set.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s23CustomStringConvertibleP11descriptionSSvp"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s23CustomStringConvertibleP11descriptionSSvp">description</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s9EquatableP2eeoiSbx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s9EquatableP2eeoiSbx_xtFZ">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">SteemURL</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">SteemURL</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://steem.com" target="_blank" rel="external">Steemit Inc.</a>. All rights reserved. (Last updated: 2018-06-05)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
