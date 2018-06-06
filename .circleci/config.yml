@@ -1,35 +1,4 @@
 version: 2
-get_secp256k1_version: &get_secp256k1_version
-  run:
-    name: Get latest libsecp256k1 version
-    command: |
-      VERSION=`git ls-remote https://github.com/bitcoin-core/secp256k1.git | grep "HEAD$" | cut -f1`
-      echo $VERSION | tee .libsecp256k1_head
-restore_secp256k1_mac: &restore_secp256k1_mac
-  restore_cache:
-    keys:
-      - macos-libsecp256k1-{{ checksum ".libsecp256k1_head" }}
-install_secp256k1_mac: &install_secp256k1_mac
-  run:
-    name: Install libsecp256k1
-    command: |
-      test -f /usr/local/include/secp256k1.h && exit
-      brew install autoconf automake libtool
-      git clone https://github.com/bitcoin-core/secp256k1.git && cd secp256k1
-      ./autogen.sh && ./configure --enable-module-recovery
-      make install
-save_secp256k1_mac: &save_secp256k1_mac
-  save_cache:
-    key: macos-libsecp256k1-{{ checksum ".libsecp256k1_head" }}
-    when: always
-    paths:
-      - /usr/local/include/secp256k1.h
-      - /usr/local/include/secp256k1_recovery.h
-      - /usr/local/lib/libsecp256k1.0.dylib
-      - /usr/local/lib/libsecp256k1.a
-      - /usr/local/lib/libsecp256k1.dylib
-      - /usr/local/lib/libsecp256k1.la
-      - /usr/local/lib/pkgconfig/libsecp256k1.pc
 show_swift_version: &show_swift_version
   run:
     name: Swift version
@@ -40,10 +9,6 @@ jobs:
       xcode: "9.3.0"
     steps:
       - checkout
-      - <<: *get_secp256k1_version
-      - <<: *restore_secp256k1_mac
-      - <<: *install_secp256k1_mac
-      - <<: *save_secp256k1_mac
       - <<: *show_swift_version
       - run:
           name: Run unit tests
@@ -53,10 +18,6 @@ jobs:
       xcode: "9.3.0"
     steps:
       - checkout
-      - <<: *get_secp256k1_version
-      - <<: *restore_secp256k1_mac
-      - <<: *install_secp256k1_mac
-      - <<: *save_secp256k1_mac
       - <<: *show_swift_version
       - run:
           name: Run integration tests
@@ -66,28 +27,10 @@ jobs:
       - image: swift:4
     steps:
       - checkout
-      - <<: *get_secp256k1_version
-      - restore_cache:
-          keys:
-            - linux-libsecp256k1-{{ checksum ".libsecp256k1_head" }}
-      - run:
-          name: Install libsecp256k1
-          command: |
-            test -f /usr/local/include/secp256k1.h && exit
-            git clone https://github.com/bitcoin-core/secp256k1.git && cd secp256k1
-            apt-get update && apt-get install -y autoconf libtool
-            ./autogen.sh && ./configure --enable-module-recovery
-            make install
-      - save_cache:
-          key: linux-libsecp256k1-{{ checksum ".libsecp256k1_head" }}
-          when: always
-          paths:
-            - /usr/local/lib
-            - /usr/local/include
       - <<: *show_swift_version
       - run:
           name: Run tests
-          command: ldconfig && swift test
+          command: swift test
 workflows:
   version: 2
   build:
