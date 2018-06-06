@@ -20,7 +20,7 @@ In your Package.swift add:
 
 ```
 dependencies: [
-    .package(url: "https://github.com/steemit/swift-steem.git")
+    .package(url: "https://github.com/steemit/swift-steem.git", .branch("master"))
 ]
 ```
 
