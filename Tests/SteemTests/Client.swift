@@ -98,7 +98,8 @@ class ClientTest: XCTestCase {
         client.send(request: TestRequest()) { response, error in
             XCTAssertNotNil(error)
             XCTAssertNil(response)
-            if let error = error as? Client.Error, case let Client.Error.invalidResponse(message, _) = error {
+            XCTAssertEqual(error?.localizedDescription, "Unable to send request: Server responded with HTTP 503")
+            if let error = error as? Client.Error, case let Client.Error.networkError(message, _) = error {
                 XCTAssertEqual(message, "Server responded with HTTP 503")
             } else {
                 XCTFail()
@@ -118,7 +119,8 @@ class ClientTest: XCTestCase {
         client.send(request: TestRequest()) { response, error in
             XCTAssertNotNil(error)
             XCTAssertNil(response)
-            if let error = error as? Client.Error, case let Client.Error.invalidResponse(message, _) = error {
+            XCTAssertEqual(error?.localizedDescription, "Unable to send request: Request id mismatch")
+            if let error = error as? Client.Error, case let Client.Error.networkError(message, _) = error {
                 XCTAssertEqual(message, "Request id mismatch")
             } else {
                 XCTFail()
@@ -138,6 +140,7 @@ class ClientTest: XCTestCase {
         client.send(request: TestRequest()) { response, error in
             XCTAssertNotNil(error)
             XCTAssertNil(response)
+            XCTAssertEqual(error?.localizedDescription, "RPCError: Had some issues (code=123)")
             if let error = error as? Client.Error, case let Client.Error.responseError(code, message, data) = error {
                 XCTAssertEqual(code, 123)
                 XCTAssertEqual(message, "Had some issues")
