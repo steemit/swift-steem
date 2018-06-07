@@ -158,12 +158,29 @@ internal struct SeqIdGenerator: IdGenerator {
 
 /// Steem-flavoured JSON-RPC 2.0 client.
 public class Client {
-    /// Client errors.
-    public enum Error: Swift.Error {
-        /// Server didn't respond with a valid JSON-RPC 2.0 response.
-        case invalidResponse(message: String, error: Swift.Error?)
-        /// JSON-RPC 2.0 Error.
+    /// All errors `Client` can throw.
+    public enum Error: LocalizedError {
+        /// Unable to send request or invalid response from server.
+        case networkError(message: String, error: Swift.Error?)
+        /// Server responded with a JSON-RPC 2.0 error.
         case responseError(code: Int, message: String, data: [String: Any]?)
+        /// Unable to decode the result or encode the request params.
+        case codingError(message: String, error: Swift.Error)
+
+        public var errorDescription: String? {
+            switch self {
+            case let .networkError(message, error):
+                var rv = "Unable to send request: \(message)"
+                if let error = error {
+                    rv += " (caused by \(String(describing: error))"
+                }
+                return rv
+            case let .codingError(message, error):
+                return "Unable to serialize data: \(message) (caused by \(String(describing: error))"
+            case let .responseError(code, message, _):
+                return "RPCError: \(message) (code=\(code))"
+            }
+        }
     }
 
     /// The RPC Server address.
@@ -194,29 +211,29 @@ public class Client {
     /// Resolve a URLSession dataTask to a `Response`.
     internal func resolveResponse<T: Request>(for payload: RequestPayload<T>, data: Data?, response: URLResponse?) throws -> T.Response? {
         guard let response = response else {
-            throw Error.invalidResponse(message: "No response from server", error: nil)
+            throw Error.networkError(message: "No response from server", error: nil)
         }
         guard let httpResponse = response as? HTTPURLResponse else {
-            throw Error.invalidResponse(message: "Not a HTTP response", error: nil)
+            throw Error.networkError(message: "Not a HTTP response", error: nil)
         }
         if httpResponse.statusCode != 200 {
-            throw Error.invalidResponse(message: "Server responded with HTTP \(httpResponse.statusCode)", error: nil)
+            throw Error.networkError(message: "Server responded with HTTP \(httpResponse.statusCode)", error: nil)
         }
         guard let data = data else {
-            throw Error.invalidResponse(message: "Response body empty", error: nil)
+            throw Error.networkError(message: "Response body empty", error: nil)
         }
         let decoder = Client.JSONDecoder()
         let responsePayload: ResponsePayload<T>
         do {
             responsePayload = try decoder.decode(ResponsePayload<T>.self, from: data)
         } catch {
-            throw Error.invalidResponse(message: "Unable to decode response", error: error)
+            throw Error.codingError(message: "Unable to decode response", error: error)
         }
         if let error = responsePayload.error {
             throw Error.responseError(code: error.code, message: error.message, data: error.resolvedData)
         }
         if responsePayload.id != payload.id {
-            throw Error.invalidResponse(message: "Request id mismatch", error: nil)
+            throw Error.networkError(message: "Request id mismatch", error: nil)
         }
         return responsePayload.result
     }
@@ -230,11 +247,11 @@ public class Client {
         do {
             urlRequest = try self.urlRequest(for: payload)
         } catch {
-            return completionHandler(nil, error)
+            return completionHandler(nil, Error.codingError(message: "Unable to encode payload", error: error))
         }
         self.session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
-                return completionHandler(nil, error)
+                return completionHandler(nil, Error.networkError(message: "Unable to send request", error: error))
             }
             let rv: T.Response?
             do {
@@ -244,6 +261,24 @@ public class Client {
             }
             completionHandler(rv, nil)
         }.resume()
+    }
+
+    /// Blocking `.send(..)`.
+    /// - Warning: This should never be called from the main thread.
+    public func sendSynchronous<T: Request>(request: T) throws -> T.Response! {
+        let semaphore = DispatchSemaphore(value: 0)
+        var result: T.Response?
+        var error: Swift.Error?
+        self.send(request: request) {
+            result = $0
+            error = $1
+            semaphore.signal()
+        }
+        semaphore.wait()
+        if let error = error {
+            throw error
+        }
+        return result
     }
 }
 
