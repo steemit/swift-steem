@@ -10,7 +10,7 @@ public struct PrivateKey: Equatable {
     /// For testing, wether to use a counter or random value for ndata when signing.
     internal static var determenisticSignatures: Bool = false
 
-    /// Create a new public key instance from a byte buffer.
+    /// Create a new private key instance from a byte buffer.
     /// - Parameter data: The 33-byte private key where the first byte is the network id (0x80).
     public init?(_ data: Data) {
         guard data.first == 0x80 && data.count == 33 else {
@@ -23,13 +23,22 @@ public struct PrivateKey: Equatable {
         self.secret = secret
     }
 
-    /// Create a new public key instance from a WIF-encoded string.
+    /// Create a new private key instance from a WIF-encoded string.
     /// - Parameter wif: The base58check-encoded string.
     public init?(_ wif: String) {
         guard let data = Data(base58CheckEncoded: wif) else {
             return nil
         }
         self.init(data)
+    }
+    
+    /// Create a new private key instance from a seed.
+    /// - Parameter seed: String that is hashed and used as secret.
+    public init?(seed: String) {
+        guard let data = seed.data(using: .utf8) else {
+            return nil
+        }
+        self.secret = data.sha256Digest()
     }
 
     /// Sign a message.
