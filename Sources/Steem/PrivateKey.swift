@@ -55,11 +55,16 @@ public struct PrivateKey: Equatable {
         return PublicKey(key: result, prefix: prefix)!
     }
 
-    /// WIF-encoded string representation of this private key.
-    public var wif: String {
+    /// The 33-byte private key where the first byte is the network id (0x80).
+    public var data: Data {
         var data = self.secret
         data.insert(0x80, at: data.startIndex)
-        return Data(data).base58CheckEncodedString()!
+        return data
+    }
+    
+    /// WIF-encoded string representation of private key.
+    public var wif: String {
+        return self.data.base58CheckEncodedString()!
     }
 }
 
