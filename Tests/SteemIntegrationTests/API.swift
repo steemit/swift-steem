@@ -101,4 +101,15 @@ class ClientTest: XCTestCase {
             }
         }
     }
+
+    func testGetAccount() throws {
+        let result = try client.sendSynchronous(request: API.GetAccounts(names: ["almost-digital"]))
+        guard let account = result?.first else {
+            XCTFail("No account returned")
+            return
+        }
+        XCTAssertEqual(account.id, 180_270)
+        XCTAssertEqual(account.name, "almost-digital")
+        XCTAssertEqual(account.created, Date(timeIntervalSince1970: 1_496_691_060))
+    }
 }
