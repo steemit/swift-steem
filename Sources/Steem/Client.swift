@@ -241,7 +241,7 @@ public class Client {
     /// Send a JSON-RPC 2.0 request.
     /// - Parameter request: The request to be sent.
     /// - Parameter completionHandler: Callback function, called with either a response or an error.
-    public func send<T: Request>(request: T, completionHandler: @escaping (T.Response?, Swift.Error?) -> Void) -> Void {
+    public func send<T: Request>(_ request: T, completionHandler: @escaping (T.Response?, Swift.Error?) -> Void) -> Void {
         let payload = RequestPayload(request: request, id: self.idgen.next())
         let urlRequest: URLRequest
         do {
@@ -265,11 +265,11 @@ public class Client {
 
     /// Blocking `.send(..)`.
     /// - Warning: This should never be called from the main thread.
-    public func sendSynchronous<T: Request>(request: T) throws -> T.Response! {
+    public func sendSynchronous<T: Request>(_ request: T) throws -> T.Response! {
         let semaphore = DispatchSemaphore(value: 0)
         var result: T.Response?
         var error: Swift.Error?
-        self.send(request: request) {
+        self.send(request) {
             result = $0
             error = $1
             semaphore.signal()

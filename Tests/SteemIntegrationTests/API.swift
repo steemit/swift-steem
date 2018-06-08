@@ -13,9 +13,14 @@ let testnetClient = Steem.Client(address: URL(string: "https://testnet.steem.vc"
 let testnetId = ChainId.custom(Data(hexEncoded: "79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673"))
 
 class ClientTest: XCTestCase {
+    
+    func testNani() {
+        debugPrint(Data(hexEncoded: "79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673").base64EncodedString())
+    }
+    
     func testRequest() {
         let test = expectation(description: "Response")
-        client.send(request: HelloRequest()) { res, error in
+        client.send(HelloRequest()) { res, error in
             XCTAssertNil(error)
             XCTAssertEqual(res, "I'm sorry, foo, I can't do that.")
             test.fulfill()
@@ -30,7 +35,7 @@ class ClientTest: XCTestCase {
     func testGlobalProps() {
         let test = expectation(description: "Response")
         let req = API.GetDynamicGlobalProperties()
-        client.send(request: req) { res, error in
+        client.send(req) { res, error in
             XCTAssertNil(error)
             XCTAssertNotNil(res)
             XCTAssertEqual(res?.currentSupply.symbol.name, "STEEM")
@@ -46,7 +51,7 @@ class ClientTest: XCTestCase {
     func testGetBlock() {
         let test = expectation(description: "Response")
         let req = API.GetBlock(blockNum: 12_345_678)
-        client.send(request: req) { block, error in
+        client.send(req) { block, error in
             XCTAssertNil(error)
             XCTAssertEqual(block?.previous.num, 12_345_677)
             XCTAssertEqual(block?.transactions.count, 7)
@@ -70,7 +75,7 @@ class ClientTest: XCTestCase {
         )
         comment.parentPermlink = "test"
         let vote = Operation.Vote(voter: "swift", author: "swift", permlink: comment.permlink)
-        testnetClient.send(request: API.GetDynamicGlobalProperties()) { props, error in
+        testnetClient.send(API.GetDynamicGlobalProperties()) { props, error in
             XCTAssertNil(error)
             guard let props = props else {
                 return XCTFail("Unable to get props")
@@ -84,7 +89,7 @@ class ClientTest: XCTestCase {
             guard let stx = try? tx.sign(usingKey: key, forChain: testnetId) else {
                 return XCTFail("Unable to sign tx")
             }
-            testnetClient.send(request: API.BroadcastTransaction(transaction: stx)) { res, error in
+            testnetClient.send(API.BroadcastTransaction(transaction: stx)) { res, error in
                 XCTAssertNil(error)
                 if let res = res {
                     XCTAssertFalse(res.expired)
@@ -103,7 +108,7 @@ class ClientTest: XCTestCase {
     }
 
     func testGetAccount() throws {
-        let result = try client.sendSynchronous(request: API.GetAccounts(names: ["almost-digital"]))
+        let result = try client.sendSynchronous(API.GetAccounts(names: ["almost-digital"]))
         guard let account = result?.first else {
             XCTFail("No account returned")
             return

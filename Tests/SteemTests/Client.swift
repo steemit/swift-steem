@@ -63,7 +63,7 @@ class ClientTest: XCTestCase {
     func testRequest() {
         let test = expectation(description: "Handler called")
         session.nextResponse = jsonResponse(["id": 42, "result": "foo"])
-        client.send(request: TestRequest()) { response, error in
+        client.send(TestRequest()) { response, error in
             XCTAssertNil(error)
             XCTAssertEqual(response, "foo")
             test.fulfill()
@@ -80,7 +80,7 @@ class ClientTest: XCTestCase {
         session.nextResponse = jsonResponse(["id": 42, "result": "foo"])
         var req = TestRequest()
         req.params = RequestParams(["hello"])
-        client.send(request: req) { response, error in
+        client.send(req) { response, error in
             XCTAssertNil(error)
             XCTAssertEqual(response, "foo")
             test.fulfill()
@@ -95,7 +95,7 @@ class ClientTest: XCTestCase {
     func testBadServerResponse() {
         let test = expectation(description: "Handler called")
         session.nextResponse = errorResponse(code: 503, message: "So sorry")
-        client.send(request: TestRequest()) { response, error in
+        client.send(TestRequest()) { response, error in
             XCTAssertNotNil(error)
             XCTAssertNil(response)
             XCTAssertEqual(error?.localizedDescription, "Unable to send request: Server responded with HTTP 503")
@@ -116,7 +116,7 @@ class ClientTest: XCTestCase {
     func testBadRpcResponse() {
         let test = expectation(description: "Handler called")
         session.nextResponse = jsonResponse(["id": 0, "banana": false])
-        client.send(request: TestRequest()) { response, error in
+        client.send(TestRequest()) { response, error in
             XCTAssertNotNil(error)
             XCTAssertNil(response)
             XCTAssertEqual(error?.localizedDescription, "Unable to send request: Request id mismatch")
@@ -137,7 +137,7 @@ class ClientTest: XCTestCase {
     func testRpcError() {
         let test = expectation(description: "Handler called")
         session.nextResponse = jsonResponse(["id": 42, "error": ["code": 123, "message": "Had some issues", "data": ["extra": 123]]])
-        client.send(request: TestRequest()) { response, error in
+        client.send(TestRequest()) { response, error in
             XCTAssertNotNil(error)
             XCTAssertNil(response)
             XCTAssertEqual(error?.localizedDescription, "RPCError: Had some issues (code=123)")
