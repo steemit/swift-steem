@@ -24,7 +24,7 @@ jobs:
           command: swift test --filter SteemIntegrationTests
   linux-tests:
     docker:
-      - image: swift:4
+      - image: norionomura/swift:swift-4.2-branch
     steps:
       - checkout
       - <<: *show_swift_version

@@ -108,7 +108,7 @@ public struct API {
         public let savingsSbdSeconds: String // uint128_t
         public let savingsSbdSecondsLastUpdate: Date
         public let savingsSbdLastInterestPayment: Date
-        public let savingsWithdrawRequests: uint8_t
+        public let savingsWithdrawRequests: UInt8
         public let rewardSbdBalance: Asset
         public let rewardSteemBalance: Asset
         public let rewardVestingBalance: Asset
