@@ -16,15 +16,15 @@ internal struct Random {
     static func bytes(count: Int) -> Data {
         var rv = Data(count: count)
         #if os(Linux)
-            guard let file = fopen("/dev/random", "r") else {
-                fatalError("Unable to open /dev/random for reading.")
+            guard let file = fopen("/dev/urandom", "r") else {
+                fatalError("Unable to open /dev/urandom for reading.")
             }
             defer { fclose(file) }
             let bytesRead = rv.withUnsafeMutableBytes {
                 fread($0, 1, count, file)
             }
             guard bytesRead == count else {
-                fatalError("Unable to read from /dev/random.")
+                fatalError("Unable to read from /dev/urandom.")
             }
         #else
             let result = rv.withUnsafeMutableBytes {
