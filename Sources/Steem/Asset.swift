@@ -51,7 +51,7 @@ public struct Asset: Equatable {
     /// Create a new `Asset`.
     /// - Parameter value: Amount of tokens.
     /// - Parameter symbol: Token symbol.
-    init(_ value: Double, symbol: Symbol = .steem) {
+    public init(_ value: Double, _ symbol: Symbol = .steem) {
         self.amount = Int64(round(value * pow(10, Double(symbol.precision))))
         self.symbol = symbol
     }
@@ -79,7 +79,7 @@ public struct Asset: Equatable {
         guard let val = Double(parts[0]) else {
             return nil
         }
-        self.init(val, symbol: symbol)
+        self.init(val, symbol)
     }
 }
 

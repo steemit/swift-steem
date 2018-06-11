@@ -20,7 +20,7 @@ class SeemURLTest: XCTestCase {
     func testParams() throws {
         let operations: [OperationType] = [
             Operation.Vote(voter: "foo", author: "bar", permlink: "baz"),
-            Operation.Transfer(from: "foo", to: "bar", amount: Asset(10, symbol: .steem), memo: "baz"),
+            Operation.Transfer(from: "foo", to: "bar", amount: Asset(10, .steem), memo: "baz"),
         ]
         var params = SteemURL.Params()
         params.signer = "foo"
