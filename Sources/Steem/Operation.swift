@@ -67,13 +67,10 @@ public struct Operation {
             self.jsonMetadata = jsonMetadata
         }
 
-        /// Parsed content metadata.
+        /// Content metadata.
         var metadata: [String: Any]? {
-            guard let data = self.jsonMetadata.data(using: .utf8) else {
-                return nil
-            }
-            let decoded = try? JSONSerialization.jsonObject(with: data, options: [])
-            return decoded as? [String: Any]
+            set { self.jsonMetadata = encodeMeta(newValue) }
+            get { return decodeMeta(self.jsonMetadata) }
         }
     }
 
@@ -87,6 +84,13 @@ public struct Operation {
         public var amount: Asset
         /// Note attached to transaction.
         public var memo: String
+
+        public init(from: String, to: String, amount: Asset, memo: String = "") {
+            self.from = from
+            self.to = to
+            self.amount = amount
+            self.memo = memo
+        }
     }
 
     /// Converts STEEM to VESTS, aka. "Powering Up".
@@ -97,6 +101,12 @@ public struct Operation {
         public var to: String
         /// Amount to power up, must be STEEM.
         public var amount: Asset
+
+        public init(from: String, to: String, amount: Asset) {
+            self.from = from
+            self.to = to
+            self.amount = amount
+        }
     }
 
     /// Starts a vesting withdrawal, aka. "Powering Down".
@@ -105,6 +115,11 @@ public struct Operation {
         public var account: String
         /// Amount that is powered down, must be VESTS.
         public var vestingShares: Asset
+
+        public init(account: String, vestingShares: Asset) {
+            self.account = account
+            self.vestingShares = vestingShares
+        }
     }
 
     /// This operation creates a limit order and matches it against existing open orders.
@@ -115,18 +130,44 @@ public struct Operation {
         public var minToReceive: Asset
         public var fillOrKill: Bool
         public var expiration: Date
+
+        public init(
+            owner: String,
+            orderid: UInt32,
+            amountToSell: Asset,
+            minToReceive: Asset,
+            fillOrKill: Bool,
+            expiration: Date
+        ) {
+            self.owner = owner
+            self.orderid = orderid
+            self.amountToSell = amountToSell
+            self.minToReceive = minToReceive
+            self.fillOrKill = fillOrKill
+            self.expiration = expiration
+        }
     }
 
     /// Cancels an order and returns the balance to owner.
     public struct LimitOrderCancel: OperationType, Equatable {
         public var owner: String
         public var orderid: UInt32
+
+        public init(owner: String, orderid: UInt32) {
+            self.owner = owner
+            self.orderid = orderid
+        }
     }
 
     /// Publish a price feed.
     public struct FeedPublish: OperationType, Equatable {
         public var publisher: String
         public var exchangeRate: Price
+
+        public init(publisher: String, exchangeRate: Price) {
+            self.publisher = publisher
+            self.exchangeRate = exchangeRate
+        }
     }
 
     /// Convert operation.
@@ -134,6 +175,12 @@ public struct Operation {
         public var owner: String
         public var requestid: UInt32
         public var amount: Asset
+
+        public init(owner: String, requestid: UInt32, amount: Asset) {
+            self.owner = owner
+            self.requestid = requestid
+            self.amount = amount
+        }
     }
 
     /// Creates a new account.
@@ -146,6 +193,32 @@ public struct Operation {
         public var posting: Authority
         public var memoKey: PublicKey
         public var jsonMetadata: String
+
+        public init(
+            fee: Asset,
+            creator: String,
+            newAccountName: String,
+            owner: Authority,
+            active: Authority,
+            posting: Authority,
+            memoKey: PublicKey,
+            jsonMetadata: String = ""
+        ) {
+            self.fee = fee
+            self.creator = creator
+            self.newAccountName = newAccountName
+            self.owner = owner
+            self.active = active
+            self.posting = posting
+            self.memoKey = memoKey
+            self.jsonMetadata = jsonMetadata
+        }
+
+        /// Account metadata.
+        var metadata: [String: Any]? {
+            set { self.jsonMetadata = encodeMeta(newValue) }
+            get { return decodeMeta(self.jsonMetadata) }
+        }
     }
 
     /// Updates an account.
@@ -156,6 +229,22 @@ public struct Operation {
         public var posting: Authority?
         public var memoKey: PublicKey
         public var jsonMetadata: String
+
+        public init(
+            account: String,
+            owner: Authority?,
+            active: Authority?,
+            posting: Authority?,
+            memoKey: PublicKey,
+            jsonMetadata: String = ""
+        ) {
+            self.account = account
+            self.owner = owner
+            self.active = active
+            self.posting = posting
+            self.memoKey = memoKey
+            self.jsonMetadata = jsonMetadata
+        }
     }
 
     /// Registers or updates witnesses.
@@ -172,6 +261,20 @@ public struct Operation {
         public var blockSigningKey: PublicKey
         public var props: Properties
         public var fee: Asset
+
+        public init(
+            owner: String,
+            url: String,
+            blockSigningKey: PublicKey,
+            props: Properties,
+            fee: Asset
+        ) {
+            self.owner = owner
+            self.url = url
+            self.blockSigningKey = blockSigningKey
+            self.props = props
+            self.fee = fee
+        }
     }
 
     /// Votes for a witness.
@@ -179,12 +282,23 @@ public struct Operation {
         public var account: String
         public var witness: String
         public var approve: Bool
+
+        public init(account: String, witness: String, approve: Bool) {
+            self.account = account
+            self.witness = witness
+            self.approve = approve
+        }
     }
 
     /// Sets a witness voting proxy.
     public struct AccountWitnessProxy: OperationType, Equatable {
         public var account: String
         public var proxy: String
+
+        public init(account: String, proxy: String) {
+            self.account = account
+            self.proxy = proxy
+        }
     }
 
     /// Submits a proof of work, legacy.
@@ -195,6 +309,16 @@ public struct Operation {
         public var requiredAuths: [String]
         public var id: UInt16
         public var data: Data
+
+        public init(
+            requiredAuths: [String],
+            id: UInt16,
+            data: Data
+        ) {
+            self.requiredAuths = requiredAuths
+            self.id = id
+            self.data = data
+        }
     }
 
     /// Reports a producer who signs two blocks at the same time.
@@ -202,12 +326,27 @@ public struct Operation {
         public var reporter: String
         public var firstBlock: SignedBlockHeader
         public var secondBlock: SignedBlockHeader
+
+        public init(
+            reporter: String,
+            firstBlock: SignedBlockHeader,
+            secondBlock: SignedBlockHeader
+        ) {
+            self.reporter = reporter
+            self.firstBlock = firstBlock
+            self.secondBlock = secondBlock
+        }
     }
 
     /// Deletes a comment.
     public struct DeleteComment: OperationType, Equatable {
         public var author: String
         public var permlink: String
+
+        public init(author: String, permlink: String) {
+            self.author = author
+            self.permlink = permlink
+        }
     }
 
     /// A custom JSON operation.
@@ -216,6 +355,23 @@ public struct Operation {
         public var requiredPostingAuths: [String]
         public var id: String
         public var json: String
+
+        public init(
+            requiredAuths: [String],
+            requiredPostingAuths: [String],
+            id: String,
+            json: String
+        ) {
+            self.requiredAuths = requiredAuths
+            self.requiredPostingAuths = requiredPostingAuths
+            self.id = id
+            self.json = json
+        }
+
+        var jsonObject: [String: Any]? {
+            set { self.json = encodeMeta(newValue) }
+            get { return decodeMeta(self.json) }
+        }
     }
 
     /// Sets comment options.
@@ -240,6 +396,24 @@ public struct Operation {
         public var allowVotes: Bool
         public var allowCurationRewards: Bool
         public var extensions: [Extension]
+
+        public init(
+            author: String,
+            permlink: String,
+            maxAcceptedPayout: Asset,
+            percentSteemDollars: UInt16,
+            allowVotes: Bool = true,
+            allowCurationRewards: Bool = true,
+            extensions: [Extension] = []
+        ) {
+            self.author = author
+            self.permlink = permlink
+            self.maxAcceptedPayout = maxAcceptedPayout
+            self.percentSteemDollars = percentSteemDollars
+            self.allowVotes = allowVotes
+            self.allowCurationRewards = allowCurationRewards
+            self.extensions = extensions
+        }
     }
 
     /// Sets withdraw vesting route for account.
@@ -248,6 +422,18 @@ public struct Operation {
         public var toAccount: String
         public var percent: UInt16
         public var autoVest: Bool
+
+        public init(
+            fromAccount: String,
+            toAccount: String,
+            percent: UInt16,
+            autoVest: Bool
+        ) {
+            self.fromAccount = fromAccount
+            self.toAccount = toAccount
+            self.percent = percent
+            self.autoVest = autoVest
+        }
     }
 
     /// Creates a limit order using a exchange price.
@@ -258,17 +444,51 @@ public struct Operation {
         public var fillOrKill: Bool
         public var exchangeRate: Price
         public var expiration: Date
+
+        public init(
+            owner: String,
+            orderid: UInt32,
+            amountToSell: Asset,
+            fillOrKill: Bool,
+            exchangeRate: Price,
+            expiration: Date
+        ) {
+            self.owner = owner
+            self.orderid = orderid
+            self.amountToSell = amountToSell
+            self.fillOrKill = fillOrKill
+            self.exchangeRate = exchangeRate
+            self.expiration = expiration
+        }
     }
 
     public struct ChallengeAuthority: OperationType, Equatable {
         public var challenger: String
         public var challenged: String
         public var requireOwner: Bool
+
+        public init(
+            challenger: String,
+            challenged: String,
+            requireOwner: Bool
+        ) {
+            self.challenger = challenger
+            self.challenged = challenged
+            self.requireOwner = requireOwner
+        }
     }
 
     public struct ProveAuthority: OperationType, Equatable {
         public var challenged: String
         public var requireOwner: Bool
+
+        public init(
+            challenged: String,
+            requireOwner: Bool
+        ) {
+            self.challenged = challenged
+            self.requireOwner = requireOwner
+        }
     }
 
     public struct RequestAccountRecovery: OperationType, Equatable {
@@ -276,6 +496,18 @@ public struct Operation {
         public var accountToRecover: String
         public var newOwnerAuthority: Authority
         public var extensions: [FutureExtensions]
+
+        public init(
+            recoveryAccount: String,
+            accountToRecover: String,
+            newOwnerAuthority: Authority,
+            extensions: [FutureExtensions] = []
+        ) {
+            self.recoveryAccount = recoveryAccount
+            self.accountToRecover = accountToRecover
+            self.newOwnerAuthority = newOwnerAuthority
+            self.extensions = extensions
+        }
     }
 
     public struct RecoverAccount: OperationType, Equatable {
@@ -283,12 +515,34 @@ public struct Operation {
         public var newOwnerAuthority: Authority
         public var recentOwnerAuthority: Authority
         public var extensions: [FutureExtensions]
+
+        public init(
+            accountToRecover: String,
+            newOwnerAuthority: Authority,
+            recentOwnerAuthority: Authority,
+            extensions: [FutureExtensions] = []
+        ) {
+            self.accountToRecover = accountToRecover
+            self.newOwnerAuthority = newOwnerAuthority
+            self.recentOwnerAuthority = recentOwnerAuthority
+            self.extensions = extensions
+        }
     }
 
     public struct ChangeRecoveryAccount: OperationType, Equatable {
         public var accountToRecover: String
         public var newRecoveryAccount: String
         public var extensions: [FutureExtensions]
+
+        public init(
+            accountToRecover: String,
+            newRecoveryAccount: String,
+            extensions: [FutureExtensions] = []
+        ) {
+            self.accountToRecover = accountToRecover
+            self.newRecoveryAccount = newRecoveryAccount
+            self.extensions = extensions
+        }
     }
 
     public struct EscrowTransfer: OperationType, Equatable {
@@ -302,6 +556,36 @@ public struct Operation {
         public var ratificationDeadline: Date
         public var escrowExpiration: Date
         public var jsonMeta: String
+
+        public init(
+            from: String,
+            to: String,
+            agent: String,
+            escrowId: UInt32,
+            sbdAmount: Asset,
+            steemAmount: Asset,
+            fee: Asset,
+            ratificationDeadline: Date,
+            escrowExpiration: Date,
+            jsonMeta: String = ""
+        ) {
+            self.from = from
+            self.to = to
+            self.agent = agent
+            self.escrowId = escrowId
+            self.sbdAmount = sbdAmount
+            self.steemAmount = steemAmount
+            self.fee = fee
+            self.ratificationDeadline = ratificationDeadline
+            self.escrowExpiration = escrowExpiration
+            self.jsonMeta = jsonMeta
+        }
+
+        /// Metadata.
+        var metadata: [String: Any]? {
+            set { self.jsonMeta = encodeMeta(newValue) }
+            get { return decodeMeta(self.jsonMeta) }
+        }
     }
 
     public struct EscrowDispute: OperationType, Equatable {
@@ -310,6 +594,20 @@ public struct Operation {
         public var agent: String
         public var who: String
         public var escrowId: UInt32
+
+        public init(
+            from: String,
+            to: String,
+            agent: String,
+            who: String,
+            escrowId: UInt32
+        ) {
+            self.from = from
+            self.to = to
+            self.agent = agent
+            self.who = who
+            self.escrowId = escrowId
+        }
     }
 
     public struct EscrowRelease: OperationType, Equatable {
@@ -321,6 +619,26 @@ public struct Operation {
         public var escrowId: UInt32
         public var sbdAmount: Asset
         public var steemAmount: Asset
+
+        public init(
+            from: String,
+            to: String,
+            agent: String,
+            who: String,
+            receiver: String,
+            escrowId: UInt32,
+            sbdAmount: Asset,
+            steemAmount: Asset
+        ) {
+            self.from = from
+            self.to = to
+            self.agent = agent
+            self.who = who
+            self.receiver = receiver
+            self.escrowId = escrowId
+            self.sbdAmount = sbdAmount
+            self.steemAmount = steemAmount
+        }
     }
 
     /// Submits equihash proof of work, legacy.
@@ -333,6 +651,22 @@ public struct Operation {
         public var who: String
         public var escrowId: UInt32
         public var approve: Bool
+
+        public init(
+            from: String,
+            to: String,
+            agent: String,
+            who: String,
+            escrowId: UInt32,
+            approve: Bool
+        ) {
+            self.from = from
+            self.to = to
+            self.agent = agent
+            self.who = who
+            self.escrowId = escrowId
+            self.approve = approve
+        }
     }
 
     public struct TransferToSavings: OperationType, Equatable {
@@ -340,6 +674,18 @@ public struct Operation {
         public var to: String
         public var amount: Asset
         public var memo: String
+
+        public init(
+            from: String,
+            to: String,
+            amount: Asset,
+            memo: String
+        ) {
+            self.from = from
+            self.to = to
+            self.amount = amount
+            self.memo = memo
+        }
     }
 
     public struct TransferFromSavings: OperationType, Equatable {
@@ -348,11 +694,33 @@ public struct Operation {
         public var to: String
         public var amount: Asset
         public var memo: String
+
+        public init(
+            from: String,
+            requestId: UInt32,
+            to: String,
+            amount: Asset,
+            memo: String = ""
+        ) {
+            self.from = from
+            self.requestId = requestId
+            self.to = to
+            self.amount = amount
+            self.memo = memo
+        }
     }
 
     public struct CancelTransferFromSavings: OperationType, Equatable {
         public var from: String
         public var requestId: UInt32
+
+        public init(
+            from: String,
+            requestId: UInt32
+        ) {
+            self.from = from
+            self.requestId = requestId
+        }
     }
 
     public struct CustomBinary: OperationType, Equatable {
@@ -362,23 +730,67 @@ public struct Operation {
         public var requiredAuths: [Authority]
         public var id: String
         public var data: Data
+
+        public init(
+            requiredOwnerAuths: [String],
+            requiredActiveAuths: [String],
+            requiredPostingAuths: [String],
+            requiredAuths: [Authority],
+            id: String,
+            data: Data
+        ) {
+            self.requiredOwnerAuths = requiredOwnerAuths
+            self.requiredActiveAuths = requiredActiveAuths
+            self.requiredPostingAuths = requiredPostingAuths
+            self.requiredAuths = requiredAuths
+            self.id = id
+            self.data = data
+        }
     }
 
     public struct DeclineVotingRights: OperationType, Equatable {
         public var account: String
         public var decline: Bool
+
+        public init(
+            account: String,
+            decline: Bool
+        ) {
+            self.account = account
+            self.decline = decline
+        }
     }
 
     public struct ResetAccount: OperationType, Equatable {
         public var resetAccount: String
         public var accountToReset: String
         public var newOwnerAuthority: Authority
+
+        public init(
+            resetAccount: String,
+            accountToReset: String,
+            newOwnerAuthority: Authority
+        ) {
+            self.resetAccount = resetAccount
+            self.accountToReset = accountToReset
+            self.newOwnerAuthority = newOwnerAuthority
+        }
     }
 
     public struct SetResetAccount: OperationType, Equatable {
         public var account: String
         public var currentResetAccount: String
         public var resetAccount: String
+
+        public init(
+            account: String,
+            currentResetAccount: String,
+            resetAccount: String
+        ) {
+            self.account = account
+            self.currentResetAccount = currentResetAccount
+            self.resetAccount = resetAccount
+        }
     }
 
     public struct ClaimRewardBalance: OperationType, Equatable {
@@ -386,12 +798,34 @@ public struct Operation {
         public var rewardSteem: Asset
         public var rewardSbd: Asset
         public var rewardVests: Asset
+
+        public init(
+            account: String,
+            rewardSteem: Asset,
+            rewardSbd: Asset,
+            rewardVests: Asset
+        ) {
+            self.account = account
+            self.rewardSteem = rewardSteem
+            self.rewardSbd = rewardSbd
+            self.rewardVests = rewardVests
+        }
     }
 
     public struct DelegateVestingShares: OperationType, Equatable {
         public var delegator: String
         public var delegatee: String
         public var vestingShares: Asset
+
+        public init(
+            delegator: String,
+            delegatee: String,
+            vestingShares: Asset
+        ) {
+            self.delegator = delegator
+            self.delegatee = delegatee
+            self.vestingShares = vestingShares
+        }
     }
 
     public struct AccountCreateWithDelegation: OperationType, Equatable {
@@ -405,6 +839,36 @@ public struct Operation {
         public var memoKey: PublicKey
         public var jsonMetadata: String
         public var extensions: [FutureExtensions]
+
+        public init(
+            fee: Asset,
+            delegation: Asset,
+            creator: String,
+            newAccountName: String,
+            owner: Authority,
+            active: Authority,
+            posting: Authority,
+            memoKey: PublicKey,
+            jsonMetadata: String = "",
+            extensions: [FutureExtensions] = []
+        ) {
+            self.fee = fee
+            self.delegation = delegation
+            self.creator = creator
+            self.newAccountName = newAccountName
+            self.owner = owner
+            self.active = active
+            self.posting = posting
+            self.memoKey = memoKey
+            self.jsonMetadata = jsonMetadata
+            self.extensions = extensions
+        }
+
+        /// Account metadata.
+        var metadata: [String: Any]? {
+            set { self.jsonMetadata = encodeMeta(newValue) }
+            get { return decodeMeta(self.jsonMetadata) }
+        }
     }
 
     /// Unknown operation, seen if the decoder encounters operation which has no type defined.
@@ -748,4 +1212,21 @@ extension Operation.CommentOptions.Extension {
             throw EncodingError.invalidValue(self, EncodingError.Context(codingPath: container.codingPath, debugDescription: "Encountered unknown comment extension"))
         }
     }
+}
+
+fileprivate func encodeMeta(_ value: [String: Any]?) -> String {
+    if let object = value,
+        let encoded = try? JSONSerialization.data(withJSONObject: object, options: []) {
+        return String(bytes: encoded, encoding: .utf8) ?? ""
+    } else {
+        return ""
+    }
+}
+
+fileprivate func decodeMeta(_ value: String) -> [String: Any]? {
+    guard let data = value.data(using: .utf8) else {
+        return nil
+    }
+    let decoded = try? JSONSerialization.jsonObject(with: data, options: [])
+    return decoded as? [String: Any]
 }

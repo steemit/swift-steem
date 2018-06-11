@@ -31,7 +31,7 @@ public struct PrivateKey: Equatable {
         }
         self.init(data)
     }
-    
+
     /// Create a new private key instance from a seed.
     /// - Parameter seed: String that is hashed and used as secret.
     public init?(seed: String) {
@@ -70,7 +70,7 @@ public struct PrivateKey: Equatable {
         data.insert(0x80, at: data.startIndex)
         return data
     }
-    
+
     /// WIF-encoded string representation of private key.
     public var wif: String {
         return self.data.base58CheckEncodedString()!
