@@ -68,7 +68,7 @@ extension Transaction: Equatable {
 /// A signed transaction.
 public struct SignedTransaction: _Transaction, Equatable {
     /// Transaction signatures.
-    var signatures: [Signature]
+    public var signatures: [Signature]
 
     private var transaction: Transaction
 
@@ -81,41 +81,41 @@ public struct SignedTransaction: _Transaction, Equatable {
     }
 
     /// Append a signature to the transaction.
-    mutating func appendSignature(_ signature: Signature) {
+    public mutating func appendSignature(_ signature: Signature) {
         self.signatures.append(signature)
     }
 
     /// Sign transaction and append signature.
     /// - Parameter key: Private key to sign transaction with.
     /// - Parameter chain: Chain id to use when signing.
-    mutating func appendSignature(usingKey key: PrivateKey, forChain chain: ChainId = .mainNet) throws {
+    public mutating func appendSignature(usingKey key: PrivateKey, forChain chain: ChainId = .mainNet) throws {
         let signature = try key.sign(message: self.transaction.digest(forChain: chain))
         signatures.append(signature)
     }
 
     // Transaction proxy.
 
-    var refBlockNum: UInt16 {
+    public var refBlockNum: UInt16 {
         return self.transaction.refBlockNum
     }
 
-    var refBlockPrefix: UInt32 {
+    public var refBlockPrefix: UInt32 {
         return self.transaction.refBlockPrefix
     }
 
-    var expiration: Date {
+    public var expiration: Date {
         return self.transaction.expiration
     }
 
-    var extensions: [String] {
+    public var extensions: [String] {
         return self.transaction.extensions
     }
 
-    var operations: [OperationType] {
+    public var operations: [OperationType] {
         return self.transaction.operations
     }
 
-    func digest(forChain chain: ChainId = .mainNet) throws -> Data {
+    public func digest(forChain chain: ChainId = .mainNet) throws -> Data {
         return try self.transaction.digest(forChain: chain)
     }
 }
