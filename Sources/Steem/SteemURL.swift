@@ -160,9 +160,9 @@ public struct SteemURL {
     /// Options used to resolve a signing url to a signer and transaction.
     public struct ResolveOptions {
         /// The ref block number used to fill in the `__ref_block_num` placeholder.
-        public var refBlockNum: Int
+        public var refBlockNum: UInt16
         /// The ref block prefix used to fill in the `__ref_block_prefix` placeholder.
-        public var refBlockPrefix: Int
+        public var refBlockPrefix: UInt32
         /// The date string used to fill in the `__expiration` placeholder.
         public var expiration: Date
         /// List of account names available as signers.
@@ -171,7 +171,7 @@ public struct SteemURL {
         public var preferredSigner: String
 
         /// Create a new instance.
-        public init(refBlockNum: Int, refBlockPrefix: Int, expiration: Date, signers: [String], preferredSigner: String) {
+        public init(refBlockNum: UInt16, refBlockPrefix: UInt32, expiration: Date, signers: [String], preferredSigner: String) {
             self.refBlockNum = refBlockNum
             self.refBlockPrefix = refBlockPrefix
             self.expiration = expiration
