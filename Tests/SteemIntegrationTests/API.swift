@@ -13,11 +13,10 @@ let testnetClient = Steem.Client(address: URL(string: "https://testnet.steem.vc"
 let testnetId = ChainId.custom(Data(hexEncoded: "79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673"))
 
 class ClientTest: XCTestCase {
-    
     func testNani() {
         debugPrint(Data(hexEncoded: "79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673").base64EncodedString())
     }
-    
+
     func testRequest() {
         let test = expectation(description: "Response")
         client.send(HelloRequest()) { res, error in
