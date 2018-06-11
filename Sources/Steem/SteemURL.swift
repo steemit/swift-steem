@@ -234,14 +234,17 @@ public struct SteemURL {
         /// The signature that the transaction was signed with.
         public var signature: Signature
         /// Transaction hash, should only be set if the transaction was broadcast.
-        public var id: String?
+        public var id: Data?
         /// Block number transaction was included in, should only be set if the transaction was broadcast.
-        public var blockNum: UInt32?
+        public var blockNum: Int32?
         /// Transaction index in block, should only be set if the transaction was broadcast.
-        public var txNum: UInt32?
+        public var trxNum: Int32?
 
-        public init(signature: Signature) {
+        public init(signature: Signature, id: Data? = nil, blockNum: Int32? = nil, trxNum: Int32? = nil) {
             self.signature = signature
+            self.id = id
+            self.blockNum = blockNum
+            self.trxNum = trxNum
         }
     }
 
@@ -253,9 +256,9 @@ public struct SteemURL {
         }
         urlString = urlString
             .replacingOccurrences(of: "{{sig}}", with: String(ctx.signature))
-            .replacingOccurrences(of: "{{id}}", with: ctx.id ?? "")
+            .replacingOccurrences(of: "{{id}}", with: ctx.id?.hexEncodedString() ?? "")
             .replacingOccurrences(of: "{{block}}", with: ctx.blockNum != nil ? String(ctx.blockNum!) : "")
-            .replacingOccurrences(of: "{{txn}}", with: ctx.txNum != nil ? String(ctx.txNum!) : "")
+            .replacingOccurrences(of: "{{txn}}", with: ctx.trxNum != nil ? String(ctx.trxNum!) : "")
         return URL(string: urlString)
     }
 
