@@ -95,6 +95,8 @@ extension Asset: LosslessStringConvertible {
     public var description: String {
         let value = Double(self.amount) / pow(10, Double(self.symbol.precision))
         let formatter = NumberFormatter()
+        formatter.decimalSeparator = "."
+        formatter.usesGroupingSeparator = false
         formatter.minimumIntegerDigits = 1
         formatter.minimumFractionDigits = Int(self.symbol.precision)
         formatter.maximumFractionDigits = Int(self.symbol.precision)
