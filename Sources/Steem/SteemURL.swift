@@ -23,7 +23,7 @@ public struct SteemURL {
     public struct Params: Equatable {
         /// Requested signer.
         public var signer: String?
-        /// Redirect URL.
+        /// The unresolved redirect URL.
         public var callback: String?
         /// Whether to just sign the transaction.
         public var noBroadcast: Bool = false
@@ -87,8 +87,10 @@ public struct SteemURL {
         return SteemURL(type: type, params: params, payload: payload)
     }
 
+    /// The signing params.
+    public let params: Params
+    
     let type: PayloadType
-    let params: Params
     let payload: Any
 
     /// Create a new SteemURL from a custom payload.
