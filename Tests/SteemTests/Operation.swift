@@ -7,12 +7,12 @@ fileprivate let vote = (
 )
 
 fileprivate let transfer = (
-    Operation.Transfer(from: "foo", to: "bar", amount: Asset(10, symbol: .steem), memo: "baz"),
+    Operation.Transfer(from: "foo", to: "bar", amount: Asset(10, .steem), memo: "baz"),
     "{\"from\":\"foo\",\"to\":\"bar\",\"amount\":\"10.000 STEEM\",\"memo\":\"baz\"}"
 )
 
 fileprivate let commentOptions = (
-    Operation.CommentOptions(author: "foo", permlink: "bar", maxAcceptedPayout: Asset(10, symbol: .sbd), percentSteemDollars: 41840, allowVotes: true, allowCurationRewards: true, extensions: [.commentPayoutBeneficiaries([Operation.CommentOptions.BeneficiaryRoute(account: "baz", weight: 5000)])]),
+    Operation.CommentOptions(author: "foo", permlink: "bar", maxAcceptedPayout: Asset(10, .sbd), percentSteemDollars: 41840, allowVotes: true, allowCurationRewards: true, extensions: [.commentPayoutBeneficiaries([Operation.CommentOptions.BeneficiaryRoute(account: "baz", weight: 5000)])]),
     "{\"author\":\"foo\",\"permlink\":\"bar\",\"max_accepted_payout\":\"10.000 SBD\",\"percent_steem_dollars\":41840,\"allow_votes\":true,\"allow_curation_rewards\":true,\"extensions\":[[0,{\"beneficiaries\":[{\"account\":\"baz\",\"weight\":5000}]}]]}"
 )
 

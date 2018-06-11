@@ -20,7 +20,7 @@ class TransactionTest: XCTestCase {
         let vote = tx.operations.first as? Steem.Operation.Vote
         let transfer = tx.operations.last as? Steem.Operation.Transfer
         XCTAssertEqual(vote, Steem.Operation.Vote(voter: "foo", author: "bar", permlink: "baz", weight: 1000))
-        XCTAssertEqual(transfer, Steem.Operation.Transfer(from: "foo", to: "bar", amount: Asset(10, symbol: .steem), memo: "baz"))
+        XCTAssertEqual(transfer, Steem.Operation.Transfer(from: "foo", to: "bar", amount: Asset(10, .steem), memo: "baz"))
     }
 
     func testSigning() throws {
@@ -29,7 +29,7 @@ class TransactionTest: XCTestCase {
         }
         let operations: [OperationType] = [
             Operation.Vote(voter: "foo", author: "foo", permlink: "baz", weight: 1000),
-            Operation.Transfer(from: "foo", to: "bar", amount: Asset(10, symbol: .steem), memo: "baz"),
+            Operation.Transfer(from: "foo", to: "bar", amount: Asset(10, .steem), memo: "baz"),
         ]
         let expiration = Date(timeIntervalSince1970: 0)
         let transaction = Transaction(refBlockNum: 0, refBlockPrefix: 0, expiration: expiration, operations: operations)
