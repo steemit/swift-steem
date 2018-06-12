@@ -185,23 +185,20 @@ public struct SteemURL {
         public var refBlockPrefix: UInt32
         /// The date string used to fill in the `__expiration` placeholder.
         public var expiration: Date
-        /// List of account names available as signers.
-        public var signers: [String]
-        /// Preferred signer if none is explicitly set in params.
-        public var preferredSigner: String
+        /// Account name used to fill in `__signer` placeholder.
+        public var signer: String
 
         /// Create a new instance.
-        public init(refBlockNum: UInt16, refBlockPrefix: UInt32, expiration: Date, signers: [String], preferredSigner: String) {
+        public init(refBlockNum: UInt16, refBlockPrefix: UInt32, expiration: Date, signer: String) {
             self.refBlockNum = refBlockNum
             self.refBlockPrefix = refBlockPrefix
             self.expiration = expiration
-            self.signers = signers
-            self.preferredSigner = preferredSigner
+            self.signer = signer
         }
     }
 
     /// Resolve this url to a signer and transaction.
-    public func resolve(with options: ResolveOptions) throws -> (signer: String, tx: Transaction) {
+    public func resolve(with options: ResolveOptions) throws -> Transaction {
         let tx: [String: Any]?
         switch self.type {
         case .transaction:
@@ -219,17 +216,13 @@ public struct SteemURL {
         guard tx != nil else {
             throw Error.payloadInvalid
         }
-        let signer = self.params.signer ?? options.preferredSigner
-        guard options.signers.contains(signer) else {
-            throw Error.signerNotAvailable
-        }
         func walk(_ value: Any) -> Any {
             switch value {
             case let str as String:
                 if str == "__ref_block_num" { return options.refBlockNum }
                 if str == "__ref_block_prefix" { return options.refBlockPrefix }
                 if str == "__expiration" { return Client.dateFormatter.string(from: options.expiration) }
-                return str.replacingOccurrences(of: "__signer", with: signer)
+                return str.replacingOccurrences(of: "__signer", with: options.signer)
             case let val as Array<Any>:
                 return val.map(walk)
             case let val as Dictionary<String, Any>:
@@ -244,7 +237,7 @@ public struct SteemURL {
         }
         let resolved = walk(tx!)
         let transaction = try decodeObject(Transaction.self, from: resolved)
-        return (signer, transaction)
+        return transaction
     }
 
     /// Used to resolve callback urls, should be populated after signed txn has been broadcast.
