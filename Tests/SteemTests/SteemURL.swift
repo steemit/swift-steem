@@ -28,6 +28,9 @@ class SeemURLTest: XCTestCase {
         params.noBroadcast = true
         let url = SteemURL(operations: operations, params: params)
         XCTAssertNotNil(url)
+        let ops = try url?.getOperations()
+        XCTAssertEqual(ops?[0] as? Steem.Operation.Vote, (operations[0] as! Steem.Operation.Vote))
+        XCTAssertEqual(ops?[1] as? Steem.Operation.Transfer, (operations[1] as! Steem.Operation.Transfer))
         let options = SteemURL.ResolveOptions(refBlockNum: 0, refBlockPrefix: 1, expiration: Date(timeIntervalSinceReferenceDate: 0), signers: ["foo", "baz"], preferredSigner: "baz")
         let result = try url?.resolve(with: options)
         XCTAssertEqual(result?.signer, "foo")
