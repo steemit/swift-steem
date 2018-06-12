@@ -89,7 +89,7 @@ public struct SteemURL {
 
     /// The signing params.
     public let params: Params
-    
+
     let type: PayloadType
     let payload: Any
 
@@ -157,6 +157,24 @@ public struct SteemURL {
         self.type = .operations
         self.payload = payload
         self.params = params
+    }
+
+    /// Returns the operations contained in the signing URL.
+    public func getOperations() throws -> [OperationType] {
+        let ops: [Any]?
+        switch self.type {
+        case .transaction:
+            ops = (self.payload as? [String: Any])?["operations"] as? [Any]
+        case .operation:
+            ops = [self.payload]
+        case .operations:
+            ops = self.payload as? [Any]
+        }
+        guard ops != nil else {
+            throw Error.payloadInvalid
+        }
+        let decoded = try decodeObject([AnyOperation].self, from: ops!)
+        return decoded.map { $0.operation }
     }
 
     /// Options used to resolve a signing url to a signer and transaction.

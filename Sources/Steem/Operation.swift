@@ -4,7 +4,7 @@
 import Foundation
 
 /// A type that represents a operation on the Steem blockchain.
-public protocol OperationType: SteemEncodable, Decodable {}
+public protocol OperationType: SteemCodable {}
 
 /// Namespace for all available Steem operations.
 public struct Operation {
