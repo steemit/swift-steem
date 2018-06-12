@@ -317,7 +317,8 @@ extension Client {
         return Data(hexEncoded: try container.decode(String.self))
     }
 
-    static func JSONDecoder() -> Foundation.JSONDecoder {
+    /// Returns a JSONDecoder instance configured for the Steem JSON format.
+    public static func JSONDecoder() -> Foundation.JSONDecoder {
         let decoder = Foundation.JSONDecoder()
         decoder.dataDecodingStrategy = dataDecoder
         decoder.dateDecodingStrategy = dateDecoder
@@ -326,8 +327,9 @@ extension Client {
         #endif
         return decoder
     }
-
-    static func JSONEncoder() -> Foundation.JSONEncoder {
+    
+    /// Returns a JSONEncoder instance configured for the Steem JSON format.
+    public static func JSONEncoder() -> Foundation.JSONEncoder {
         let encoder = Foundation.JSONEncoder()
         encoder.dataEncodingStrategy = dataEncoder
         encoder.dateEncodingStrategy = dateEncoder
