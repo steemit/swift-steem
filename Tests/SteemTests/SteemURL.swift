@@ -11,10 +11,9 @@ class SeemURLTest: XCTestCase {
         let url = SteemURL(operation: Operation.Vote(voter: "foo", author: "bar", permlink: "baz"))
         XCTAssertEqual(url?.url?.absoluteString, "steem://sign/op/WyJ2b3RlIix7InZvdGVyIjoiZm9vIiwiYXV0aG9yIjoiYmFyIiwicGVybWxpbmsiOiJiYXoiLCJ3ZWlnaHQiOjEwMDAwfV0.")
         XCTAssertEqual(url, SteemURL(string: "steem://sign/op/WyJ2b3RlIix7InZvdGVyIjoiZm9vIiwiYXV0aG9yIjoiYmFyIiwicGVybWxpbmsiOiJiYXoiLCJ3ZWlnaHQiOjEwMDAwfV0."))
-        let options = SteemURL.ResolveOptions(refBlockNum: 0, refBlockPrefix: 1, expiration: Date(timeIntervalSinceReferenceDate: 0), signers: ["foo"], preferredSigner: "foo")
+        let options = SteemURL.ResolveOptions(refBlockNum: 0, refBlockPrefix: 1, expiration: Date(timeIntervalSinceReferenceDate: 0), signer: "foo")
         let result = try? url?.resolve(with: options)
-        XCTAssertEqual(result??.signer, "foo")
-        XCTAssertEqual(result??.tx, Transaction(refBlockNum: 0, refBlockPrefix: 1, expiration: Date(timeIntervalSinceReferenceDate: 0), operations: [Operation.Vote(voter: "foo", author: "bar", permlink: "baz")], extensions: []))
+        XCTAssertEqual(result, Transaction(refBlockNum: 0, refBlockPrefix: 1, expiration: Date(timeIntervalSinceReferenceDate: 0), operations: [Operation.Vote(voter: "foo", author: "bar", permlink: "baz")], extensions: []))
     }
 
     func testParams() throws {
@@ -31,10 +30,9 @@ class SeemURLTest: XCTestCase {
         let ops = try url?.getOperations()
         XCTAssertEqual(ops?[0] as? Steem.Operation.Vote, (operations[0] as! Steem.Operation.Vote))
         XCTAssertEqual(ops?[1] as? Steem.Operation.Transfer, (operations[1] as! Steem.Operation.Transfer))
-        let options = SteemURL.ResolveOptions(refBlockNum: 0, refBlockPrefix: 1, expiration: Date(timeIntervalSinceReferenceDate: 0), signers: ["foo", "baz"], preferredSigner: "baz")
+        let options = SteemURL.ResolveOptions(refBlockNum: 0, refBlockPrefix: 1, expiration: Date(timeIntervalSinceReferenceDate: 0), signer: "baz")
         let result = try url?.resolve(with: options)
-        XCTAssertEqual(result?.signer, "foo")
-        XCTAssertEqual(result?.tx, Transaction(refBlockNum: 0, refBlockPrefix: 1, expiration: Date(timeIntervalSinceReferenceDate: 0), operations: operations, extensions: []))
+        XCTAssertEqual(result, Transaction(refBlockNum: 0, refBlockPrefix: 1, expiration: Date(timeIntervalSinceReferenceDate: 0), operations: operations, extensions: []))
         let ctx = SteemURL.CallbackContext(signature: sig)
         let cbUrl = url?.resolveCallback(with: ctx)
         XCTAssertEqual(cbUrl?.absoluteString, "https://example.com/sign?sig=207a6fa349f1f624643119f667f394a435c1d31d6f39d8191389305e519a0c051222df037180dc86e00ca4fe43ab638f1e8a96403b3857780abaad4017e03d1ef0")
