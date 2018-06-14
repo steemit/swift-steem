@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ExtendedAccount Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../../js/jquery.min.js" defer></script>
+    <script src="../../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/ExtendedAccount" class="dashAnchor"></a>
+    <a title="ExtendedAccount Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../../index.html">Steem Docs</a></p>
+        <p class="header-right"><a href="https://github.com/steemit/swift-steem"><img src="../../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../../index.html">Steem Reference</a>
+        <img id="carat" src="../../img/carat.png" />
+        ExtendedAccount Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Classes/Client.html">Client</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Client/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/SteemEncoder.html">SteemEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/SteemEncoder/Error.html">– Error</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Enums/BlockExtension.html">BlockExtension</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/ChainId.html">ChainId</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/Date.html">Date</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/FixedWidthInteger.html">FixedWidthInteger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/Optional.html">Optional</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/OrderedDictionary.html">OrderedDictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols/SteemEncodable.html">SteemEncodable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Structs/API.html">API</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/API/CallParams.html">– CallParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/API/DynamicGlobalProperties.html">– DynamicGlobalProperties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/API/GetDynamicGlobalProperties.html">– GetDynamicGlobalProperties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/API/TransactionConfirmation.html">– TransactionConfirmation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/API/BroadcastTransaction.html">– BroadcastTransaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/API/GetBlock.html">– GetBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/API/Share.html">– Share</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/API/ExtendedAccount.html">– ExtendedAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/API/GetAccounts.html">– GetAccounts</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Asset.html">Asset</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Asset/Symbol.html">– Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Authority.html">Authority</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Authority/Auth.html">– Auth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/BlockHeader.html">BlockHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/BlockId.html">BlockId</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs.html#/s:5Steem16FutureExtensionsV">FutureExtensions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation.html">Operation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/Vote.html">– Vote</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/Comment.html">– Comment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/Transfer.html">– Transfer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/TransferToVesting.html">– TransferToVesting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/WithdrawVesting.html">– WithdrawVesting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/LimitOrderCreate.html">– LimitOrderCreate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/LimitOrderCancel.html">– LimitOrderCancel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/FeedPublish.html">– FeedPublish</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/Convert.html">– Convert</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/AccountCreate.html">– AccountCreate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/AccountUpdate.html">– AccountUpdate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/WitnessUpdate.html">– WitnessUpdate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/AccountWitnessVote.html">– AccountWitnessVote</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/AccountWitnessProxy.html">– AccountWitnessProxy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation.html#/s:5Steem9OperationV3PowV">– Pow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/Custom.html">– Custom</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/ReportOverProduction.html">– ReportOverProduction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/DeleteComment.html">– DeleteComment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/CustomJson.html">– CustomJson</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/CommentOptions.html">– CommentOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/SetWithdrawVestingRoute.html">– SetWithdrawVestingRoute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/LimitOrderCreate2.html">– LimitOrderCreate2</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/ChallengeAuthority.html">– ChallengeAuthority</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/ProveAuthority.html">– ProveAuthority</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/RequestAccountRecovery.html">– RequestAccountRecovery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/RecoverAccount.html">– RecoverAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/ChangeRecoveryAccount.html">– ChangeRecoveryAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/EscrowTransfer.html">– EscrowTransfer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/EscrowDispute.html">– EscrowDispute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/EscrowRelease.html">– EscrowRelease</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation.html#/s:5Steem9OperationV4Pow2V">– Pow2</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/EscrowApprove.html">– EscrowApprove</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/TransferToSavings.html">– TransferToSavings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/TransferFromSavings.html">– TransferFromSavings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/CancelTransferFromSavings.html">– CancelTransferFromSavings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/CustomBinary.html">– CustomBinary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/DeclineVotingRights.html">– DeclineVotingRights</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/ResetAccount.html">– ResetAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/SetResetAccount.html">– SetResetAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/ClaimRewardBalance.html">– ClaimRewardBalance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/DelegateVestingShares.html">– DelegateVestingShares</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation/AccountCreateWithDelegation.html">– AccountCreateWithDelegation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Operation.html#/s:5Steem9OperationV7UnknownV">– Unknown</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Price.html">Price</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/PrivateKey.html">PrivateKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/PublicKey.html">PublicKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/PublicKey/AddressPrefix.html">– AddressPrefix</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/RequestParams.html">RequestParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Signature.html">Signature</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/SignedBlock.html">SignedBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/SignedBlockHeader.html">SignedBlockHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/SignedTransaction.html">SignedTransaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/SteemURL.html">SteemURL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/SteemURL/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/SteemURL/Params.html">– Params</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/SteemURL/PayloadType.html">– PayloadType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/SteemURL/ResolveOptions.html">– ResolveOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/SteemURL/CallbackContext.html">– CallbackContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Transaction.html">Transaction</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Typealiases.html#/s:5Steem0A7Codablea">SteemCodable</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>ExtendedAccount</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ExtendedAccount</span> <span class="p">:</span> <span class="kt">Decodable</span></code></pre>
+
+                </div>
+              </div>
+            <p>The <q>extended</q> account object returned by get_accounts.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV2idSivp"></a>
+                    <a name="//apple_ref/swift/Property/id" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV2idSivp">id</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV4nameSSvp"></a>
+                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV4nameSSvp">name</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV5ownerAA9AuthorityVvp"></a>
+                    <a name="//apple_ref/swift/Property/owner" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV5ownerAA9AuthorityVvp">owner</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">owner</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Authority.html">Authority</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV6activeAA9AuthorityVvp"></a>
+                    <a name="//apple_ref/swift/Property/active" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV6activeAA9AuthorityVvp">active</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">active</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Authority.html">Authority</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV7postingAA9AuthorityVvp"></a>
+                    <a name="//apple_ref/swift/Property/posting" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV7postingAA9AuthorityVvp">posting</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">posting</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Authority.html">Authority</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV7memoKeyAA06PublicF0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/memoKey" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV7memoKeyAA06PublicF0Vvp">memoKey</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">memoKey</span><span class="p">:</span> <span class="kt"><a href="../../Structs/PublicKey.html">PublicKey</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV12jsonMetadataSSvp"></a>
+                    <a name="//apple_ref/swift/Property/jsonMetadata" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV12jsonMetadataSSvp">jsonMetadata</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">jsonMetadata</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV5proxySSvp"></a>
+                    <a name="//apple_ref/swift/Property/proxy" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV5proxySSvp">proxy</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">proxy</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV15lastOwnerUpdate10Foundation4DateVvp"></a>
+                    <a name="//apple_ref/swift/Property/lastOwnerUpdate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV15lastOwnerUpdate10Foundation4DateVvp">lastOwnerUpdate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">lastOwnerUpdate</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV04lastD6Update10Foundation4DateVvp"></a>
+                    <a name="//apple_ref/swift/Property/lastAccountUpdate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV04lastD6Update10Foundation4DateVvp">lastAccountUpdate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">lastAccountUpdate</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV7created10Foundation4DateVvp"></a>
+                    <a name="//apple_ref/swift/Property/created" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV7created10Foundation4DateVvp">created</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">created</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV5minedSbvp"></a>
+                    <a name="//apple_ref/swift/Property/mined" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV5minedSbvp">mined</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">mined</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV08recoveryD0SSvp"></a>
+                    <a name="//apple_ref/swift/Property/recoveryAccount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV08recoveryD0SSvp">recoveryAccount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">recoveryAccount</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV05resetD0SSvp"></a>
+                    <a name="//apple_ref/swift/Property/resetAccount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV05resetD0SSvp">resetAccount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">resetAccount</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV04lastD8Recovery10Foundation4DateVvp"></a>
+                    <a name="//apple_ref/swift/Property/lastAccountRecovery" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV04lastD8Recovery10Foundation4DateVvp">lastAccountRecovery</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">lastAccountRecovery</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV12commentCounts6UInt32Vvp"></a>
+                    <a name="//apple_ref/swift/Property/commentCount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV12commentCounts6UInt32Vvp">commentCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">commentCount</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV17lifetimeVoteCounts6UInt32Vvp"></a>
+                    <a name="//apple_ref/swift/Property/lifetimeVoteCount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV17lifetimeVoteCounts6UInt32Vvp">lifetimeVoteCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">lifetimeVoteCount</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV9postCounts6UInt32Vvp"></a>
+                    <a name="//apple_ref/swift/Property/postCount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV9postCounts6UInt32Vvp">postCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">postCount</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV7canVoteSbvp"></a>
+                    <a name="//apple_ref/swift/Property/canVote" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV7canVoteSbvp">canVote</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">canVote</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV11votingPowers6UInt16Vvp"></a>
+                    <a name="//apple_ref/swift/Property/votingPower" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV11votingPowers6UInt16Vvp">votingPower</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">votingPower</span><span class="p">:</span> <span class="kt">UInt16</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV12lastVoteTime10Foundation4DateVvp"></a>
+                    <a name="//apple_ref/swift/Property/lastVoteTime" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV12lastVoteTime10Foundation4DateVvp">lastVoteTime</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">lastVoteTime</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV7balanceAA5AssetVvp"></a>
+                    <a name="//apple_ref/swift/Property/balance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV7balanceAA5AssetVvp">balance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">balance</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Asset.html">Asset</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV14savingsBalanceAA5AssetVvp"></a>
+                    <a name="//apple_ref/swift/Property/savingsBalance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV14savingsBalanceAA5AssetVvp">savingsBalance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">savingsBalance</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Asset.html">Asset</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV10sbdBalanceAA5AssetVvp"></a>
+                    <a name="//apple_ref/swift/Property/sbdBalance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV10sbdBalanceAA5AssetVvp">sbdBalance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">sbdBalance</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Asset.html">Asset</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV10sbdSecondsSSvp"></a>
+                    <a name="//apple_ref/swift/Property/sbdSeconds" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV10sbdSecondsSSvp">sbdSeconds</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">sbdSeconds</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV20sbdSecondsLastUpdate10Foundation4DateVvp"></a>
+                    <a name="//apple_ref/swift/Property/sbdSecondsLastUpdate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV20sbdSecondsLastUpdate10Foundation4DateVvp">sbdSecondsLastUpdate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">sbdSecondsLastUpdate</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV22sbdLastInterestPayment10Foundation4DateVvp"></a>
+                    <a name="//apple_ref/swift/Property/sbdLastInterestPayment" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV22sbdLastInterestPayment10Foundation4DateVvp">sbdLastInterestPayment</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">sbdLastInterestPayment</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV17savingsSbdBalanceAA5AssetVvp"></a>
+                    <a name="//apple_ref/swift/Property/savingsSbdBalance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV17savingsSbdBalanceAA5AssetVvp">savingsSbdBalance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">savingsSbdBalance</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Asset.html">Asset</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV17savingsSbdSecondsSSvp"></a>
+                    <a name="//apple_ref/swift/Property/savingsSbdSeconds" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV17savingsSbdSecondsSSvp">savingsSbdSeconds</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">savingsSbdSeconds</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV27savingsSbdSecondsLastUpdate10Foundation4DateVvp"></a>
+                    <a name="//apple_ref/swift/Property/savingsSbdSecondsLastUpdate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV27savingsSbdSecondsLastUpdate10Foundation4DateVvp">savingsSbdSecondsLastUpdate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">savingsSbdSecondsLastUpdate</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV29savingsSbdLastInterestPayment10Foundation4DateVvp"></a>
+                    <a name="//apple_ref/swift/Property/savingsSbdLastInterestPayment" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV29savingsSbdLastInterestPayment10Foundation4DateVvp">savingsSbdLastInterestPayment</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">savingsSbdLastInterestPayment</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV23savingsWithdrawRequestss5UInt8Vvp"></a>
+                    <a name="//apple_ref/swift/Property/savingsWithdrawRequests" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV23savingsWithdrawRequestss5UInt8Vvp">savingsWithdrawRequests</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">savingsWithdrawRequests</span><span class="p">:</span> <span class="kt">UInt8</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV16rewardSbdBalanceAA5AssetVvp"></a>
+                    <a name="//apple_ref/swift/Property/rewardSbdBalance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV16rewardSbdBalanceAA5AssetVvp">rewardSbdBalance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">rewardSbdBalance</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Asset.html">Asset</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV06rewardA7BalanceAA5AssetVvp"></a>
+                    <a name="//apple_ref/swift/Property/rewardSteemBalance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV06rewardA7BalanceAA5AssetVvp">rewardSteemBalance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">rewardSteemBalance</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Asset.html">Asset</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV20rewardVestingBalanceAA5AssetVvp"></a>
+                    <a name="//apple_ref/swift/Property/rewardVestingBalance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV20rewardVestingBalanceAA5AssetVvp">rewardVestingBalance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">rewardVestingBalance</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Asset.html">Asset</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV013rewardVestingA0AA5AssetVvp"></a>
+                    <a name="//apple_ref/swift/Property/rewardVestingSteem" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV013rewardVestingA0AA5AssetVvp">rewardVestingSteem</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">rewardVestingSteem</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Asset.html">Asset</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV15curationRewardsAC5ShareVvp"></a>
+                    <a name="//apple_ref/swift/Property/curationRewards" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV15curationRewardsAC5ShareVvp">curationRewards</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">curationRewards</span><span class="p">:</span> <span class="kt"><a href="../../Structs/API/Share.html">Share</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV14postingRewardsAC5ShareVvp"></a>
+                    <a name="//apple_ref/swift/Property/postingRewards" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV14postingRewardsAC5ShareVvp">postingRewards</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">postingRewards</span><span class="p">:</span> <span class="kt"><a href="../../Structs/API/Share.html">Share</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV13vestingSharesAA5AssetVvp"></a>
+                    <a name="//apple_ref/swift/Property/vestingShares" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV13vestingSharesAA5AssetVvp">vestingShares</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">vestingShares</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Asset.html">Asset</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV22delegatedVestingSharesAA5AssetVvp"></a>
+                    <a name="//apple_ref/swift/Property/delegatedVestingShares" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV22delegatedVestingSharesAA5AssetVvp">delegatedVestingShares</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">delegatedVestingShares</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Asset.html">Asset</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV21receivedVestingSharesAA5AssetVvp"></a>
+                    <a name="//apple_ref/swift/Property/receivedVestingShares" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV21receivedVestingSharesAA5AssetVvp">receivedVestingShares</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">receivedVestingShares</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Asset.html">Asset</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV19vestingWithdrawRateAA5AssetVvp"></a>
+                    <a name="//apple_ref/swift/Property/vestingWithdrawRate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV19vestingWithdrawRateAA5AssetVvp">vestingWithdrawRate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">vestingWithdrawRate</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Asset.html">Asset</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV21nextVestingWithdrawal10Foundation4DateVvp"></a>
+                    <a name="//apple_ref/swift/Property/nextVestingWithdrawal" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV21nextVestingWithdrawal10Foundation4DateVvp">nextVestingWithdrawal</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">nextVestingWithdrawal</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV9withdrawnAC5ShareVvp"></a>
+                    <a name="//apple_ref/swift/Property/withdrawn" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV9withdrawnAC5ShareVvp">withdrawn</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">withdrawn</span><span class="p">:</span> <span class="kt"><a href="../../Structs/API/Share.html">Share</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV10toWithdrawAC5ShareVvp"></a>
+                    <a name="//apple_ref/swift/Property/toWithdraw" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV10toWithdrawAC5ShareVvp">toWithdraw</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">toWithdraw</span><span class="p">:</span> <span class="kt"><a href="../../Structs/API/Share.html">Share</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV14withdrawRoutess6UInt16Vvp"></a>
+                    <a name="//apple_ref/swift/Property/withdrawRoutes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV14withdrawRoutess6UInt16Vvp">withdrawRoutes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">withdrawRoutes</span><span class="p">:</span> <span class="kt">UInt16</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV15proxiedVsfVotesSayAC5ShareVGvp"></a>
+                    <a name="//apple_ref/swift/Property/proxiedVsfVotes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV15proxiedVsfVotesSayAC5ShareVGvp">proxiedVsfVotes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">proxiedVsfVotes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../../Structs/API/Share.html">Share</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV17witnessesVotedFors6UInt16Vvp"></a>
+                    <a name="//apple_ref/swift/Property/witnessesVotedFor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV17witnessesVotedFors6UInt16Vvp">witnessesVotedFor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">witnessesVotedFor</span><span class="p">:</span> <span class="kt">UInt16</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV8lastPost10Foundation4DateVvp"></a>
+                    <a name="//apple_ref/swift/Property/lastPost" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV8lastPost10Foundation4DateVvp">lastPost</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">lastPost</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem3APIV15ExtendedAccountV12lastRootPost10Foundation4DateVvp"></a>
+                    <a name="//apple_ref/swift/Property/lastRootPost" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem3APIV15ExtendedAccountV12lastRootPost10Foundation4DateVvp">lastRootPost</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">lastRootPost</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://steem.com" target="_blank" rel="external">Steemit Inc.</a>. All rights reserved. (Last updated: 2018-06-14)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

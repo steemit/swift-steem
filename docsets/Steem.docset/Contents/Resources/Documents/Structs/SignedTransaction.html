@@ -124,6 +124,15 @@
                 <a href="../Structs/API/GetBlock.html">– GetBlock</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/API/Share.html">– Share</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/API/ExtendedAccount.html">– ExtendedAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/API/GetAccounts.html">– GetAccounts</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Asset.html">Asset</a>
               </li>
               <li class="nav-group-task">
@@ -355,6 +364,33 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:5Steem17SignedTransactionV10signaturesSayAA9SignatureVGvp"></a>
+                    <a name="//apple_ref/swift/Property/signatures" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem17SignedTransactionV10signaturesSayAA9SignatureVGvp">signatures</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Transaction signatures.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">signatures</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Signature.html">Signature</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:5Steem17SignedTransactionVAcA0C0V11transaction_SayAA9SignatureVG10signaturestcfc"></a>
                     <a name="//apple_ref/swift/Method/init(transaction:signatures:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:5Steem17SignedTransactionVAcA0C0V11transaction_SayAA9SignatureVG10signaturestcfc">init(transaction:signatures:)</a>
@@ -406,6 +442,247 @@
                             </tr>
                           </tbody>
                         </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem17SignedTransactionV15appendSignatureyAA0E0VF"></a>
+                    <a name="//apple_ref/swift/Method/appendSignature(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem17SignedTransactionV15appendSignatureyAA0E0VF">appendSignature(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Append a signature to the transaction.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">appendSignature</span><span class="p">(</span><span class="n">_</span> <span class="nv">signature</span><span class="p">:</span> <span class="kt"><a href="../Structs/Signature.html">Signature</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem17SignedTransactionV15appendSignatureyAA10PrivateKeyV05usingG0_AA7ChainIdO03forI0tKF"></a>
+                    <a name="//apple_ref/swift/Method/appendSignature(usingKey:forChain:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem17SignedTransactionV15appendSignatureyAA10PrivateKeyV05usingG0_AA7ChainIdO03forI0tKF">appendSignature(usingKey:forChain:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sign transaction and append signature.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">appendSignature</span><span class="p">(</span><span class="n">usingKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt"><a href="../Structs/PrivateKey.html">PrivateKey</a></span><span class="p">,</span> <span class="n">forChain</span> <span class="nv">chain</span><span class="p">:</span> <span class="kt"><a href="../Enums/ChainId.html">ChainId</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">mainNet</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>key</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Private key to sign transaction with.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>chain</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Chain id to use when signing.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem12_Transaction33_5322D93D99C6AD64BE1ED429200B17B0LLP11refBlockNums6UInt16Vvp"></a>
+                    <a name="//apple_ref/swift/Property/refBlockNum" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem12_Transaction33_5322D93D99C6AD64BE1ED429200B17B0LLP11refBlockNums6UInt16Vvp">refBlockNum</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">refBlockNum</span><span class="p">:</span> <span class="kt">UInt16</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem12_Transaction33_5322D93D99C6AD64BE1ED429200B17B0LLP14refBlockPrefixs6UInt32Vvp"></a>
+                    <a name="//apple_ref/swift/Property/refBlockPrefix" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem12_Transaction33_5322D93D99C6AD64BE1ED429200B17B0LLP14refBlockPrefixs6UInt32Vvp">refBlockPrefix</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">refBlockPrefix</span><span class="p">:</span> <span class="kt">UInt32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem12_Transaction33_5322D93D99C6AD64BE1ED429200B17B0LLP10expiration10Foundation4DateVvp"></a>
+                    <a name="//apple_ref/swift/Property/expiration" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem12_Transaction33_5322D93D99C6AD64BE1ED429200B17B0LLP10expiration10Foundation4DateVvp">expiration</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">expiration</span><span class="p">:</span> <span class="kt">Date</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem12_Transaction33_5322D93D99C6AD64BE1ED429200B17B0LLP10extensionsSaySSGvp"></a>
+                    <a name="//apple_ref/swift/Property/extensions" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem12_Transaction33_5322D93D99C6AD64BE1ED429200B17B0LLP10extensionsSaySSGvp">extensions</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">extensions</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem12_Transaction33_5322D93D99C6AD64BE1ED429200B17B0LLP10operationsSayAA13OperationType_pGvp"></a>
+                    <a name="//apple_ref/swift/Property/operations" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem12_Transaction33_5322D93D99C6AD64BE1ED429200B17B0LLP10operationsSayAA13OperationType_pGvp">operations</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">operations</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols.html#/s:5Steem13OperationTypeP">OperationType</a></span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem12_Transaction33_5322D93D99C6AD64BE1ED429200B17B0LLP6digest10Foundation4DataVAA7ChainIdO03forN0_tKF"></a>
+                    <a name="//apple_ref/swift/Method/digest(forChain:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem12_Transaction33_5322D93D99C6AD64BE1ED429200B17B0LLP6digest10Foundation4DataVAA7ChainIdO03forN0_tKF">digest(forChain:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">digest</span><span class="p">(</span><span class="n">forChain</span> <span class="nv">chain</span><span class="p">:</span> <span class="kt"><a href="../Enums/ChainId.html">ChainId</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">mainNet</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -471,7 +748,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://steem.com" target="_blank" rel="external">Steemit Inc.</a>. All rights reserved. (Last updated: 2018-06-05)</p>
+          <p>&copy; 2018 <a class="link" href="https://steem.com" target="_blank" rel="external">Steemit Inc.</a>. All rights reserved. (Last updated: 2018-06-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

@@ -124,6 +124,15 @@
                 <a href="../Structs/API/GetBlock.html">– GetBlock</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/API/Share.html">– Share</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/API/ExtendedAccount.html">– ExtendedAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/API/GetAccounts.html">– GetAccounts</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Asset.html">Asset</a>
               </li>
               <li class="nav-group-task">
@@ -365,7 +374,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a new public key instance from a byte buffer.</p>
+                        <p>Create a new private key instance from a byte buffer.</p>
 
                       </div>
                       <div class="declaration">
@@ -411,7 +420,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a new public key instance from a WIF-encoded string.</p>
+                        <p>Create a new private key instance from a WIF-encoded string.</p>
 
                       </div>
                       <div class="declaration">
@@ -435,6 +444,52 @@
                               <td>
                                 <div>
                                   <p>The base58check-encoded string.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Steem10PrivateKeyVACSgSS4seed_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(seed:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem10PrivateKeyVACSgSS4seed_tcfc">init(seed:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new private key instance from a seed.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">seed</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>seed</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>String that is hashed and used as secret.</p>
                                 </div>
                               </td>
                             </tr>
@@ -539,6 +594,33 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:5Steem10PrivateKeyV4data10Foundation4DataVvp"></a>
+                    <a name="//apple_ref/swift/Property/data" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem10PrivateKeyV4data10Foundation4DataVvp">data</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The 33-byte private key where the first byte is the network id (0x80).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:5Steem10PrivateKeyV3wifSSvp"></a>
                     <a name="//apple_ref/swift/Property/wif" class="dashAnchor"></a>
                     <a class="token" href="#/s:5Steem10PrivateKeyV3wifSSvp">wif</a>
@@ -549,7 +631,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>WIF-encoded string representation of this private key.</p>
+                        <p>WIF-encoded string representation of private key.</p>
 
                       </div>
                       <div class="declaration">
@@ -598,7 +680,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://steem.com" target="_blank" rel="external">Steemit Inc.</a>. All rights reserved. (Last updated: 2018-06-05)</p>
+          <p>&copy; 2018 <a class="link" href="https://steem.com" target="_blank" rel="external">Steemit Inc.</a>. All rights reserved. (Last updated: 2018-06-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

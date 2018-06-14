@@ -124,6 +124,15 @@
                 <a href="../../Structs/API/GetBlock.html">– GetBlock</a>
               </li>
               <li class="nav-group-task">
+                <a href="../../Structs/API/Share.html">– Share</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/API/ExtendedAccount.html">– ExtendedAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/API/GetAccounts.html">– GetAccounts</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../../Structs/Asset.html">Asset</a>
               </li>
               <li class="nav-group-task">
@@ -355,9 +364,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Steem0A3URLV14ResolveOptionsV11refBlockNumSivp"></a>
+                    <a name="/s:5Steem0A3URLV14ResolveOptionsV11refBlockNums6UInt16Vvp"></a>
                     <a name="//apple_ref/swift/Property/refBlockNum" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Steem0A3URLV14ResolveOptionsV11refBlockNumSivp">refBlockNum</a>
+                    <a class="token" href="#/s:5Steem0A3URLV14ResolveOptionsV11refBlockNums6UInt16Vvp">refBlockNum</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -372,7 +381,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">refBlockNum</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">refBlockNum</span><span class="p">:</span> <span class="kt">UInt16</span></code></pre>
 
                         </div>
                       </div>
@@ -382,9 +391,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Steem0A3URLV14ResolveOptionsV14refBlockPrefixSivp"></a>
+                    <a name="/s:5Steem0A3URLV14ResolveOptionsV14refBlockPrefixs6UInt32Vvp"></a>
                     <a name="//apple_ref/swift/Property/refBlockPrefix" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Steem0A3URLV14ResolveOptionsV14refBlockPrefixSivp">refBlockPrefix</a>
+                    <a class="token" href="#/s:5Steem0A3URLV14ResolveOptionsV14refBlockPrefixs6UInt32Vvp">refBlockPrefix</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -399,7 +408,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">refBlockPrefix</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">refBlockPrefix</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
 
                         </div>
                       </div>
@@ -436,9 +445,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Steem0A3URLV14ResolveOptionsV7signersSaySSGvp"></a>
-                    <a name="//apple_ref/swift/Property/signers" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Steem0A3URLV14ResolveOptionsV7signersSaySSGvp">signers</a>
+                    <a name="/s:5Steem0A3URLV14ResolveOptionsV6signerSSvp"></a>
+                    <a name="//apple_ref/swift/Property/signer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem0A3URLV14ResolveOptionsV6signerSSvp">signer</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -446,14 +455,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>List of account names available as signers.</p>
+                        <p>Account name used to fill in <code>__signer</code> placeholder.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">signers</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">signer</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -463,36 +472,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Steem0A3URLV14ResolveOptionsV15preferredSignerSSvp"></a>
-                    <a name="//apple_ref/swift/Property/preferredSigner" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Steem0A3URLV14ResolveOptionsV15preferredSignerSSvp">preferredSigner</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Preferred signer if none is explicitly set in params.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">preferredSigner</span><span class="p">:</span> <span class="kt">String</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Steem0A3URLV14ResolveOptionsVAESi11refBlockNum_Si0eF6Prefix10Foundation4DateV10expirationSaySSG7signersSS15preferredSignertcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(refBlockNum:refBlockPrefix:expiration:signers:preferredSigner:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Steem0A3URLV14ResolveOptionsVAESi11refBlockNum_Si0eF6Prefix10Foundation4DateV10expirationSaySSG7signersSS15preferredSignertcfc">init(refBlockNum:refBlockPrefix:expiration:signers:preferredSigner:)</a>
+                    <a name="/s:5Steem0A3URLV14ResolveOptionsVAEs6UInt16V11refBlockNum_s6UInt32V0fG6Prefix10Foundation4DateV10expirationSS6signertcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(refBlockNum:refBlockPrefix:expiration:signer:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Steem0A3URLV14ResolveOptionsVAEs6UInt16V11refBlockNum_s6UInt32V0fG6Prefix10Foundation4DateV10expirationSS6signertcfc">init(refBlockNum:refBlockPrefix:expiration:signer:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -507,7 +489,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">refBlockNum</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">refBlockPrefix</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">expiration</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="nv">signers</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">],</span> <span class="nv">preferredSigner</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">refBlockNum</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="nv">refBlockPrefix</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="nv">expiration</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="nv">signer</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -519,7 +501,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://steem.com" target="_blank" rel="external">Steemit Inc.</a>. All rights reserved. (Last updated: 2018-06-05)</p>
+          <p>&copy; 2018 <a class="link" href="https://steem.com" target="_blank" rel="external">Steemit Inc.</a>. All rights reserved. (Last updated: 2018-06-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
