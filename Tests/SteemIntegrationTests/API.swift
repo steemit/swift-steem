@@ -116,4 +116,15 @@ class ClientTest: XCTestCase {
         XCTAssertEqual(account.name, "almost-digital")
         XCTAssertEqual(account.created, Date(timeIntervalSince1970: 1_496_691_060))
     }
+
+    func testGetAccountHistory() throws {
+        let req = API.GetAccountHistory(account: "almost-digital", from: 0, limit: 0)
+        let result = try client.sendSynchronous(req)
+        guard let r = result?.first else {
+            XCTFail("No results returned")
+            return
+        }
+        let createOp = r.value.operation as? Steem.Operation.AccountCreateWithDelegation
+        XCTAssertEqual(createOp?.newAccountName, "almost-digital")
+    }
 }
