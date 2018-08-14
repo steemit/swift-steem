@@ -28,8 +28,30 @@ public struct API {
     public struct DynamicGlobalProperties: Decodable {
         public let headBlockNumber: UInt32
         public let headBlockId: BlockId
+        public let currentWitness: String
+        public let totalPow: UInt32
+        public let numPowWitnesses: UInt32
         public let virtualSupply: Asset
         public let currentSupply: Asset
+        public let confidentialSupply: Asset
+        public let currentSbdSupply: Asset
+        public let confidentialSbdSupply: Asset
+        public let totalVestingFundSteem: Asset
+        public let totalVestingShares: Asset
+        public let totalRewardFundSteem: Asset
+        public let totalRewardShares2: String
+        public let pendingRewardedVestingShares: Asset
+        public let pendingRewardedVestingSteem: Asset
+        public let sbdInterestRate: UInt32
+        public let sbdPrintRate: UInt32
+        public let currentAslot: UInt32
+        public let recentSlotsFilled: String
+        public let participationCount: UInt32
+        public let lastIrreversibleBlockNum: UInt32
+        public let votePowerReserveRate: UInt32
+        public let averageBlockSize: UInt32
+        public let currentReserveRatio: UInt32
+        public let maxVirtualBandwidth: String
         public let time: Date
     }
 
