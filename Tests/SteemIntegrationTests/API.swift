@@ -64,6 +64,21 @@ class ClientTest: XCTestCase {
             }
         }
     }
+    
+    func testGetOrderBook() {
+        let test = expectation(description: "Response")
+        let req = API.GetOrderBook()
+        client.send(req) { res, error in
+            XCTAssertNil(error)
+            XCTAssertNotNil(res)
+            test.fulfill()
+        }
+        waitForExpectations(timeout: 5) { error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
 
     func testGetBlock() {
         let test = expectation(description: "Response")

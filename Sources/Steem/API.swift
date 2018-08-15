@@ -61,15 +61,26 @@ public struct API {
         public let method = "get_dynamic_global_properties"
         public init() {}
     }
-    
+
     public struct FeedHistory: Decodable {
         public let currentMedianHistory: Price
         public let priceHistory: [Price]
     }
-    
+
     public struct GetFeedHistory: Request {
         public typealias Response = FeedHistory
         public let method = "get_feed_history"
+        public init() {}
+    }
+
+    public struct OrderBook: Decodable {
+        public let bids: [Order]
+        public let asks: [Order]
+    }
+
+    public struct GetOrderBook: Request {
+        public typealias Response = OrderBook
+        public let method = "get_order_book"
         public init() {}
     }
 
