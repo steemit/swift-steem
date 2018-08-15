@@ -285,7 +285,7 @@ public class Client {
 /// JSON Coding helpers.
 extension Client {
     /// Steem-style date formatter (ISO 8601 minus Z at the end).
-    static let dateFormatter: DateFormatter = {
+    public static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.calendar = Calendar(identifier: .iso8601)
         formatter.locale = Locale(identifier: "en_US_POSIX")

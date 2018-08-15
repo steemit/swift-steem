@@ -13,6 +13,24 @@ class AssetTest: XCTestCase {
         AssertEncodes(Asset(0.001, .sbd), "0.001 SBD")
     }
 
+    func testProperties() {
+        let mockAsset = Asset(0.001, .sbd)
+        XCTAssertEqual(mockAsset.description, "0.001 SBD")
+        XCTAssertEqual(mockAsset.amount, 1)
+        XCTAssertEqual(mockAsset.symbol, Asset.Symbol.sbd)
+        XCTAssertEqual(mockAsset.formattedAmount, 0.001)
+    }
+
+    func testEquateable() {
+        let mockAsset = Asset(0.1, .sbd)
+        let mockAsset2 = Asset(0.1, .steem)
+        let mockAsset3 = Asset(0.1, .sbd)
+        let mockAsset4 = Asset(0.2, .sbd)
+        XCTAssertFalse(mockAsset == mockAsset2)
+        XCTAssertTrue(mockAsset == mockAsset3)
+        XCTAssertFalse(mockAsset == mockAsset4)
+    }
+
     func testDecodable() throws {
         AssertDecodes(string: "10.000 STEEM", Asset(10, .steem))
         AssertDecodes(string: "0.001 SBD", Asset(0.001, .sbd))
