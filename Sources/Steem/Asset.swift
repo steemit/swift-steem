@@ -91,14 +91,15 @@ public struct Price: Equatable, SteemEncodable, Decodable {
 }
 
 extension Asset {
-    public var formattedAmount: Double {
+    /// The amount of the token, based on symbol precision.
+    public var resolvedAmount: Double {
         return Double(self.amount) / pow(10, Double(self.symbol.precision))
     }
 }
 
 extension Asset: LosslessStringConvertible {
     public var description: String {
-        let value = self.formattedAmount
+        let value = self.resolvedAmount
         let formatter = NumberFormatter()
         formatter.decimalSeparator = "."
         formatter.usesGroupingSeparator = false
@@ -109,8 +110,6 @@ extension Asset: LosslessStringConvertible {
         return "\(formatted) \(self.symbol.name)"
     }
 }
-
-
 
 extension Asset: SteemEncodable, Decodable {
     public init(from decoder: Decoder) throws {

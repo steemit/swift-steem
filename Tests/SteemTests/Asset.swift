@@ -18,7 +18,7 @@ class AssetTest: XCTestCase {
         XCTAssertEqual(mockAsset.description, "0.001 SBD")
         XCTAssertEqual(mockAsset.amount, 1)
         XCTAssertEqual(mockAsset.symbol, Asset.Symbol.sbd)
-        XCTAssertEqual(mockAsset.formattedAmount, 0.001)
+        XCTAssertEqual(mockAsset.resolvedAmount, 0.001)
     }
 
     func testEquateable() {
