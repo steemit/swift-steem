@@ -47,7 +47,6 @@ public struct Asset: Equatable {
     public let symbol: Symbol
 
     internal let amount: Int64
-
     /// Create a new `Asset`.
     /// - Parameter value: Amount of tokens.
     /// - Parameter symbol: Token symbol.
@@ -91,9 +90,15 @@ public struct Price: Equatable, SteemEncodable, Decodable {
     public var quote: Asset
 }
 
+extension Asset {
+    public var formattedAmount: Double {
+        return Double(self.amount) / pow(10, Double(self.symbol.precision))
+    }
+}
+
 extension Asset: LosslessStringConvertible {
     public var description: String {
-        let value = Double(self.amount) / pow(10, Double(self.symbol.precision))
+        let value = self.formattedAmount
         let formatter = NumberFormatter()
         formatter.decimalSeparator = "."
         formatter.usesGroupingSeparator = false
@@ -104,6 +109,8 @@ extension Asset: LosslessStringConvertible {
         return "\(formatted) \(self.symbol.name)"
     }
 }
+
+
 
 extension Asset: SteemEncodable, Decodable {
     public init(from decoder: Decoder) throws {
