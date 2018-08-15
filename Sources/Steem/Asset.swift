@@ -98,6 +98,7 @@ extension Asset {
 }
 
 extension Asset: LosslessStringConvertible {
+    /// The amount of the token and its symbol.
     public var description: String {
         let value = self.resolvedAmount
         let formatter = NumberFormatter()
