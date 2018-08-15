@@ -46,6 +46,24 @@ class ClientTest: XCTestCase {
             }
         }
     }
+    
+    func testFeedHistory() {
+        let test = expectation(description: "Response")
+        let req = API.GetFeedHistory()
+        client.send(req) { res, error in
+            XCTAssertNil(error)
+            XCTAssertNotNil(res)
+            XCTAssertEqual(res?.currentMedianHistory, Price(base: Asset(0.878, .sbd), quote: Asset(1.000, .steem)))
+            XCTAssertEqual(res?.priceHistory.first, Price(base: Asset(0.962, .sbd), quote: Asset(1.000, .steem)))
+            XCTAssertEqual(res?.priceHistory.last, Price(base: Asset(0.876, .sbd), quote: Asset(1.000, .steem)))
+            test.fulfill()
+        }
+        waitForExpectations(timeout: 5) { error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
 
     func testGetBlock() {
         let test = expectation(description: "Response")

@@ -1,5 +1,6 @@
 /// Steem RPC requests and responses.
 /// - Author: Johan Nordberg <johan@steemit.com>
+/// - Author: Iain Maitland <imaitland@steemit.com>
 
 import AnyCodable
 import Foundation
@@ -58,6 +59,17 @@ public struct API {
     public struct GetDynamicGlobalProperties: Request {
         public typealias Response = DynamicGlobalProperties
         public let method = "get_dynamic_global_properties"
+        public init() {}
+    }
+    
+    public struct FeedHistory: Decodable {
+        public let currentMedianHistory: Price
+        public let priceHistory: [Price]
+    }
+    
+    public struct GetFeedHistory: Request {
+        public typealias Response = FeedHistory
+        public let method = "get_feed_history"
         public init() {}
     }
 
