@@ -47,7 +47,7 @@ public struct Operation {
         /// The content body.
         public var body: String
         /// Additional content metadata.
-        public var jsonMetadata: String
+        public var jsonMetadata: JSONString
 
         public init(
             title: String,
@@ -56,7 +56,7 @@ public struct Operation {
             permlink: String,
             parentAuthor: String = "",
             parentPermlink: String = "",
-            jsonMetadata: String = ""
+            jsonMetadata: JSONString = ""
         ) {
             self.parentAuthor = parentAuthor
             self.parentPermlink = parentPermlink
@@ -69,8 +69,8 @@ public struct Operation {
 
         /// Content metadata.
         var metadata: [String: Any]? {
-            set { self.jsonMetadata = encodeMeta(newValue) }
-            get { return decodeMeta(self.jsonMetadata) }
+            set { self.jsonMetadata.object = newValue }
+            get { return self.jsonMetadata.object }
         }
     }
 
@@ -192,7 +192,7 @@ public struct Operation {
         public var active: Authority
         public var posting: Authority
         public var memoKey: PublicKey
-        public var jsonMetadata: String
+        public var jsonMetadata: JSONString
 
         public init(
             fee: Asset,
@@ -202,7 +202,7 @@ public struct Operation {
             active: Authority,
             posting: Authority,
             memoKey: PublicKey,
-            jsonMetadata: String = ""
+            jsonMetadata: JSONString = ""
         ) {
             self.fee = fee
             self.creator = creator
@@ -216,8 +216,8 @@ public struct Operation {
 
         /// Account metadata.
         var metadata: [String: Any]? {
-            set { self.jsonMetadata = encodeMeta(newValue) }
-            get { return decodeMeta(self.jsonMetadata) }
+            set { self.jsonMetadata.object = newValue }
+            get { return self.jsonMetadata.object }
         }
     }
 
@@ -354,23 +354,18 @@ public struct Operation {
         public var requiredAuths: [String]
         public var requiredPostingAuths: [String]
         public var id: String
-        public var json: String
+        public var json: JSONString
 
         public init(
             requiredAuths: [String],
             requiredPostingAuths: [String],
             id: String,
-            json: String
+            json: JSONString
         ) {
             self.requiredAuths = requiredAuths
             self.requiredPostingAuths = requiredPostingAuths
             self.id = id
             self.json = json
-        }
-
-        var jsonObject: [String: Any]? {
-            set { self.json = encodeMeta(newValue) }
-            get { return decodeMeta(self.json) }
         }
     }
 
@@ -555,7 +550,7 @@ public struct Operation {
         public var fee: Asset
         public var ratificationDeadline: Date
         public var escrowExpiration: Date
-        public var jsonMeta: String
+        public var jsonMeta: JSONString
 
         public init(
             from: String,
@@ -567,7 +562,7 @@ public struct Operation {
             fee: Asset,
             ratificationDeadline: Date,
             escrowExpiration: Date,
-            jsonMeta: String = ""
+            jsonMeta: JSONString = ""
         ) {
             self.from = from
             self.to = to
@@ -583,8 +578,8 @@ public struct Operation {
 
         /// Metadata.
         var metadata: [String: Any]? {
-            set { self.jsonMeta = encodeMeta(newValue) }
-            get { return decodeMeta(self.jsonMeta) }
+            set { self.jsonMeta.object = newValue }
+            get { return self.jsonMeta.object }
         }
     }
 
@@ -837,7 +832,7 @@ public struct Operation {
         public var active: Authority
         public var posting: Authority
         public var memoKey: PublicKey
-        public var jsonMetadata: String
+        public var jsonMetadata: JSONString
         public var extensions: [FutureExtensions]
 
         public init(
@@ -849,7 +844,7 @@ public struct Operation {
             active: Authority,
             posting: Authority,
             memoKey: PublicKey,
-            jsonMetadata: String = "",
+            jsonMetadata: JSONString = "",
             extensions: [FutureExtensions] = []
         ) {
             self.fee = fee
@@ -866,8 +861,8 @@ public struct Operation {
 
         /// Account metadata.
         var metadata: [String: Any]? {
-            set { self.jsonMetadata = encodeMeta(newValue) }
-            get { return decodeMeta(self.jsonMetadata) }
+            set { self.jsonMetadata.object = newValue }
+            get { return self.jsonMetadata.object }
         }
     }
 
@@ -1212,21 +1207,4 @@ extension Operation.CommentOptions.Extension {
             throw EncodingError.invalidValue(self, EncodingError.Context(codingPath: container.codingPath, debugDescription: "Encountered unknown comment extension"))
         }
     }
-}
-
-fileprivate func encodeMeta(_ value: [String: Any]?) -> String {
-    if let object = value,
-        let encoded = try? JSONSerialization.data(withJSONObject: object, options: []) {
-        return String(bytes: encoded, encoding: .utf8) ?? ""
-    } else {
-        return ""
-    }
-}
-
-fileprivate func decodeMeta(_ value: String) -> [String: Any]? {
-    guard let data = value.data(using: .utf8) else {
-        return nil
-    }
-    let decoded = try? JSONSerialization.jsonObject(with: data, options: [])
-    return decoded as? [String: Any]
 }
