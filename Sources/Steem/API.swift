@@ -30,7 +30,6 @@ public struct API {
         public let headBlockNumber: UInt32
         public let headBlockId: BlockId
         public let currentWitness: String
-        public let totalPow: String
         public let numPowWitnesses: UInt32
         public let virtualSupply: Asset
         public let currentSupply: Asset
