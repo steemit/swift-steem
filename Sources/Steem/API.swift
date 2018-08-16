@@ -223,4 +223,22 @@ public struct API {
             self.limit = limit
         }
     }
+
+    /// Type representing the order book for the internal STEEM market
+    public struct Order: Equatable, SteemEncodable, Decodable {
+        /// The order price
+        public var orderPrice: Price
+
+        /// The real price
+        public var realPrice: String
+
+        /// The STEEM price
+        public var steem: UInt32
+
+        /// The SBD price
+        public var sbd: UInt32
+
+        /// Created
+        public var created: Date
+    }
 }

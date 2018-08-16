@@ -53,6 +53,10 @@ class ClientTest: XCTestCase {
         client.send(req) { res, error in
             XCTAssertNil(error)
             XCTAssertNotNil(res)
+            XCTAssertEqual(res?.currentMedianHistory.quote.resolvedAmount, 1.000)
+            XCTAssertEqual(res?.currentMedianHistory.quote.symbol, .steem)
+            XCTAssertEqual(res?.priceHistory.first?.quote.resolvedAmount, 1.000)
+            XCTAssertEqual(res?.priceHistory.first?.quote.symbol, .steem)
             test.fulfill()
         }
         waitForExpectations(timeout: 5) { error in

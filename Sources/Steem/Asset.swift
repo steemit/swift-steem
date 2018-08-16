@@ -83,30 +83,32 @@ public struct Asset: Equatable {
     }
 }
 
+enum PriceError: Error {
+    case cannotConvert(asset: Asset, usingPrice: Price)
+}
+
 /// Type representing a quotation of the relative value of asset against another asset.
 public struct Price: Equatable, SteemEncodable, Decodable {
     /// The base asset.
     public var base: Asset
     /// The quote asset.
     public var quote: Asset
-}
+    /// The quote token per base token.
+    public var value: Double {
+        return self.quote.resolvedAmount / self.base.resolvedAmount
+    }
 
-/// Type representing the order book for the internal STEEM market
-public struct Order: Equatable, SteemEncodable, Decodable {
-    /// The order price
-    public var orderPrice: Price
-
-    /// The real price
-    public var realPrice: String
-
-    /// The STEEM price
-    public var steem: UInt32
-
-    /// The SBD price
-    public var sbd: UInt32
-
-    /// Created
-    public var created: String
+    func convert(asset: Asset) throws -> Asset {
+        if asset.symbol == self.base.symbol {
+            assert(self.base.resolvedAmount > 0)
+            return Asset(asset.resolvedAmount * self.quote.resolvedAmount / self.base.resolvedAmount, self.quote.symbol)
+        } else if asset.symbol == self.quote.symbol {
+            assert(self.quote.resolvedAmount > 0)
+            return Asset(asset.resolvedAmount * self.base.resolvedAmount / self.quote.resolvedAmount, self.base.symbol)
+        } else {
+            throw PriceError.cannotConvert(asset: asset, usingPrice: self)
+        }
+    }
 }
 
 extension Asset {

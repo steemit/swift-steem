@@ -31,6 +31,20 @@ class AssetTest: XCTestCase {
         XCTAssertFalse(mockAsset == mockAsset4)
     }
 
+    func testPrice() {
+        do {
+            let mockPrice: Price = Price(base: Asset(0.842, .sbd), quote: Asset(1.000, .steem))
+            let inputAsset: Asset = Asset(666, .steem)
+            let actualConversion: Asset = try mockPrice.convert(asset: inputAsset)
+            let expectedConversion: Asset = Asset(560.772, .sbd)
+            XCTAssertEqual(expectedConversion, actualConversion)
+            let invalidInputAsset: Asset = Asset(666, .custom(name: "magicBeans", precision: UInt8(0.1)))
+            XCTAssertThrowsError(try mockPrice.convert(asset: invalidInputAsset))
+        } catch {
+            XCTFail()
+        }
+    }
+
     func testDecodable() throws {
         AssertDecodes(string: "10.000 STEEM", Asset(10, .steem))
         AssertDecodes(string: "0.001 SBD", Asset(0.001, .sbd))
