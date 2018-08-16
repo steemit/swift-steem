@@ -1,6 +1,7 @@
 /// Steem RPC requests and responses.
 /// - Author: Johan Nordberg <johan@steemit.com>
 
+import AnyCodable
 import Foundation
 
 /// Steem RPC API request- and response-types.
@@ -27,8 +28,30 @@ public struct API {
     public struct DynamicGlobalProperties: Decodable {
         public let headBlockNumber: UInt32
         public let headBlockId: BlockId
+        public let currentWitness: String
+        public let totalPow: String
+        public let numPowWitnesses: UInt32
         public let virtualSupply: Asset
         public let currentSupply: Asset
+        public let confidentialSupply: Asset
+        public let currentSbdSupply: Asset
+        public let confidentialSbdSupply: Asset
+        public let totalVestingFundSteem: Asset
+        public let totalVestingShares: Asset
+        public let totalRewardFundSteem: Asset
+        public let totalRewardShares2: String
+        public let pendingRewardedVestingShares: Asset
+        public let pendingRewardedVestingSteem: Asset
+        public let sbdInterestRate: UInt32
+        public let sbdPrintRate: UInt32
+        public let currentAslot: UInt32
+        public let recentSlotsFilled: String
+        public let participationCount: UInt32
+        public let lastIrreversibleBlockNum: UInt32
+        public let votePowerReserveRate: UInt32
+        public let averageBlockSize: UInt32
+        public let currentReserveRatio: UInt32
+        public let maxVirtualBandwidth: String
         public let time: Date
     }
 
@@ -136,6 +159,46 @@ public struct API {
         public let params: RequestParams<[String]>?
         public init(names: [String]) {
             self.params = RequestParams([names])
+        }
+    }
+
+    public struct OperationObject: Decodable {
+        public let trxId: Data
+        public let block: UInt32
+        public let trxInBlock: UInt32
+        public let opInTrx: UInt32
+        public let virtualOp: UInt32
+        public let timestamp: Date
+        private let op: AnyOperation
+        public var operation: OperationType {
+            return self.op.operation
+        }
+    }
+
+    public struct AccountHistoryObject: Decodable {
+        public let id: UInt32
+        public let value: OperationObject
+        public init(from decoder: Decoder) throws {
+            var container = try decoder.unkeyedContainer()
+            self.id = try container.decode(UInt32.self)
+            self.value = try container.decode(OperationObject.self)
+        }
+    }
+
+    public struct GetAccountHistory: Request, Encodable {
+        public typealias Response = [AccountHistoryObject]
+        public let method = "get_account_history"
+        public var params: RequestParams<AnyEncodable>? {
+            return RequestParams([AnyEncodable(self.account), AnyEncodable(self.from), AnyEncodable(self.limit)])
+        }
+
+        public var account: String
+        public var from: Int
+        public var limit: Int
+        public init(account: String, from: Int = -1, limit: Int = 100) {
+            self.account = account
+            self.from = from
+            self.limit = limit
         }
     }
 }
