@@ -46,7 +46,7 @@ class ClientTest: XCTestCase {
             }
         }
     }
-    
+
     func testFeedHistory() {
         let test = expectation(description: "Response")
         let req = API.GetFeedHistory()
@@ -64,7 +64,7 @@ class ClientTest: XCTestCase {
             }
         }
     }
-    
+
     func testGetOrderBook() {
         let test = expectation(description: "Response")
         let req = API.GetOrderBook()
@@ -117,7 +117,8 @@ class ClientTest: XCTestCase {
                 refBlockNum: UInt16(props.headBlockNumber & 0xFFFF),
                 refBlockPrefix: props.headBlockId.prefix,
                 expiration: expiry,
-                operations: [comment, vote])
+                operations: [comment, vote]
+            )
             guard let stx = try? tx.sign(usingKey: key, forChain: testnetId) else {
                 return XCTFail("Unable to sign tx")
             }

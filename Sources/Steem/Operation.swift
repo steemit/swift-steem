@@ -1180,7 +1180,8 @@ internal struct AnyOperation: SteemEncodable, Decodable {
             try container.encode(op)
         default:
             throw EncodingError.invalidValue(self.operation, EncodingError.Context(
-                codingPath: container.codingPath, debugDescription: "Encountered unknown operation type"))
+                codingPath: container.codingPath, debugDescription: "Encountered unknown operation type"
+            ))
         }
     }
 }
