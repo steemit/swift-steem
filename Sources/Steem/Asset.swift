@@ -1,5 +1,6 @@
 /// Steem token types.
 /// - Author: Johan Nordberg <johan@steemit.com>
+/// - Author: Iain Maitland <imaitland@steemit.com>
 
 import Foundation
 
@@ -47,7 +48,6 @@ public struct Asset: Equatable {
     public let symbol: Symbol
 
     internal let amount: Int64
-
     /// Create a new `Asset`.
     /// - Parameter value: Amount of tokens.
     /// - Parameter symbol: Token symbol.
@@ -91,9 +91,35 @@ public struct Price: Equatable, SteemEncodable, Decodable {
     public var quote: Asset
 }
 
+/// Type representing the order book for the internal STEEM market
+public struct Order: Equatable, SteemEncodable, Decodable {
+    /// The order price
+    public var orderPrice: Price
+
+    /// The real price
+    public var realPrice: String
+
+    /// The STEEM price
+    public var steem: UInt32
+
+    /// The SBD price
+    public var sbd: UInt32
+
+    /// Created
+    public var created: String
+}
+
+extension Asset {
+    /// The amount of the token, based on symbol precision.
+    public var resolvedAmount: Double {
+        return Double(self.amount) / pow(10, Double(self.symbol.precision))
+    }
+}
+
 extension Asset: LosslessStringConvertible {
+    /// The amount of the token and its symbol.
     public var description: String {
-        let value = Double(self.amount) / pow(10, Double(self.symbol.precision))
+        let value = self.resolvedAmount
         let formatter = NumberFormatter()
         formatter.decimalSeparator = "."
         formatter.usesGroupingSeparator = false
