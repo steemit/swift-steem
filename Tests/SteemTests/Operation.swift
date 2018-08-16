@@ -47,5 +47,13 @@ class OperationTest: XCTestCase {
         AssertDecodes(json: transfer.1, transfer.0)
         AssertDecodes(json: commentOptions.1, commentOptions.0)
         AssertDecodes(json: account_create.1, account_create.0)
+        XCTAssert(vote.0.isVirtual == false)
+    }
+
+    func testVirtual() {
+        let opJson = "{\"curator\":\"foo\",\"reward\":\"0.010366 VESTS\",\"comment_author\":\"foo\",\"comment_permlink\":\"foo\"}"
+        let op = Operation.CurationReward(curator: "foo", reward: Asset(0.010366, .vests), commentAuthor: "foo", commentPermlink: "foo")
+        AssertDecodes(json: opJson, op)
+        XCTAssert(op.isVirtual)
     }
 }

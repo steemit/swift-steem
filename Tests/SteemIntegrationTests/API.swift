@@ -127,4 +127,17 @@ class ClientTest: XCTestCase {
         let createOp = r.value.operation as? Steem.Operation.AccountCreateWithDelegation
         XCTAssertEqual(createOp?.newAccountName, "almost-digital")
     }
+
+    func testGetAccountHistoryVirtual() throws {
+        let req = API.GetAccountHistory(account: "almost-digital", from: 476, limit: 0)
+        let result = try client.sendSynchronous(req)
+        guard let r = result?.first else {
+            XCTFail("No results returned")
+            return
+        }
+        let op = r.value.operation as? Steem.Operation.AuthorReward
+        XCTAssertEqual(op?.isVirtual, true)
+        XCTAssertEqual(op?.author, "almost-digital")
+        XCTAssertEqual(op?.vestingPayout, Asset(113.868270, .vests))
+    }
 }
