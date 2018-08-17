@@ -94,7 +94,7 @@ public struct Price: Equatable, SteemEncodable, Decodable {
     /// The quote asset.
     public var quote: Asset
     /// Use the Price base and quote Assets to convert between Asset amounts.
-    func convert(asset: Asset) throws -> Asset {
+    public func convert(asset: Asset) throws -> Asset {
         if asset.symbol == self.base.symbol {
             assert(self.base.resolvedAmount > 0)
             return Asset(asset.resolvedAmount * self.quote.resolvedAmount / self.base.resolvedAmount, self.quote.symbol)
@@ -104,6 +104,10 @@ public struct Price: Equatable, SteemEncodable, Decodable {
         } else {
             throw PriceError.cannotConvert(asset: asset, usingPrice: self)
         }
+    }
+    public init(base: Asset, quote: Asset) {
+        self.base = base
+        self.quote = quote
     }
 }
 
