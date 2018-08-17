@@ -80,7 +80,10 @@ public struct API {
     public struct GetOrderBook: Request {
         public typealias Response = OrderBook
         public let method = "get_order_book"
-        public init() {}
+        public let params: RequestParams<Int>?
+        public init(count: Int) {
+            self.params = RequestParams([count])
+        }
     }
 
     public struct TransactionConfirmation: Decodable {

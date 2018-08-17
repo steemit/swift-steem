@@ -68,7 +68,7 @@ class ClientTest: XCTestCase {
 
     func testGetOrderBook() {
         let test = expectation(description: "Response")
-        let req = API.GetOrderBook()
+        let req = API.GetOrderBook(count: 1)
         client.send(req) { res, error in
             XCTAssertNil(error)
             XCTAssertNotNil(res)
