@@ -1,5 +1,6 @@
 /// Steem token types.
 /// - Author: Johan Nordberg <johan@steemit.com>
+/// - Author: Iain Maitland <imaitland@steemit.com>
 
 import Foundation
 
@@ -47,7 +48,6 @@ public struct Asset: Equatable {
     public let symbol: Symbol
 
     internal let amount: Int64
-
     /// Create a new `Asset`.
     /// - Parameter value: Amount of tokens.
     /// - Parameter symbol: Token symbol.
@@ -83,17 +83,45 @@ public struct Asset: Equatable {
     }
 }
 
+enum PriceError: Error {
+    case cannotConvert(asset: Asset, usingPrice: Price)
+}
+
 /// Type representing a quotation of the relative value of asset against another asset.
 public struct Price: Equatable, SteemEncodable, Decodable {
     /// The base asset.
     public var base: Asset
     /// The quote asset.
     public var quote: Asset
+    /// Use the Price base and quote Assets to convert between Asset amounts.
+    public func convert(asset: Asset) throws -> Asset {
+        if asset.symbol == self.base.symbol {
+            assert(self.base.resolvedAmount > 0)
+            return Asset(asset.resolvedAmount * self.quote.resolvedAmount / self.base.resolvedAmount, self.quote.symbol)
+        } else if asset.symbol == self.quote.symbol {
+            assert(self.quote.resolvedAmount > 0)
+            return Asset(asset.resolvedAmount * self.base.resolvedAmount / self.quote.resolvedAmount, self.base.symbol)
+        } else {
+            throw PriceError.cannotConvert(asset: asset, usingPrice: self)
+        }
+    }
+    public init(base: Asset, quote: Asset) {
+        self.base = base
+        self.quote = quote
+    }
+}
+
+extension Asset {
+    /// The amount of the token, based on symbol precision.
+    public var resolvedAmount: Double {
+        return Double(self.amount) / pow(10, Double(self.symbol.precision))
+    }
 }
 
 extension Asset: LosslessStringConvertible {
+    /// The amount of the token and its symbol.
     public var description: String {
-        let value = Double(self.amount) / pow(10, Double(self.symbol.precision))
+        let value = self.resolvedAmount
         let formatter = NumberFormatter()
         formatter.decimalSeparator = "."
         formatter.usesGroupingSeparator = false

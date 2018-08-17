@@ -327,7 +327,7 @@ extension Client {
         #endif
         return decoder
     }
-    
+
     /// Returns a JSONEncoder instance configured for the Steem JSON format.
     public static func JSONEncoder() -> Foundation.JSONEncoder {
         let encoder = Foundation.JSONEncoder()

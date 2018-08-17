@@ -1,5 +1,6 @@
 /// Steem RPC requests and responses.
 /// - Author: Johan Nordberg <johan@steemit.com>
+/// - Author: Iain Maitland <imaitland@steemit.com>
 
 import AnyCodable
 import Foundation
@@ -28,8 +29,29 @@ public struct API {
     public struct DynamicGlobalProperties: Decodable {
         public let headBlockNumber: UInt32
         public let headBlockId: BlockId
+        public let currentWitness: String
+        public let numPowWitnesses: UInt32
         public let virtualSupply: Asset
         public let currentSupply: Asset
+        public let confidentialSupply: Asset
+        public let currentSbdSupply: Asset
+        public let confidentialSbdSupply: Asset
+        public let totalVestingFundSteem: Asset
+        public let totalVestingShares: Asset
+        public let totalRewardFundSteem: Asset
+        public let totalRewardShares2: String
+        public let pendingRewardedVestingShares: Asset
+        public let pendingRewardedVestingSteem: Asset
+        public let sbdInterestRate: UInt32
+        public let sbdPrintRate: UInt32
+        public let currentAslot: UInt32
+        public let recentSlotsFilled: String
+        public let participationCount: UInt32
+        public let lastIrreversibleBlockNum: UInt32
+        public let votePowerReserveRate: UInt32
+        public let averageBlockSize: UInt32
+        public let currentReserveRatio: UInt32
+        public let maxVirtualBandwidth: String
         public let time: Date
     }
 
@@ -37,6 +59,31 @@ public struct API {
         public typealias Response = DynamicGlobalProperties
         public let method = "get_dynamic_global_properties"
         public init() {}
+    }
+
+    public struct FeedHistory: Decodable {
+        public let currentMedianHistory: Price
+        public let priceHistory: [Price]
+    }
+
+    public struct GetFeedHistory: Request {
+        public typealias Response = FeedHistory
+        public let method = "get_feed_history"
+        public init() {}
+    }
+
+    public struct OrderBook: Decodable {
+        public let bids: [Order]
+        public let asks: [Order]
+    }
+
+    public struct GetOrderBook: Request {
+        public typealias Response = OrderBook
+        public let method = "get_order_book"
+        public let params: RequestParams<Int>?
+        public init(count: Int) {
+            self.params = RequestParams([count])
+        }
     }
 
     public struct TransactionConfirmation: Decodable {
@@ -178,5 +225,23 @@ public struct API {
             self.from = from
             self.limit = limit
         }
+    }
+
+    /// Type representing the order book for the internal STEEM market
+    public struct Order: Equatable, SteemEncodable, Decodable {
+        /// The order price
+        public var orderPrice: Price
+
+        /// The real price
+        public var realPrice: String
+
+        /// The STEEM price
+        public var steem: UInt32
+
+        /// The SBD price
+        public var sbd: UInt32
+
+        /// Created
+        public var created: Date
     }
 }

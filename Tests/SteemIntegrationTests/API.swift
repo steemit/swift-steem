@@ -47,6 +47,40 @@ class ClientTest: XCTestCase {
         }
     }
 
+    func testFeedHistory() {
+        let test = expectation(description: "Response")
+        let req = API.GetFeedHistory()
+        client.send(req) { res, error in
+            XCTAssertNil(error)
+            XCTAssertNotNil(res)
+            XCTAssertEqual(res?.currentMedianHistory.quote.resolvedAmount, 1.000)
+            XCTAssertEqual(res?.currentMedianHistory.quote.symbol, .steem)
+            XCTAssertEqual(res?.priceHistory.first?.quote.resolvedAmount, 1.000)
+            XCTAssertEqual(res?.priceHistory.first?.quote.symbol, .steem)
+            test.fulfill()
+        }
+        waitForExpectations(timeout: 5) { error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    func testGetOrderBook() {
+        let test = expectation(description: "Response")
+        let req = API.GetOrderBook(count: 1)
+        client.send(req) { res, error in
+            XCTAssertNil(error)
+            XCTAssertNotNil(res)
+            test.fulfill()
+        }
+        waitForExpectations(timeout: 5) { error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+
     func testGetBlock() {
         let test = expectation(description: "Response")
         let req = API.GetBlock(blockNum: 12_345_678)
@@ -84,7 +118,8 @@ class ClientTest: XCTestCase {
                 refBlockNum: UInt16(props.headBlockNumber & 0xFFFF),
                 refBlockPrefix: props.headBlockId.prefix,
                 expiration: expiry,
-                operations: [comment, vote])
+                operations: [comment, vote]
+            )
             guard let stx = try? tx.sign(usingKey: key, forChain: testnetId) else {
                 return XCTFail("Unable to sign tx")
             }

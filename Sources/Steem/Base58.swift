@@ -17,7 +17,7 @@ internal extension Data {
     /**
      Creates a new data buffer from a Base58Check-encoded string.
      - note: Returns nil if the check fails or if the string decodes to more than 128 bytes.
-    */
+     */
     init?(base58CheckEncoded str: String, options: Base58CheckOptions = []) {
         let len = str.count
         let data = UnsafeMutablePointer<UInt8>.allocate(capacity: len)
