@@ -105,6 +105,7 @@ public struct Price: Equatable, SteemEncodable, Decodable {
             throw PriceError.cannotConvert(asset: asset, usingPrice: self)
         }
     }
+
     public init(base: Asset, quote: Asset) {
         self.base = base
         self.quote = quote

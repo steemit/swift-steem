@@ -60,13 +60,13 @@ public struct API {
         public let method = "get_dynamic_global_properties"
         public init() {}
     }
-    
+
     public struct SteemPrices: Decodable {
         public let steemSbd: Float32
         public let steemUsd: Float32
         public let steemVest: Float32
     }
-    
+
     public struct GetPrices: Request {
         public typealias Response = SteemPrices
         public let method = "conveyor.get_prices"

@@ -80,11 +80,11 @@ class ClientTest: XCTestCase {
             }
         }
     }
-    
+
     func testGetPrices() {
         let test = expectation(description: "Response")
         let req = API.GetPrices()
-        client.send(req) {res, error in
+        client.send(req) { _, error in
             XCTAssertNil(error)
         }
     }
