@@ -62,12 +62,12 @@ public struct API {
     }
     
     public struct SteemPrices: Decodable {
-        public let steemSbd: Int32
-        public let steemUsd: Int32
-        public let steemVest: Int32
+        public let steemSbd: Float32
+        public let steemUsd: Float32
+        public let steemVest: Float32
     }
     
-    public struct GetPrices: Decodable {
+    public struct GetPrices: Request {
         public typealias Response = SteemPrices
         public let method = "conveyor.get_prices"
         public init() {}
