@@ -60,6 +60,19 @@ public struct API {
         public let method = "get_dynamic_global_properties"
         public init() {}
     }
+    
+    ///{ steem_sbd: 0.2, steem_usd: 5, steem_vest: 42 })
+    public struct SteemPrices: Decodable {
+        public let steemSbd: Int32
+        public let steemUsd: Int32
+        public let steemVest: Int32
+    }
+    
+    public struct GetPrices: Decodable {
+        public typealias Response = SteemPrices
+        public let method = "conveyor.get_prices"
+        public init() {}
+    }
 
     public struct FeedHistory: Decodable {
         public let currentMedianHistory: Price
