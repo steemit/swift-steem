@@ -61,7 +61,6 @@ public struct API {
         public init() {}
     }
     
-    ///{ steem_sbd: 0.2, steem_usd: 5, steem_vest: 42 })
     public struct SteemPrices: Decodable {
         public let steemSbd: Int32
         public let steemUsd: Int32
