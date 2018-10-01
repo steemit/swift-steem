@@ -37,6 +37,15 @@ public struct API {
         public let method = "get_dynamic_global_properties"
         public init() {}
     }
+    
+    public struct TestnetGetDynamicGlobalProperties: Request {
+        public typealias Response = DynamicGlobalProperties
+        public let method = "call"
+        public let params: CallParams<SignedTransaction>?
+        public init() {
+            self.params = CallParams("condenser_api", "get_dynamic_global_properties", [])
+        }
+    }
 
     public struct TransactionConfirmation: Decodable {
         public let id: Data
@@ -51,6 +60,15 @@ public struct API {
         public let params: CallParams<SignedTransaction>?
         public init(transaction: SignedTransaction) {
             self.params = CallParams("network_broadcast_api", "broadcast_transaction_synchronous", [transaction])
+        }
+    }
+    
+    public struct TestnetBroadcastTransaction: Request {
+        public typealias Response = TransactionConfirmation
+        public let method = "call"
+        public let params: CallParams<SignedTransaction>?
+        public init(transaction: SignedTransaction) {
+            self.params = CallParams("condenser_api", "broadcast_transaction_synchronous", [transaction])
         }
     }
 

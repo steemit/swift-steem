@@ -74,7 +74,7 @@ class ClientTest: XCTestCase {
         )
         comment.parentPermlink = "test"
         let vote = Operation.Vote(voter: "swift", author: "swift", permlink: comment.permlink)
-        testnetClient.send(API.GetDynamicGlobalProperties()) { props, error in
+        testnetClient.send(API.TestnetGetDynamicGlobalProperties()) { props, error in
             XCTAssertNil(error)
             guard let props = props else {
                 return XCTFail("Unable to get props")
@@ -85,10 +85,11 @@ class ClientTest: XCTestCase {
                 refBlockPrefix: props.headBlockId.prefix,
                 expiration: expiry,
                 operations: [comment, vote])
+            
             guard let stx = try? tx.sign(usingKey: key, forChain: testnetId) else {
                 return XCTFail("Unable to sign tx")
             }
-            testnetClient.send(API.BroadcastTransaction(transaction: stx)) { res, error in
+            testnetClient.send(API.TestnetBroadcastTransaction(transaction: stx)) { res, error in
                 XCTAssertNil(error)
                 if let res = res {
                     XCTAssertFalse(res.expired)
