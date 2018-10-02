@@ -63,6 +63,7 @@ public struct API {
         }
     }
     
+    // Note: Uses pre-appbase condenser_api
     public struct TestnetBroadcastTransaction: Request {
         public typealias Response = TransactionConfirmation
         public let method = "call"
