@@ -104,7 +104,7 @@ internal class Secp256k1Context {
             return key.withUnsafeBytes { (keyPtr: UnsafePointer<UInt8>) -> Bool in
                 if let ndata = ndata {
                     return ndata.withUnsafeBytes { (ndataPtr: UnsafePointer<UInt8>) -> Bool in
-                        return secp256k1_ecdsa_sign_recoverable(self.ctx, sig, msgPtr, keyPtr, nil, ndataPtr) == 1
+                        secp256k1_ecdsa_sign_recoverable(self.ctx, sig, msgPtr, keyPtr, nil, ndataPtr) == 1
                     }
                 } else {
                     return secp256k1_ecdsa_sign_recoverable(self.ctx, sig, msgPtr, keyPtr, nil, nil) == 1

@@ -47,6 +47,56 @@ class ClientTest: XCTestCase {
         }
     }
 
+    func testFeedHistory() {
+        let test = expectation(description: "Response")
+        let req = API.GetFeedHistory()
+        client.send(req) { res, error in
+            XCTAssertNil(error)
+            XCTAssertNotNil(res)
+            XCTAssertEqual(res?.currentMedianHistory.quote.resolvedAmount, 1.000)
+            XCTAssertEqual(res?.currentMedianHistory.quote.symbol, .steem)
+            XCTAssertEqual(res?.priceHistory.first?.quote.resolvedAmount, 1.000)
+            XCTAssertEqual(res?.priceHistory.first?.quote.symbol, .steem)
+            test.fulfill()
+        }
+        waitForExpectations(timeout: 5) { error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    func testGetOrderBook() {
+        let test = expectation(description: "Response")
+        let req = API.GetOrderBook(count: 1)
+        client.send(req) { res, error in
+            XCTAssertNil(error)
+            XCTAssertNotNil(res)
+            test.fulfill()
+        }
+        waitForExpectations(timeout: 5) { error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    func testGetPrices() {
+        let test = expectation(description: "Response")
+        let req = API.GetPrices()
+        client.send(req) { res, error in
+            XCTAssertNil(error)
+            XCTAssertNotNil(res)
+            test.fulfill()
+        }
+    
+        waitForExpectations(timeout: 5) { error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+
     func testGetBlock() {
         let test = expectation(description: "Response")
         let req = API.GetBlock(blockNum: 12_345_678)
@@ -84,8 +134,8 @@ class ClientTest: XCTestCase {
                 refBlockNum: UInt16(props.headBlockNumber & 0xFFFF),
                 refBlockPrefix: props.headBlockId.prefix,
                 expiration: expiry,
-                operations: [comment, vote])
-            
+                operations: [comment, vote]
+            )
             guard let stx = try? tx.sign(usingKey: key, forChain: testnetId) else {
                 return XCTFail("Unable to sign tx")
             }
@@ -116,5 +166,29 @@ class ClientTest: XCTestCase {
         XCTAssertEqual(account.id, 180_270)
         XCTAssertEqual(account.name, "almost-digital")
         XCTAssertEqual(account.created, Date(timeIntervalSince1970: 1_496_691_060))
+    }
+
+    func testGetAccountHistory() throws {
+        let req = API.GetAccountHistory(account: "almost-digital", from: 0, limit: 0)
+        let result = try client.sendSynchronous(req)
+        guard let r = result?.first else {
+            XCTFail("No results returned")
+            return
+        }
+        let createOp = r.value.operation as? Steem.Operation.AccountCreateWithDelegation
+        XCTAssertEqual(createOp?.newAccountName, "almost-digital")
+    }
+
+    func testGetAccountHistoryVirtual() throws {
+        let req = API.GetAccountHistory(account: "almost-digital", from: 476, limit: 0)
+        let result = try client.sendSynchronous(req)
+        guard let r = result?.first else {
+            XCTFail("No results returned")
+            return
+        }
+        let op = r.value.operation as? Steem.Operation.AuthorReward
+        XCTAssertEqual(op?.isVirtual, true)
+        XCTAssertEqual(op?.author, "almost-digital")
+        XCTAssertEqual(op?.vestingPayout, Asset(113.868270, .vests))
     }
 }
