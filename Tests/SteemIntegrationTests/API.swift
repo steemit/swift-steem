@@ -9,8 +9,8 @@ struct HelloRequest: Request {
 
 let client = Steem.Client(address: URL(string: "https://api.steemit.com")!)
 
-let testnetClient = Steem.Client(address: URL(string: "https://testnet.steem.vc")!)
-let testnetId = ChainId.custom(Data(hexEncoded: "79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673"))
+let testnetClient = Steem.Client(address: URL(string: "https://testnet.steemitdev.com")!)
+let testnetId = ChainId.custom(Data(hexEncoded: "46d82ab7d8db682eb1959aed0ada039a6d49afa1602491f93dde9cac3e8e6c32"))
 
 class ClientTest: XCTestCase {
     func testNani() {
@@ -115,16 +115,16 @@ class ClientTest: XCTestCase {
 
     func testBroadcast() {
         let test = expectation(description: "Response")
-        let key = PrivateKey("5JQzF7rejVDDFYqCtm4ypcNHhP8Zru6hY1bpALxjNWKtm2yBqC9")!
+        let key = PrivateKey("5KS8eoAGLrCg2w3ytqSQXsmHuDTdvb2NLjJLpxgaiVJDXaGpcGT")!
         var comment = Operation.Comment(
             title: "Hello from Swift",
             body: "The time is \(Date()) and I'm running tests.",
-            author: "swift",
+            author: "test19",
             permlink: "hey-eveyone-im-running-swift-tests-and-the-time-is-\(UInt32(Date().timeIntervalSinceReferenceDate))"
         )
         comment.parentPermlink = "test"
-        let vote = Operation.Vote(voter: "swift", author: "swift", permlink: comment.permlink)
-        testnetClient.send(API.GetDynamicGlobalProperties()) { props, error in
+        let vote = Operation.Vote(voter: "test19", author: "test19", permlink: comment.permlink)
+        testnetClient.send(API.TestnetGetDynamicGlobalProperties()) { props, error in
             XCTAssertNil(error)
             guard let props = props else {
                 return XCTFail("Unable to get props")
@@ -139,7 +139,7 @@ class ClientTest: XCTestCase {
             guard let stx = try? tx.sign(usingKey: key, forChain: testnetId) else {
                 return XCTFail("Unable to sign tx")
             }
-            testnetClient.send(API.BroadcastTransaction(transaction: stx)) { res, error in
+            testnetClient.send(API.TestnetBroadcastTransaction(transaction: stx)) { res, error in
                 XCTAssertNil(error)
                 if let res = res {
                     XCTAssertFalse(res.expired)
