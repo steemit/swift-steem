@@ -4,7 +4,14 @@
 import Foundation
 
 /// A type that represents a operation on the Steem blockchain.
-public protocol OperationType: SteemCodable {}
+public protocol OperationType: SteemCodable {
+    /// Whether the operation is virtual or not.
+    var isVirtual: Bool { get }
+}
+
+extension OperationType {
+    public var isVirtual: Bool { return false }
+}
 
 /// Namespace for all available Steem operations.
 public struct Operation {
@@ -47,7 +54,7 @@ public struct Operation {
         /// The content body.
         public var body: String
         /// Additional content metadata.
-        public var jsonMetadata: String
+        public var jsonMetadata: JSONString
 
         public init(
             title: String,
@@ -56,7 +63,7 @@ public struct Operation {
             permlink: String,
             parentAuthor: String = "",
             parentPermlink: String = "",
-            jsonMetadata: String = ""
+            jsonMetadata: JSONString = ""
         ) {
             self.parentAuthor = parentAuthor
             self.parentPermlink = parentPermlink
@@ -69,8 +76,8 @@ public struct Operation {
 
         /// Content metadata.
         var metadata: [String: Any]? {
-            set { self.jsonMetadata = encodeMeta(newValue) }
-            get { return decodeMeta(self.jsonMetadata) }
+            set { self.jsonMetadata.object = newValue }
+            get { return self.jsonMetadata.object }
         }
     }
 
@@ -192,7 +199,7 @@ public struct Operation {
         public var active: Authority
         public var posting: Authority
         public var memoKey: PublicKey
-        public var jsonMetadata: String
+        public var jsonMetadata: JSONString
 
         public init(
             fee: Asset,
@@ -202,7 +209,7 @@ public struct Operation {
             active: Authority,
             posting: Authority,
             memoKey: PublicKey,
-            jsonMetadata: String = ""
+            jsonMetadata: JSONString = ""
         ) {
             self.fee = fee
             self.creator = creator
@@ -216,8 +223,8 @@ public struct Operation {
 
         /// Account metadata.
         var metadata: [String: Any]? {
-            set { self.jsonMetadata = encodeMeta(newValue) }
-            get { return decodeMeta(self.jsonMetadata) }
+            set { self.jsonMetadata.object = newValue }
+            get { return self.jsonMetadata.object }
         }
     }
 
@@ -354,23 +361,18 @@ public struct Operation {
         public var requiredAuths: [String]
         public var requiredPostingAuths: [String]
         public var id: String
-        public var json: String
+        public var json: JSONString
 
         public init(
             requiredAuths: [String],
             requiredPostingAuths: [String],
             id: String,
-            json: String
+            json: JSONString
         ) {
             self.requiredAuths = requiredAuths
             self.requiredPostingAuths = requiredPostingAuths
             self.id = id
             self.json = json
-        }
-
-        var jsonObject: [String: Any]? {
-            set { self.json = encodeMeta(newValue) }
-            get { return decodeMeta(self.json) }
         }
     }
 
@@ -555,7 +557,7 @@ public struct Operation {
         public var fee: Asset
         public var ratificationDeadline: Date
         public var escrowExpiration: Date
-        public var jsonMeta: String
+        public var jsonMeta: JSONString
 
         public init(
             from: String,
@@ -567,7 +569,7 @@ public struct Operation {
             fee: Asset,
             ratificationDeadline: Date,
             escrowExpiration: Date,
-            jsonMeta: String = ""
+            jsonMeta: JSONString = ""
         ) {
             self.from = from
             self.to = to
@@ -583,8 +585,8 @@ public struct Operation {
 
         /// Metadata.
         var metadata: [String: Any]? {
-            set { self.jsonMeta = encodeMeta(newValue) }
-            get { return decodeMeta(self.jsonMeta) }
+            set { self.jsonMeta.object = newValue }
+            get { return self.jsonMeta.object }
         }
     }
 
@@ -837,7 +839,7 @@ public struct Operation {
         public var active: Authority
         public var posting: Authority
         public var memoKey: PublicKey
-        public var jsonMetadata: String
+        public var jsonMetadata: JSONString
         public var extensions: [FutureExtensions]
 
         public init(
@@ -849,7 +851,7 @@ public struct Operation {
             active: Authority,
             posting: Authority,
             memoKey: PublicKey,
-            jsonMetadata: String = "",
+            jsonMetadata: JSONString = "",
             extensions: [FutureExtensions] = []
         ) {
             self.fee = fee
@@ -866,9 +868,118 @@ public struct Operation {
 
         /// Account metadata.
         var metadata: [String: Any]? {
-            set { self.jsonMetadata = encodeMeta(newValue) }
-            get { return decodeMeta(self.jsonMetadata) }
+            set { self.jsonMetadata.object = newValue }
+            get { return self.jsonMetadata.object }
         }
+    }
+
+    // Virtual operations.
+
+    public struct AuthorReward: OperationType, Equatable {
+        public var isVirtual: Bool { return true }
+        public let author: String
+        public let permlink: String
+        public let sbdPayout: Asset
+        public let steemPayout: Asset
+        public let vestingPayout: Asset
+    }
+
+    public struct CurationReward: OperationType, Equatable {
+        public var isVirtual: Bool { return true }
+        public let curator: String
+        public let reward: Asset
+        public let commentAuthor: String
+        public let commentPermlink: String
+    }
+
+    public struct CommentReward: OperationType, Equatable {
+        public var isVirtual: Bool { return true }
+        public let author: String
+        public let permlink: String
+        public let payout: Asset
+    }
+
+    public struct LiquidityReward: OperationType, Equatable {
+        public var isVirtual: Bool { return true }
+        public let owner: String
+        public let payout: Asset
+    }
+
+    public struct Interest: OperationType, Equatable {
+        public var isVirtual: Bool { return true }
+        public let owner: String
+        public let interest: Asset
+    }
+
+    public struct FillConvertRequest: OperationType, Equatable {
+        public var isVirtual: Bool { return true }
+        public let owner: String
+        public let requestid: UInt32
+        public let amountIn: Asset
+        public let amountOut: Asset
+    }
+
+    public struct FillVestingWithdraw: OperationType, Equatable {
+        public var isVirtual: Bool { return true }
+        public let fromAccount: String
+        public let toAccount: String
+        public let withdrawn: Asset
+        public let deposited: Asset
+    }
+
+    public struct ShutdownWitness: OperationType, Equatable {
+        public var isVirtual: Bool { return true }
+        public let owner: String
+    }
+
+    public struct FillOrder: OperationType, Equatable {
+        public var isVirtual: Bool { return true }
+        public let currentOwner: String
+        public let currentOrderid: UInt32
+        public let currentPays: Asset
+        public let openOwner: String
+        public let openOrderid: UInt32
+        public let openPays: Asset
+    }
+
+    public struct FillTransferFromSavings: OperationType, Equatable {
+        public var isVirtual: Bool { return true }
+        public let from: String
+        public let to: String
+        public let amount: Asset
+        public let requestId: UInt32
+        public let memo: String
+    }
+
+    public struct Hardfork: OperationType, Equatable {
+        public var isVirtual: Bool { return true }
+        public let hardforkId: UInt32
+    }
+
+    public struct CommentPayoutUpdate: OperationType, Equatable {
+        public var isVirtual: Bool { return true }
+        public let author: String
+        public let permlink: String
+    }
+
+    public struct ReturnVestingDelegation: OperationType, Equatable {
+        public var isVirtual: Bool { return true }
+        public let account: String
+        public let vestingShares: Asset
+    }
+
+    public struct CommentBenefactorReward: OperationType, Equatable {
+        public var isVirtual: Bool { return true }
+        public let benefactor: String
+        public let author: String
+        public let permlink: String
+        public let reward: Asset
+    }
+
+    public struct ProducerReward: OperationType, Equatable {
+        public var isVirtual: Bool { return true }
+        public let producer: String
+        public let vestingShares: Asset
     }
 
     /// Unknown operation, seen if the decoder encounters operation which has no type defined.
@@ -922,6 +1033,22 @@ fileprivate enum OperationId: UInt8, SteemEncodable, Decodable {
     case claim_reward_balance = 39
     case delegate_vesting_shares = 40
     case account_create_with_delegation = 41
+    // Virtual operations
+    case fill_convert_request
+    case author_reward
+    case curation_reward
+    case comment_reward
+    case liquidity_reward
+    case interest
+    case fill_vesting_withdraw
+    case fill_order
+    case shutdown_witness
+    case fill_transfer_from_savings
+    case hardfork
+    case comment_payout_update
+    case return_vesting_delegation
+    case comment_benefactor_reward
+    case producer_reward
     case unknown = 255
 
     init(from decoder: Decoder) throws {
@@ -970,6 +1097,21 @@ fileprivate enum OperationId: UInt8, SteemEncodable, Decodable {
         case "claim_reward_balance": self = .claim_reward_balance
         case "delegate_vesting_shares": self = .delegate_vesting_shares
         case "account_create_with_delegation": self = .account_create_with_delegation
+        case "fill_convert_request": self = .fill_convert_request
+        case "author_reward": self = .author_reward
+        case "curation_reward": self = .curation_reward
+        case "comment_reward": self = .comment_reward
+        case "liquidity_reward": self = .liquidity_reward
+        case "interest": self = .interest
+        case "fill_vesting_withdraw": self = .fill_vesting_withdraw
+        case "fill_order": self = .fill_order
+        case "shutdown_witness": self = .shutdown_witness
+        case "fill_transfer_from_savings": self = .fill_transfer_from_savings
+        case "hardfork": self = .hardfork
+        case "comment_payout_update": self = .comment_payout_update
+        case "return_vesting_delegation": self = .return_vesting_delegation
+        case "comment_benefactor_reward": self = .comment_benefactor_reward
+        case "producer_reward": self = .producer_reward
         default: self = .unknown
         }
     }
@@ -1044,6 +1186,21 @@ internal struct AnyOperation: SteemEncodable, Decodable {
         case .claim_reward_balance: op = try container.decode(Operation.ClaimRewardBalance.self)
         case .delegate_vesting_shares: op = try container.decode(Operation.DelegateVestingShares.self)
         case .account_create_with_delegation: op = try container.decode(Operation.AccountCreateWithDelegation.self)
+        case .fill_convert_request: op = try container.decode(Operation.FillConvertRequest.self)
+        case .author_reward: op = try container.decode(Operation.AuthorReward.self)
+        case .curation_reward: op = try container.decode(Operation.CurationReward.self)
+        case .comment_reward: op = try container.decode(Operation.CommentReward.self)
+        case .liquidity_reward: op = try container.decode(Operation.LiquidityReward.self)
+        case .interest: op = try container.decode(Operation.Interest.self)
+        case .fill_vesting_withdraw: op = try container.decode(Operation.FillVestingWithdraw.self)
+        case .fill_order: op = try container.decode(Operation.FillOrder.self)
+        case .shutdown_witness: op = try container.decode(Operation.ShutdownWitness.self)
+        case .fill_transfer_from_savings: op = try container.decode(Operation.FillTransferFromSavings.self)
+        case .hardfork: op = try container.decode(Operation.Hardfork.self)
+        case .comment_payout_update: op = try container.decode(Operation.CommentPayoutUpdate.self)
+        case .return_vesting_delegation: op = try container.decode(Operation.ReturnVestingDelegation.self)
+        case .comment_benefactor_reward: op = try container.decode(Operation.CommentBenefactorReward.self)
+        case .producer_reward: op = try container.decode(Operation.ProducerReward.self)
         case .unknown: op = Operation.Unknown()
         }
         self.operation = op
@@ -1180,7 +1337,8 @@ internal struct AnyOperation: SteemEncodable, Decodable {
             try container.encode(op)
         default:
             throw EncodingError.invalidValue(self.operation, EncodingError.Context(
-                codingPath: container.codingPath, debugDescription: "Encountered unknown operation type"))
+                codingPath: container.codingPath, debugDescription: "Encountered unknown operation type"
+            ))
         }
     }
 }
@@ -1212,21 +1370,4 @@ extension Operation.CommentOptions.Extension {
             throw EncodingError.invalidValue(self, EncodingError.Context(codingPath: container.codingPath, debugDescription: "Encountered unknown comment extension"))
         }
     }
-}
-
-fileprivate func encodeMeta(_ value: [String: Any]?) -> String {
-    if let object = value,
-        let encoded = try? JSONSerialization.data(withJSONObject: object, options: []) {
-        return String(bytes: encoded, encoding: .utf8) ?? ""
-    } else {
-        return ""
-    }
-}
-
-fileprivate func decodeMeta(_ value: String) -> [String: Any]? {
-    guard let data = value.data(using: .utf8) else {
-        return nil
-    }
-    let decoded = try? JSONSerialization.jsonObject(with: data, options: [])
-    return decoded as? [String: Any]
 }
