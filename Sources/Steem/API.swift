@@ -61,7 +61,7 @@ public struct API {
         public init() {}
     }
     
-    public struct TestnetGetDynamicGlobalProperties: Request {
+    public struct PreAppbaseGetDynamicGlobalProperties: Request {
         public typealias Response = DynamicGlobalProperties
         public let method = "call"
         public let params: CallParams<SignedTransaction>?
@@ -124,7 +124,7 @@ public struct API {
     }
     
     // Note: Uses pre-appbase condenser_api
-    public struct TestnetBroadcastTransaction: Request {
+    public struct PreAppbaseBroadcastTransaction: Request {
         public typealias Response = TransactionConfirmation
         public let method = "call"
         public let params: CallParams<SignedTransaction>?
@@ -212,6 +212,15 @@ public struct API {
     public struct GetAccounts: Request {
         public typealias Response = [ExtendedAccount]
         public let method = "get_accounts"
+        public let params: RequestParams<[String]>?
+        public init(names: [String]) {
+            self.params = RequestParams([names])
+        }
+    }
+    
+    public struct PreAppbaseGetAccounts: Request {
+        public typealias Response = [ExtendedAccount]
+        public let method = "condenser_api.get_accounts"
         public let params: RequestParams<[String]>?
         public init(names: [String]) {
             self.params = RequestParams([names])
