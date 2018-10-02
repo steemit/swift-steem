@@ -1,6 +1,8 @@
 /// Steem RPC requests and responses.
 /// - Author: Johan Nordberg <johan@steemit.com>
+/// - Author: Iain Maitland <imaitland@steemit.com>
 
+import AnyCodable
 import Foundation
 
 /// Steem RPC API request- and response-types.
@@ -27,8 +29,29 @@ public struct API {
     public struct DynamicGlobalProperties: Decodable {
         public let headBlockNumber: UInt32
         public let headBlockId: BlockId
+        public let currentWitness: String
+        public let numPowWitnesses: UInt32
         public let virtualSupply: Asset
         public let currentSupply: Asset
+        public let confidentialSupply: Asset
+        public let currentSbdSupply: Asset
+        public let confidentialSbdSupply: Asset
+        public let totalVestingFundSteem: Asset
+        public let totalVestingShares: Asset
+        public let totalRewardFundSteem: Asset
+        public let totalRewardShares2: String
+        public let pendingRewardedVestingShares: Asset
+        public let pendingRewardedVestingSteem: Asset
+        public let sbdInterestRate: UInt32
+        public let sbdPrintRate: UInt32
+        public let currentAslot: UInt32
+        public let recentSlotsFilled: String
+        public let participationCount: UInt32
+        public let lastIrreversibleBlockNum: UInt32
+        public let votePowerReserveRate: UInt32
+        public let averageBlockSize: UInt32
+        public let currentReserveRatio: UInt32
+        public let maxVirtualBandwidth: String
         public let time: Date
     }
 
@@ -36,6 +59,52 @@ public struct API {
         public typealias Response = DynamicGlobalProperties
         public let method = "get_dynamic_global_properties"
         public init() {}
+    }
+    
+    public struct TestnetGetDynamicGlobalProperties: Request {
+        public typealias Response = DynamicGlobalProperties
+        public let method = "call"
+        public let params: CallParams<SignedTransaction>?
+        public init() {
+            self.params = CallParams("condenser_api", "get_dynamic_global_properties", [])
+        }
+    }
+
+    public struct SteemPrices: Decodable {
+        public let steemSbd: Float32
+        public let steemUsd: Float32
+        public let steemVest: Float32
+    }
+
+    public struct GetPrices: Request {
+        public typealias Response = SteemPrices
+        public let method = "conveyor.get_prices"
+        public init() {}
+    }
+
+    public struct FeedHistory: Decodable {
+        public let currentMedianHistory: Price
+        public let priceHistory: [Price]
+    }
+
+    public struct GetFeedHistory: Request {
+        public typealias Response = FeedHistory
+        public let method = "get_feed_history"
+        public init() {}
+    }
+
+    public struct OrderBook: Decodable {
+        public let bids: [Order]
+        public let asks: [Order]
+    }
+
+    public struct GetOrderBook: Request {
+        public typealias Response = OrderBook
+        public let method = "get_order_book"
+        public let params: RequestParams<Int>?
+        public init(count: Int) {
+            self.params = RequestParams([count])
+        }
     }
 
     public struct TransactionConfirmation: Decodable {
@@ -51,6 +120,16 @@ public struct API {
         public let params: CallParams<SignedTransaction>?
         public init(transaction: SignedTransaction) {
             self.params = CallParams("network_broadcast_api", "broadcast_transaction_synchronous", [transaction])
+        }
+    }
+    
+    // Note: Uses pre-appbase condenser_api
+    public struct TestnetBroadcastTransaction: Request {
+        public typealias Response = TransactionConfirmation
+        public let method = "call"
+        public let params: CallParams<SignedTransaction>?
+        public init(transaction: SignedTransaction) {
+            self.params = CallParams("condenser_api", "broadcast_transaction_synchronous", [transaction])
         }
     }
 
@@ -137,5 +216,63 @@ public struct API {
         public init(names: [String]) {
             self.params = RequestParams([names])
         }
+    }
+
+    public struct OperationObject: Decodable {
+        public let trxId: Data
+        public let block: UInt32
+        public let trxInBlock: UInt32
+        public let opInTrx: UInt32
+        public let virtualOp: UInt32
+        public let timestamp: Date
+        private let op: AnyOperation
+        public var operation: OperationType {
+            return self.op.operation
+        }
+    }
+
+    public struct AccountHistoryObject: Decodable {
+        public let id: UInt32
+        public let value: OperationObject
+        public init(from decoder: Decoder) throws {
+            var container = try decoder.unkeyedContainer()
+            self.id = try container.decode(UInt32.self)
+            self.value = try container.decode(OperationObject.self)
+        }
+    }
+
+    public struct GetAccountHistory: Request, Encodable {
+        public typealias Response = [AccountHistoryObject]
+        public let method = "get_account_history"
+        public var params: RequestParams<AnyEncodable>? {
+            return RequestParams([AnyEncodable(self.account), AnyEncodable(self.from), AnyEncodable(self.limit)])
+        }
+
+        public var account: String
+        public var from: Int
+        public var limit: Int
+        public init(account: String, from: Int = -1, limit: Int = 100) {
+            self.account = account
+            self.from = from
+            self.limit = limit
+        }
+    }
+
+    /// Type representing the order book for the internal STEEM market
+    public struct Order: Equatable, SteemEncodable, Decodable {
+        /// The order price
+        public var orderPrice: Price
+
+        /// The real price
+        public var realPrice: String
+
+        /// The STEEM price
+        public var steem: UInt32
+
+        /// The SBD price
+        public var sbd: UInt32
+
+        /// Created
+        public var created: Date
     }
 }
