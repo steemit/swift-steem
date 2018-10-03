@@ -124,7 +124,7 @@ class ClientTest: XCTestCase {
         )
         comment.parentPermlink = "test"
         let vote = Operation.Vote(voter: "test19", author: "test19", permlink: comment.permlink)
-        testnetClient.send(API.TestnetGetDynamicGlobalProperties()) { props, error in
+        testnetClient.send(API.GetDynamicGlobalProperties()) { props, error in
             XCTAssertNil(error)
             guard let props = props else {
                 return XCTFail("Unable to get props")
@@ -139,7 +139,7 @@ class ClientTest: XCTestCase {
             guard let stx = try? tx.sign(usingKey: key, forChain: testnetId) else {
                 return XCTFail("Unable to sign tx")
             }
-            testnetClient.send(API.TestnetBroadcastTransaction(transaction: stx)) { res, error in
+            testnetClient.send(API.BroadcastTransaction(transaction: stx)) { res, error in
                 XCTAssertNil(error)
                 if let res = res {
                     XCTAssertFalse(res.expired)
@@ -166,6 +166,16 @@ class ClientTest: XCTestCase {
         XCTAssertEqual(account.id, 180_270)
         XCTAssertEqual(account.name, "almost-digital")
         XCTAssertEqual(account.created, Date(timeIntervalSince1970: 1_496_691_060))
+    }
+    
+    func testTestnetGetAccount() throws {
+        let result = try testnetClient.sendSynchronous(API.GetAccounts(names: ["almost-digital"]))
+        guard let account = result?.first else {
+            XCTFail("No account returned")
+            return
+        }
+        XCTAssertEqual(account.id, 40413)
+        XCTAssertEqual(account.name, "almost-digital")
     }
 
     func testGetAccountHistory() throws {

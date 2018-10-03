@@ -57,17 +57,9 @@ public struct API {
 
     public struct GetDynamicGlobalProperties: Request {
         public typealias Response = DynamicGlobalProperties
-        public let method = "get_dynamic_global_properties"
+        public let method = "condenser_api.get_dynamic_global_properties"
+        public let params: RequestParams<[String]>? = RequestParams([])
         public init() {}
-    }
-    
-    public struct TestnetGetDynamicGlobalProperties: Request {
-        public typealias Response = DynamicGlobalProperties
-        public let method = "call"
-        public let params: CallParams<SignedTransaction>?
-        public init() {
-            self.params = CallParams("condenser_api", "get_dynamic_global_properties", [])
-        }
     }
 
     public struct SteemPrices: Decodable {
@@ -115,16 +107,6 @@ public struct API {
     }
 
     public struct BroadcastTransaction: Request {
-        public typealias Response = TransactionConfirmation
-        public let method = "call"
-        public let params: CallParams<SignedTransaction>?
-        public init(transaction: SignedTransaction) {
-            self.params = CallParams("network_broadcast_api", "broadcast_transaction_synchronous", [transaction])
-        }
-    }
-    
-    // Note: Uses pre-appbase condenser_api
-    public struct TestnetBroadcastTransaction: Request {
         public typealias Response = TransactionConfirmation
         public let method = "call"
         public let params: CallParams<SignedTransaction>?
@@ -211,7 +193,7 @@ public struct API {
     /// Fetch accounts.
     public struct GetAccounts: Request {
         public typealias Response = [ExtendedAccount]
-        public let method = "get_accounts"
+        public let method = "condenser_api.get_accounts"
         public let params: RequestParams<[String]>?
         public init(names: [String]) {
             self.params = RequestParams([names])
