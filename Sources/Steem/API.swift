@@ -225,7 +225,7 @@ public struct API {
 
     public struct GetAccountHistory: Request, Encodable {
         public typealias Response = [AccountHistoryObject]
-        public let method = "get_account_history"
+        public let method = "condenser_api.get_account_history"
         public var params: RequestParams<AnyEncodable>? {
             return RequestParams([AnyEncodable(self.account), AnyEncodable(self.from), AnyEncodable(self.limit)])
         }
