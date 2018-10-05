@@ -179,13 +179,24 @@ class ClientTest: XCTestCase {
     }
 
     func testGetAccountHistory() throws {
-        let req = API.GetAccountHistory(account: "almost-digital", from: 0, limit: 0)
+        let req = API.GetAccountHistory(account: "almost-digital", from: 1, limit: 1)
         let result = try client.sendSynchronous(req)
         guard let r = result?.first else {
             XCTFail("No results returned")
             return
         }
         let createOp = r.value.operation as? Steem.Operation.AccountCreateWithDelegation
+        XCTAssertEqual(createOp?.newAccountName, "almost-digital")
+    }
+    
+    func testTestnetGetAccountHistory() throws {
+        let req = API.GetAccountHistory(account: "almost-digital", from: 1, limit: 1)
+        let result = try testnetClient.sendSynchronous(req)
+        guard let r = result?.first else {
+            XCTFail("No results returned")
+            return
+        }
+        let createOp = r.value.operation as? Steem.Operation.AccountCreate
         XCTAssertEqual(createOp?.newAccountName, "almost-digital")
     }
 
