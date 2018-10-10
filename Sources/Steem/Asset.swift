@@ -18,7 +18,7 @@ public struct Asset: Equatable {
         case custom(name: String, precision: UInt8)
 
         /// Number of decimal points represented.
-        var precision: UInt8 {
+        public var precision: UInt8 {
             switch self {
             case .steem, .sbd:
                 return 3
