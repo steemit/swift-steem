@@ -136,6 +136,50 @@ class ClientTest: XCTestCase {
                 expiration: expiry,
                 operations: [comment, vote]
             )
+            
+            guard let stx = try? tx.sign(usingKey: key, forChain: testnetId) else {
+                return XCTFail("Unable to sign tx")
+            }
+            testnetClient.send(API.BroadcastTransaction(transaction: stx)) { res, error in
+                XCTAssertNil(error)
+                if let res = res {
+                    XCTAssertFalse(res.expired)
+                    XCTAssert(res.blockNum > props.headBlockId.num)
+                } else {
+                    XCTFail("No response")
+                }
+                test.fulfill()
+            }
+        }
+        waitForExpectations(timeout: 10) { error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func testTransferBroadcast() {
+        let test = expectation(description: "Response")
+        let key = PrivateKey("5KS8eoAGLrCg2w3ytqSQXsmHuDTdvb2NLjJLpxgaiVJDXaGpcGT")!
+        
+        
+        
+        let transfer = Operation.Transfer.init(from: "test19", to: "maitland", amount: Asset(1, .custom(name: "TESTS", precision: 3)), memo: "Gulliver's travels.")
+        
+        testnetClient.send(API.GetDynamicGlobalProperties()) { props, error in
+            XCTAssertNil(error)
+            guard let props = props else {
+                return XCTFail("Unable to get props")
+            }
+            let expiry = props.time.addingTimeInterval(60)
+            
+            let tx = Transaction(
+                refBlockNum: UInt16(props.headBlockNumber & 0xFFFF),
+                refBlockPrefix: props.headBlockId.prefix,
+                expiration: expiry,
+                operations: [transfer]
+            )
+            
             guard let stx = try? tx.sign(usingKey: key, forChain: testnetId) else {
                 return XCTFail("Unable to sign tx")
             }
@@ -174,6 +218,7 @@ class ClientTest: XCTestCase {
             XCTFail("No account returned")
             return
         }
+        
         XCTAssertEqual(account.id, 40413)
         XCTAssertEqual(account.name, "almost-digital")
     }
