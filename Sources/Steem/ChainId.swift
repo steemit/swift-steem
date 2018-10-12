@@ -11,18 +11,10 @@ public enum ChainId: Equatable {
     case testNet
     /// Custom chain id.
     case custom(Data)
-    public init(string: String) {
-        let data = Data(hexEncoded: string)
-        switch data {
-        case mainNetId: self = .mainNet
-        case testNetId: self = .testNet
-        default: self = .custom(data)
-        }
-    }
 }
 
 fileprivate let mainNetId = Data(hexEncoded: "0000000000000000000000000000000000000000000000000000000000000000")
-fileprivate let testNetId = Data(hexEncoded: "46d82ab7d8db682eb1959aed0ada039a6d49afa1602491f93dde9cac3e8e6c32")
+fileprivate let testNetId = Data(hexEncoded: "9afbce9f2416520733bacb370315d32b6b2c43d6097576df1c1222859d91eecc")
 
 extension ChainId {
     /// The 32-byte chain id.
