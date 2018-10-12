@@ -9,6 +9,32 @@ class TransactionTest: XCTestCase {
     override class func tearDown() {
         PrivateKey.determenisticSignatures = false
     }
+    
+    func testInitWithOp() throws {
+        let transferOp = Steem.Operation.Transfer(from: "foo", to: "bar", amount: Asset(10, .steem), memo: "baz")
+        let expiration = Date(timeIntervalSince1970: 0)
+        var initTx = Steem.Transaction.init(refBlockNum: 12345, refBlockPrefix: 1122334455, expiration: expiration, operations:[transferOp] )
+        XCTAssertEqual(initTx.refBlockNum, 12345)
+        XCTAssertEqual(initTx.refBlockPrefix, 1_122_334_455)
+        XCTAssertEqual(initTx.expiration, Date(timeIntervalSince1970: 0))
+        XCTAssertEqual(initTx.operations.count, 1)
+        let transfer = initTx.operations.first as? Steem.Operation.Transfer
+        XCTAssertEqual(transfer, Steem.Operation.Transfer(from: "foo", to: "bar", amount: Asset(10, .steem), memo: "baz"))
+    }
+    
+    func testAppend() throws {
+        let transferOp = Steem.Operation.Transfer(from: "foo", to: "bar", amount: Asset(10, .steem), memo: "baz")
+        let expiration = Date(timeIntervalSince1970: 0)
+        var initTx = Steem.Transaction.init(refBlockNum: 12345, refBlockPrefix: 1122334455, expiration: expiration)
+        XCTAssertEqual(initTx.refBlockNum, 12345)
+        XCTAssertEqual(initTx.refBlockPrefix, 1_122_334_455)
+        XCTAssertEqual(initTx.expiration, Date(timeIntervalSince1970: 0))
+        XCTAssertEqual(initTx.operations.count, 0)
+        initTx.append(operation: transferOp)
+        XCTAssertEqual(initTx.operations.count, 1)
+        let transfer = initTx.operations.first as? Steem.Operation.Transfer
+        XCTAssertEqual(transfer, Steem.Operation.Transfer(from: "foo", to: "bar", amount: Asset(10, .steem), memo: "baz"))
+    }
 
     func testDecodable() throws {
         let tx = try TestDecode(Transaction.self, json: txJson)
