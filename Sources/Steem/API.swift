@@ -49,9 +49,6 @@ public struct API {
         public let participationCount: UInt32
         public let lastIrreversibleBlockNum: UInt32
         public let votePowerReserveRate: UInt32
-        public let averageBlockSize: UInt32
-        public let currentReserveRatio: UInt32
-        public let maxVirtualBandwidth: String
         public let time: Date
     }
 
